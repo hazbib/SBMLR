@@ -1,8 +1,10 @@
 Package: SBMLR
-Title: A Two-way interface between SBML and R
-Version: 1.0
+Title: SBML-R Interface and Analysis Tools
+Version: 1.16
+Date: 2005-02-01
 Author: Tomas Radivoyevitch
-Description: This package provides mappings between SBML and a similar list structure in R. It also provides some analysis tools.
+Description: This package contains a systems biology markup language (SBML) interface and biochemical system analysis tools with illustrative examples.
 Maintainer: Tomas Radivoyevitch <radivot@hal.cwru.edu>
-Suggests: XML, odesolve
+Depends: XML,odesolve
 License: GPL
+URL: http://epbi-radivot.cwru.edu/

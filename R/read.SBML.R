@@ -45,19 +45,27 @@ cat("model=list( ", file=fid, sep="\n")
 # now read in a SBML file 
 doc <- xmlTreeParse(paste(filename,".xml",sep=""),getDTD=FALSE)
 
+if(!is.null(doc$children$sbml[["model"]][["notes"]]))
+{
 cat("notes=c(", file=fid, sep="\n")
 notes=doc$children$sbml[["model"]][["notes"]][["body"]]
 n=length(xmlChildren(notes))
 for (i in 1:n)
 cat(sprintf("\"%s\"%s", xmlValue(xmlChildren(notes)[[i]]),ifelse(i==n,"\n),\n",",")), file=fid, sep="\n")
+}
 
+if(!is.null(doc$children$sbml[["model"]][["listOfCompartments"]]))
+{
 cat("comps=list(", file=fid, sep="\n")
 comps=xmlChildren(doc$children$sbml[["model"]][["listOfCompartments"]])#;comps
 n=length(comps)
 for (i in 1:n )
 cat(sprintf("list(id=\"%s\", vol = %g)%s", xmlAttrs(comps[[i]])["id"],as.numeric(xmlAttrs(comps[[i]])["size"]),ifelse(i==n,"\n),\n",",")), 
 file=fid, sep="\n")
+}
 
+if(!is.null(doc$children$sbml[["model"]][["listOfSpecies"]]))
+{
 cat("species=list(", file=fid, sep="\n")
 species=xmlChildren(doc$children$sbml[["model"]][["listOfSpecies"]])#;species
 n=length(species)
@@ -65,6 +73,7 @@ for (i in 1:n)
 cat(sprintf("%s =list( id=\"%s\", ic=%g,  comp=\"%s\", bc=%s)%s",xmlAttrs(species[[i]])[["id"]],xmlAttrs(species[[i]])[["id"]],
 as.numeric(xmlAttrs(species[[i]])[["initialConcentration"]]),xmlAttrs(species[[i]])[["compartment"]],
 ifelse(xmlAttrs(species[[i]])[["boundaryCondition"]]=="true","TRUE","FALSE"),ifelse(i==n,"\n),\n",",")),file=fid, sep="\n")
+}
 
 params=NULL
 if(!is.null(doc$children$sbml[["model"]][["listOfParameters"]]))

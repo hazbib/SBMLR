@@ -46,19 +46,27 @@ nrules=length(rules)
 
 cat("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", file=fid, sep="\n")
 cat("<sbml xmlns=\"http://www.sbml.org/sbml/level2\" level=\"2\" version=\"1\">", file=fid, sep="\n")
-cat("<model id=\"Branch\">", file=fid, sep="\n")
+#print(sprintf("<model id=\"%s\">",filename))
+cat(sprintf("<model id=\"%s\">",filename), file=fid, sep="\n")
+if(nnotes>1){
 cat("<notes>", file=fid, sep="\n")
 cat(" <body xmlns=\"http://www.w3.org/1999/xhtml\">", file=fid, sep="\n")
 for (i in 2:nnotes) cat(sprintf("   <p> %s  </p>",notes[[i]]), file=fid, sep="\n")
 cat(" </body>", file=fid, sep="\n")
 cat("</notes>", file=fid, sep="\n")
+}
+if(ncomps>1){
 cat("<listOfCompartments>", file=fid, sep="\n")
 for (i in 2:ncomps) cat(sprintf("   <compartment id=\"%s\"  size=\"%g\" />",comps[[i]][[2]],comps[[i]][[3]]), file=fid, sep="\n")
 cat("</listOfCompartments>", file=fid, sep="\n")
+}
+if(nspcs>1){
 cat("<listOfSpecies>", file=fid, sep="\n")
 for (i in 2:nspcs) cat(sprintf("   <species id=\"%s\"  initialConcentration=\"%g\"  compartment=\"%s\" boundaryCondition=\"%s\"/>",
      species[[i]][[2]],species[[i]][[3]],species[[i]][[4]],ifelse(species[[i]][[5]],"true","false")), file=fid, sep="\n")
 cat("</listOfSpecies>", file=fid, sep="\n")
+}
+
 if(nparameters>1){
 cat("<listOfParameters>", file=fid, sep="\n")
 for (i in 2:nparameters) cat(sprintf("   <parameter id=\"%s\"  value=\"%g\" />",names(parameters[i]),parameters[[i]]), file=fid, sep="\n")

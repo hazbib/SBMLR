@@ -1,9 +1,9 @@
 \name{write.SBML}
 \alias{write.SBML}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ write.SBML }
+\title{ Convert SBMLR model to SBML}
 \description{
-  This function converts SBMLR into SBML level 2.
+  This function converts an SBMLR model definition file into an SBML level 2 file.
 }
 \usage{
 write.SBML(filename)
@@ -19,10 +19,11 @@ write.SBML(filename)
 \value{
   No value returned. 
 }
-\references{Finney A, Hucka M: Systems biology markup language: Level 2 and beyond. 
-   Biochem Soc Trans 2003, 31(Pt 6):1472-1473. See http://www.sbml.org}
+\references{
+Radivoyevitch, T. A two-way interface between limited Systems Biology Markup Language and R. BMC Bioinformatics 5, 190 (2004).
+See http://epbi-radivot.cwru.edu/}
 \author{ Tomas Radivoyevitch  (radivot@hal.cwru.edu)}
-\note{For additional details see the manual in the doc directory. }
+\note{For additional details see the reference below, also available in the doc directory. }
 
 \section{Warning }{SBML events and 
 function definitions are NOT implemented.}
@@ -31,7 +32,7 @@ function definitions are NOT implemented.}
 \examples{
 library(odesolve)
 library(SBMLR)
-setwd(file.path(.path.package("SBMLR"), "demo"))
+setwd(file.path(.path.package("SBMLR"), "models"))
 source("MorrisonAllegra.r")  
 
 write.SBML("MorrisonAllegra") # writes model to SBML (level 2) file MorrisonAllegra.xml
@@ -64,16 +65,16 @@ nrules=length(model$rules) # this and much above goes into fderiv implicitly by 
 
 attach(model$parameters)  # this makes Keq globally available 
 finalT=30
-out1=lsoda(y=y0,times=seq(-20,0,1),fderiv,  parms=c(test1=1),  rtol=1e-4, atol= my.atol)
+out1=lsoda(y=y0,times=seq(-20,0,1),fderiv,  parms=c(mod=0),  rtol=1e-4, atol= my.atol)
 S0["EMTX"]=1
 ny0=out1[nrow(out1),2:(nStates+1)]
-out2=lsoda(y=ny0,times=seq(0,finalT,1),fderiv,  parms=c(test1=1),  rtol=1e-4, atol= my.atol)
+out2=lsoda(y=ny0,times=seq(0,finalT,1),fderiv,  parms=c(mod=0),  rtol=1e-4, atol= my.atol)
 outs=data.frame(rbind(out1,out2));#outs
 detach(model$parameters)  # this makes Keq unavailable 
 attach(outs)
 par(mfrow=c(3,4))
 plot(time,FH2b,type="l",xlab="Hours")
-plot(time,FH2f,type="l",xlab="Hours",xlim=c(-1,finalT))
+plot(time,FH2f,type="l",xlab="Hours")
 plot(time,DHFRf,type="l",xlab="Hours")
 plot(time,DHFRtot,type="l",xlab="Hours")
 plot(time,CHOFH4,type="l",xlab="Hours")
