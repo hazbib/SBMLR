@@ -1,0 +1,5 @@
+Curto		Raul Curto et al's (1997,1998) Purine Metabolism model
+runCurto	Runs a dynamic simulation of the Curto.m model
+CurtoMCA	Reproduces log flux and concentration gains wrt E0's in Curto's 1997 paper. 
+MorrisonAllegra	Morrison and Allegra (JBC 1989) Folate metabolism in MCF7 cells paper
+runMorrisonAllegra	Run Morrison's model in response to 1uM MTX perturbation
