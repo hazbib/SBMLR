@@ -2,7 +2,7 @@ Package: SBMLR
 Title: A Two-way interface between SBML and R
 Version: 1.0
 Author: Tomas Radivoyevitch
-Description: This package provides mappings between SBML and a similar list structure in R
+Description: This package provides mappings between SBML and a similar list structure in R. It also provides some analysis tools.
 Maintainer: Tomas Radivoyevitch <radivot@hal.cwru.edu>
 Suggests: XML, odesolve
 License: GPL
