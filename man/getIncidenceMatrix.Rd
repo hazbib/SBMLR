@@ -48,7 +48,7 @@ Biochem J. 1997, 324 ( Pt 3):761-775.}
 # Metabolic Control Analysis of Curto's purine metabolism model
 library(SBMLR)  
 setwd(file.path(.path.package("SBMLR"), "models"))
-source("curto.r")  
+source("Curto.r")  
 
 nrxns=length(model$rxns);nspcs=length(model$species);   # number of reactions and species 
 S0=NULL;BC=NULL;rIDs=NULL  # initialize before assignments
