@@ -29,8 +29,7 @@ See http://epbi-radivot.cwru.edu/}
 \examples{
 library(SBMLR)
 library(odesolve)
-setwd(file.path(.path.package("SBMLR"), "models"))
-source("Curto.r") # this file defines Curto et al.'s model as an SBML-R model structure 
+source(file.path(.path.package("SBMLR"), "models/Curto.r"))  
 
 nrxns=length(model$rxns);nspcs=length(model$species);   # number of reactions and species 
 S0=NULL;BC=NULL;rIDs=NULL  # initialize before assignments
@@ -56,8 +55,8 @@ plot(time,HX,type="l")
 par(mfrow=c(1,1))
 detach(outs)
 
-write.SBML("Curto") # writes model to SBML (level 2) file Curto.xml
-read.SBML("Curto") # converts SBML file Curto.xml into SBMLR model file CurtoX.r 
+write.SBML(file.path(.path.package("SBMLR"), "models/Curto")) # writes model to SBML (level 2) file Curto.xml
+read.SBML(file.path(.path.package("SBMLR"), "models/Curto")) # converts SBML file Curto.xml into SBMLR model file CurtoX.r 
 }
 \keyword{ arith }% at least one, from doc/KEYWORDS
 \keyword{ math }% __ONLY ONE__ keyword per line

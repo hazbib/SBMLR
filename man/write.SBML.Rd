@@ -32,13 +32,9 @@ function definitions are NOT implemented.}
 \examples{
 library(odesolve)
 library(SBMLR)
-setwd(file.path(.path.package("SBMLR"), "models"))
-source("MorrisonAllegra.r")  
-
-write.SBML("MorrisonAllegra") # writes model to SBML (level 2) file MorrisonAllegra.xml
-read.SBML("MorrisonAllegra") # converts SBML file MorrisonAllegra.xml into SBMLR model file MorrisonAllegraX.r 
-
-source("MorrisonAllegraX.r")  
+write.SBML(file.path(.path.package("SBMLR"), "models/MorrisonAllegra")) # writes model to SBML (level 2) file MorrisonAllegra.xml
+read.SBML(file.path(.path.package("SBMLR"), "models/MorrisonAllegra")) # converts SBML file MorrisonAllegra.xml into SBMLR model file MorrisonAllegraX.r 
+source(file.path(.path.package("SBMLR"), "models/MorrisonAllegraX.r"))  
 
 nrxns=length(model$rxns);nspcs=length(model$species);   # number of reactions and species 
 S0=NULL;BC=NULL;rIDs=NULL  # initialize before assignments
