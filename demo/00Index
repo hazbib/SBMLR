@@ -1,3 +1,0 @@
-runCurto	Runs a dynamic simulation of the Curto.m model
-CurtoMCA	Reproduces log flux and concentration gains wrt E0's in Curto's 1997 paper. 
-runMorrisonAllegra	Run Morrison's model in response to 1uM MTX perturbation
