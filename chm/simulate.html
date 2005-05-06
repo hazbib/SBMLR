@@ -1,0 +1,149 @@
+<html><head><title>Simulate a model of class SBML</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>simulate(SBMLR)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   simulate">
+<param name="keyword" value=" Simulate a model of class SBML">
+</object>
+
+
+<h2>Simulate a model of class SBML</h2>
+
+
+<h3>Description</h3>
+
+<p>
+This function simulates a model given the report times and optional modulators. It uses <code>lsoda</code> of the odesolve package.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+simulate(model, times, modulator=NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>model</code></td>
+<td>
+The model object to be simulated. Initial conditions are passed through this object.</td></tr>
+<tr valign="top"><td><code>times</code></td>
+<td>
+The sequence of time points to be sampled and provided as rows of the output matrix.</td></tr>
+<tr valign="top"><td><code>modulator</code></td>
+<td>
+Null if there are no modulators (default), 
+a matrix M, with patients and a "control" as columns and with rows indexed by reaction IDs, if there are steady state Vmax modulators,  
+and a list of interpolating functions Mt if there are time course Vmax modulators. </td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+This is a wrapper for lsoda.
+</p>
+
+
+<h3>Value</h3>
+
+<p>
+The data frame output that comes out of <code>lsoda</code>.</p>
+
+<h3>Note</h3>
+
+<p>
+Rules are implemented through time varying boundary conditions updated at each time point 
+as a side effect within the (now internal) function <code>fderiv</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Tomas Radivoyevitch
+</p>
+
+
+<h3>References</h3>
+
+<p>
+For the folate cycle example given below: Morrison PF, Allegra CJ: Folate cycle kinetics in human 
+breast cancer cells. JBiolChem 1989, 264(18):10552-10566.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="getModelInfo.html">getModelInfo</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+##---- The following example performs a perturbation in PRPP from 5 to 50 uM in Curto et al.'s model.
+library(SBMLR) 
+library(odesolve)
+curto=readSBML(file.path(.path.package("SBMLR"), "models/curto.xml"))  
+out1=simulate(curto,seq(-20,0,1))
+curto$species$PRPP$ic=50
+out2=simulate(curto,0:70)
+outs=data.frame(rbind(out1,out2))
+attach(outs)
+par(mfrow=c(2,1))
+plot(time,IMP,type="l")
+plot(time,HX,type="l")
+par(mfrow=c(1,1))
+detach(outs)
+
+# which should be the same plots as 
+curto=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
+out1=simulate(curto,seq(-20,0,1))
+curto$species$PRPP$ic=50
+out2=simulate(curto,0:70)
+outs=data.frame(rbind(out1,out2))
+attach(outs)
+par(mfrow=c(2,1))
+plot(time,IMP,type="l")
+plot(time,HX,type="l")
+par(mfrow=c(1,1))
+detach(outs)
+
+##---- The following example uses fderiv to generate Morrison's folate system response to 1uM MTX 
+
+morr=readSBMLR(file.path(.path.package("SBMLR"), "models/morrison.r"))  
+out1=simulate(morr,seq(-20,0,1))
+morr$species$EMTX$ic=1
+out2=simulate(morr,0:30)
+outs=data.frame(rbind(out1,out2))
+attach(outs)
+par(mfrow=c(3,4))
+plot(time,FH2b,type="l",xlab="Hours")
+plot(time,FH2f,type="l",xlab="Hours")
+plot(time,DHFRf,type="l",xlab="Hours")
+plot(time,DHFRtot,type="l",xlab="Hours")
+plot(time,CHOFH4,type="l",xlab="Hours")
+plot(time,FH4,type="l",xlab="Hours")
+plot(time,CH2FH4,type="l",xlab="Hours")
+plot(time,CH3FH4,type="l",xlab="Hours")
+plot(time,AICARsyn,type="l",xlab="Hours")
+plot(time,MTR,type="l",xlab="Hours")
+plot(time,TYMS,type="l",xlab="Hours")
+#plot(time,EMTX,type="l",xlab="Hours")
+plot(time,DHFReductase,type="l",xlab="Hours")
+par(mfrow=c(1,1))
+detach(outs)
+morr$species$EMTX$ic=0
+</pre>
+
+
+
+<hr><div align="center">[Package <em>SBMLR</em> version 1.21 <a href="00Index.html">Index]</a></div>
+
+</body></html>

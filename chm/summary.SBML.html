@@ -1,0 +1,81 @@
+<html><head><title>Get summary data frames from an SBML model</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>summary.SBML(SBMLR)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   summary.SBML">
+<param name="keyword" value=" Get summary data frames from an SBML model">
+</object>
+
+
+<h2>Get summary data frames from an SBML model</h2>
+
+
+<h3>Description</h3>
+
+<p>
+This function extracts species and reaction information from a model of class <code>SBML</code> and tabularizes them as two R data frames.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+summary.SBML(object, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+A model object of class <code>SBML</code> from which information is to be extracted.</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+For compatibility with <code>summary</code> of the base package.</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+A list containing the following named dataframe elements
+</p>
+<table summary="R argblock">
+<tr valign="top"><td><code>species</code></td>
+<td>
+Species information (i.e. names, ICs, BCs, and compartments) as a data frame.</td></tr>
+<tr valign="top"><td><code>reactions</code></td>
+<td>
+Reaction information tabularized as a dataframe, including string laws and initial fluxes.</td></tr>
+</table>
+
+<h3>Author(s)</h3>
+
+<p>
+Tomas Radivoyevitch  (radivot@hal.cwru.edu)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="equateModels.html">==.SBML</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library(SBMLR)  
+curto=readSBMLR(file.path(.path.package("SBMLR"), "models/Curto.r"))  
+summary(curto)
+
+</pre>
+
+
+
+<hr><div align="center">[Package <em>SBMLR</em> version 1.21 <a href="00Index.html">Index]</a></div>
+
+</body></html>

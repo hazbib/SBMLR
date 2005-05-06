@@ -1,0 +1,96 @@
+<html><head><title>Save an R model object of class SBML as an SBMLR file</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>saveSBMLR(SBMLR)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   saveSBMLR">
+<param name="keyword" value=" Save an R model object of class SBML as an SBMLR file">
+</object>
+
+
+<h2>Save an R model object of class SBML as an SBMLR file</h2>
+
+
+<h3>Description</h3>
+
+<p>
+This function converts <code>SBML</code> model object in R into an SBMLR model definition file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+saveSBMLR(model,filename)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>model</code></td>
+<td>
+The <code>SBML</code> model object to be mapped into the SBMLR model definition file. </td></tr>
+<tr valign="top"><td><code>filename</code></td>
+<td>
+The file name of the destination SBMLR model definition file.  </td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+No value returned.</p>
+
+<h3>Warning</h3>
+
+<p>
+SBML events and function definitions are NOT implemented.
+</p>
+
+
+<h3>Note</h3>
+
+<p>
+Similar to saveSBML, the file is written incrementally.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Tomas Radivoyevitch  (radivot@hal.cwru.edu)
+</p>
+
+
+<h3>References</h3>
+
+<p>
+Radivoyevitch, T. A two-way interface between limited Systems Biology Markup Language and R. BMC Bioinformatics 5, 190 (2004).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="saveSBML.html">saveSBML</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library(SBMLR)
+library(odesolve)
+curto=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
+saveSBMLR(curto,file.path(.path.package("SBMLR"), "models/curtoR.r"))  
+curtoR=readSBMLR(file.path(.path.package("SBMLR"), "models/curtoR.r"))  
+
+curto==curtoR
+</pre>
+
+
+
+<hr><div align="center">[Package <em>SBMLR</em> version 1.21 <a href="00Index.html">Index]</a></div>
+
+</body></html>

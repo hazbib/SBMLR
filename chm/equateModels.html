@@ -1,0 +1,83 @@
+<html><head><title>Check the equality of the summary data frames of two SBML models</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>==.SBML(SBMLR)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   ==.SBML">
+<param name="keyword" value=" Check the equality of the summary data frames of two SBML models">
+</object>
+
+
+<h2>Check the equality of the summary data frames of two SBML models</h2>
+
+
+<h3>Description</h3>
+
+<p>
+This function tests the equivalence of two models with respect to their summary data frames.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+model1==model2
+"=="(model1,model2)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>model1</code></td>
+<td>
+The first of the two model objects of class SBML which are to be compared.</td></tr>
+<tr valign="top"><td><code>model2</code></td>
+<td>
+The second model object.</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+A list containing the following named dataframe elements as from <code>summary</code>, but now with boolean entries
+</p>
+<table summary="R argblock">
+<tr valign="top"><td><code>species</code></td>
+<td>
+The equality of species information tabularized  as a data frame.</td></tr>
+<tr valign="top"><td><code>reactions</code></td>
+<td>
+The equality of reaction information tabularized as a dataframe.</td></tr>
+</table>
+
+<h3>Author(s)</h3>
+
+<p>
+Tomas Radivoyevitch  (radivot@hal.cwru.edu)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="summary.SBML.html">summary.SBML</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library(SBMLR)  
+curto1=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
+curto2=readSBML(file.path(.path.package("SBMLR"), "models/curto.xml"))  
+curto1==curto2
+
+</pre>
+
+
+
+<hr><div align="center">[Package <em>SBMLR</em> version 1.21 <a href="00Index.html">Index]</a></div>
+
+</body></html>
