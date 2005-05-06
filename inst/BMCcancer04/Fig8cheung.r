@@ -6,7 +6,7 @@ library(odesolve)
 library(annotate)
 library(hgu95av2)
 library(SBMLR)  
-source(file.path(.path.package("SBMLR"), "models/MorrisonAllegra.r"))
+morr=readSBMLR(file.path(.path.package("SBMLR"), "models/morrison.r"))  
 library(cheungEset)
 eset=cheung
 pD=pData(eset);pD
@@ -56,9 +56,8 @@ aa=na/(cnt%o%rep(1,dim(na)[2]));aa
 aa=cbind(aa,ctrl=rep(1,dim(na)[1]))
 rownames(aa)=morrsym
 
-nrxns=length(model$rxns);nspcs=length(model$species);   # number of reactions and species 
-S0=NULL;BC=NULL;rIDs=NULL  # initialize before assignments
-for (j in 1:nrxns) rIDs[j]<-model$rxns[[j]]$id
+mi=getModelInfo(morr)
+attach(mi)  # this gives rIDs
 
 M=matrix(rep(1,dim(aa)[2]*length(rIDs)),nrow=length(rIDs))
 rownames(M)<-rIDs
@@ -91,26 +90,13 @@ mods3[[i]]=approxfun(times,M3[rIDs[i],],method="linear",rule=2)
 mods10[[i]]=approxfun(times,M10[rIDs[i],],method="linear",rule=2)
 }
 
-for (i in 1:nspcs){BC[i]=model$species[[i]]$bc; S0[i]=model$species[[i]]$ic}
-names(S0)<-names(model$species) 
-y0=S0[BC==F]
-nStates=length(y0)
-my.atol <- rep(1e-4,nStates)
-incid=getIncidenceMatrix(model,BC,y0,nStates,nrxns,nspcs)
-nrules=length(model$rules) # this and much above goes into fderiv implicitly by globals
-# NOTE: model,incid, nStates, nrxns, rIDs, S0 and BC are all passed globally to fderiv 
-
 Mt=mods3
-attach(model$parameters)  # this makes Keq globally available 
-finalT=30
-out1=lsoda(y=y0,times=seq(-10,0,1),fderiv,  parms=c(mod=2),  rtol=1e-4, atol= my.atol)
-ny0=out1[nrow(out1),2:(nStates+1)]
-out2=lsoda(y=ny0,times=seq(0,finalT,1),fderiv,  parms=c(mod=2),  rtol=1e-4, atol= my.atol)
+out1=simulate(morr,seq(-10,0,1),Mt)
+out2=simulate(morr,0:30,Mt)
 gray3=data.frame(rbind(out1,out2))
 Mt=mods10  
-out1=lsoda(y=y0,times=seq(-10,0,1),fderiv,  parms=c(mod=2),  rtol=1e-4, atol= my.atol)
-ny0=out1[nrow(out1),2:(nStates+1)]
-out2=lsoda(y=ny0,times=seq(0,finalT,1),fderiv,  parms=c(mod=2),  rtol=1e-4, atol= my.atol)
+out1=simulate(morr,seq(-10,0,1),Mt)
+out2=simulate(morr,0:30,Mt)
 gray10=data.frame(rbind(out1,out2))
 
 graphics.off()  # clear off current figures

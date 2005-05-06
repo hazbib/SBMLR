@@ -6,7 +6,9 @@ library(odesolve)
 library(annotate)
 library(hgu95av2)
 library(SBMLR)  
-source(file.path(.path.package("SBMLR"), "models/MorrisonAllegra.r"))
+
+
+morr=readSBMLR(file.path(.path.package("SBMLR"), "models/morrison.r"))  
 library(cheungEset)
 eset=cheung
 pD=pData(eset);pD
@@ -54,9 +56,9 @@ aa=na/(cnt%o%rep(1,dim(na)[2]));aa
 aa=cbind(aa,ctrl=rep(1,dim(na)[1]))
 rownames(aa)=morrsym
 
-nrxns=length(model$rxns);nspcs=length(model$species);   # number of reactions and species 
-S0=NULL;BC=NULL;rIDs=NULL  # initialize before assignments
-for (j in 1:nrxns) rIDs[j]<-model$rxns[[j]]$id
+
+mi=getModelInfo(morr)
+attach(mi)  # this gives rIDs
 
 M=matrix(rep(1,dim(aa)[2]*length(rIDs)),nrow=length(rIDs))
 rownames(M)<-rIDs

@@ -1,3 +1,4 @@
+library(SBMLR)
 setwd(file.path(.path.package("SBMLR"), "BMCcancer04")) #default dump site 
 #setwd("C:/cwru/active/Morrison")  # set this to where figs should be dumped, with comment removed
 library(rossEset)
