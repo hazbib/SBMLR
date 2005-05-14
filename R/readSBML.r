@@ -81,7 +81,7 @@ endElement <- function(name) {
 getModel<- function() 
 { 
 fixComps=function(x) {lst=list(x[[1]],as.numeric(x[[2]]) );  names(lst)<-names(x); lst }
-fixSpecies=function(x) {lst=list(x[[1]],as.numeric(x[[2]]),x[[3]],as.logical(x[[4]])); names(lst)<-c("id","ic","comp","bc"); lst }
+fixSpecies=function(x) {lst=list(x[[1]],as.numeric(x[[2]]),x[[3]],as.logical(x[[4]])); names(lst)<-c("id","ic","compartment","bc"); lst }
 #
 compartments=sapply(compartments,fixComps, simplify = FALSE)
 #species=t(sapply(species,fixSpecies, simplify = TRUE)[2:4,]) # this changes the species model structure for better looks in R dumps
