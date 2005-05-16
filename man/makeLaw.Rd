@@ -29,7 +29,7 @@ makeLaw(r,p,e)
 
 \examples{
 library(SBMLR)  
-curto=readSBMLR(file.path(.path.package("SBMLR"), "models/Curto.r"))  
+curto=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
 curto$reactions[["ada"]]
 e=curto$reactions[["ada"]]$exprLaw;e
 r=curto$reactions[["ada"]]$reactants;r

@@ -33,9 +33,9 @@ function definitions are NOT implemented.}
 \examples{
 library(SBMLR)
 library(odesolve)
-curtoR=readSBMLR(file.path(.path.package("SBMLR"), "models/Curto.r"))  
-saveSBML(curtoR,file.path(.path.package("SBMLR"), "models/CurtoR.xml")) 
-curtoX=readSBML(file.path(.path.package("SBMLR"), "models/CurtoR.xml"))  
+curtoR=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
+saveSBML(curtoR,file.path(.path.package("SBMLR"), "models/curtoR.xml")) 
+curtoX=readSBML(file.path(.path.package("SBMLR"), "models/curtoR.xml"))  
 
 curtoX==curtoR
 }

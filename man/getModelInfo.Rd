@@ -46,7 +46,7 @@ Biochem J. 1997, 324 ( Pt 3):761-775.}
 \seealso{ \code{\link{summary.SBML}}  }
 \examples{
 library(SBMLR)  
-curto=readSBMLR(file.path(.path.package("SBMLR"), "models/Curto.r"))  
+curto=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
 mi=getModelInfo(curto);mi
 attach(mi)
 y0
@@ -54,7 +54,7 @@ nReactions
 
 # Metabolic Control Analysis of Curto's purine metabolism model
 library(SBMLR)  
-curto=readSBMLR(file.path(.path.package("SBMLR"), "models/Curto.r"))  
+curto=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
 
 mi=getModelInfo(curto)
 attach(mi)

@@ -24,8 +24,8 @@ function definitions are not covered.
 \examples{
 library(SBMLR)
 library(odesolve)
-curtoX=readSBML(file.path(.path.package("SBMLR"), "models/Curto.xml"))  
-curtoR=readSBMLR(file.path(.path.package("SBMLR"), "models/Curto.r"))  
+curtoX=readSBML(file.path(.path.package("SBMLR"), "models/curto.xml"))  
+curtoR=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
 curtoX==curtoR
 }
 \keyword{ arith }% at least one, from doc/KEYWORDS

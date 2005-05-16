@@ -26,7 +26,7 @@ summary.SBML(object, ...)
 \seealso{ \code{\link{==.SBML}}  }
 \examples{
 library(SBMLR)  
-curto=readSBMLR(file.path(.path.package("SBMLR"), "models/Curto.r"))  
+curto=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
 summary(curto)
 
 }
