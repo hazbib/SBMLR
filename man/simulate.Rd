@@ -6,15 +6,16 @@
   This function simulates a model given the report times and optional modulators. It uses \code{lsoda} of the odesolve package.
 }
 \usage{
-simulate(model, times, modulator=NULL)
+simulate(model, times, modulator=NULL,X0=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{model}{ The model object to be simulated. Initial conditions are passed through this object.}
   \item{times}{ The sequence of time points to be sampled and provided as rows of the output matrix.}
   \item{modulator}{ Null if there are no modulators (default), 
-  a matrix M, with patients and a "control" as columns and with rows indexed by reaction IDs, if there are steady state Vmax modulators,  
-  and a list of interpolating functions Mt if there are time course Vmax modulators. }
+  a vector of numbers if there are steady state Vmax modulators,  
+  and a list of interpolating functions if there are time course Vmax modulators. }
+  \item{X0}{ Override model initial conditions in simulations, particularly piece-wise perturbation simulations.} 
 }
 \details{
   This is a wrapper for lsoda. }

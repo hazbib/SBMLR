@@ -22,7 +22,7 @@ This function simulates a model given the report times and optional modulators. 
 <h3>Usage</h3>
 
 <pre>
-simulate(model, times, modulator=NULL)
+simulate(model, times, modulator=NULL,X0=NULL)
 </pre>
 
 
@@ -38,8 +38,11 @@ The sequence of time points to be sampled and provided as rows of the output mat
 <tr valign="top"><td><code>modulator</code></td>
 <td>
 Null if there are no modulators (default), 
-a matrix M, with patients and a "control" as columns and with rows indexed by reaction IDs, if there are steady state Vmax modulators,  
-and a list of interpolating functions Mt if there are time course Vmax modulators. </td></tr>
+a vector of numbers if there are steady state Vmax modulators,  
+and a list of interpolating functions if there are time course Vmax modulators. </td></tr>
+<tr valign="top"><td><code>X0</code></td>
+<td>
+Override model initial conditions in simulations, particularly piece-wise perturbation simulations.</td></tr>
 </table>
 
 <h3>Details</h3>
@@ -144,6 +147,6 @@ morr$species$EMTX$ic=0
 
 
 
-<hr><div align="center">[Package <em>SBMLR</em> version 1.21 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>SBMLR</em> version 1.22 <a href="00Index.html">Index]</a></div>
 
 </body></html>

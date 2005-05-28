@@ -68,7 +68,7 @@ cat(sprintf("%s=%g%s", names(globalParameters[i]),globalParameters[[i]],ifelse(i
 }
 
 if(nRules>0){
-cat("\n\n#BEGIN the Rules Section\nRules=list(", file=fid, sep="\n")
+cat("\n\n#BEGIN the Rules Section\nrules=list(", file=fid, sep="\n")
 for (i in 1:nRules)
 {
 idOutput=rules[[i]][["idOutput"]]
@@ -87,7 +87,7 @@ cat(sprintf("%s",ifelse(i==nRules,")),\n# END of the Rules Section","),\n")  ), 
 #print("here")
 
 if(nReactions>0){
-cat("\n\n#BEGIN the Reaction Section \n reactions=list(", file=fid, sep="\n")
+cat("\n\n#BEGIN the Reaction Section \nreactions=list(", file=fid, sep="\n")
 for (i in 1:nReactions)
 {
 cat(sprintf("list( id=\"%s\", reversible=%s,",reactions[[i]][["id"]],ifelse(reactions[[i]][["rever"]],"TRUE","FALSE")),file=fid, sep="\n")

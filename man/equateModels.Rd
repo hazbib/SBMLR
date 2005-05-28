@@ -7,7 +7,6 @@
 }
 \usage{
 model1==model2
-"=="(model1,model2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -179,10 +179,10 @@ strLaw="Vm*FH2f"
 
 list( id="ATIC12", reversible=FALSE,
 reactants=c("FFH2","AICAR"),
-modifiers=c("FH2f","MTX1","MTX2","MTX3","MTX4","MTX5"),
+modifiers=c("CHOFH4","FH2f","MTX1","MTX2","MTX3","MTX4","MTX5"),
 products=c("FH2f"),
 parameters=c(Vm = 9503,Km1 = 5.3,Km2 = 24,Ki1 = 2.89,Ki1f = 5.5,Ki21 = 40,Ki22 = 31.5,Ki23 = 2.33,Ki24 = 3.61,Ki25 = 5.89),
-strLaw="Vm*(AICAR/Km2/(1+AICAR/Km2))*(FFH2/(FFH2+Km1*(1+MTX1/Ki21+MTX2/Ki22+MTX3/Ki23+MTX4/Ki24+MTX5/Ki25+FH2f/Ki1+FFH2/Ki1f)))"
+strLaw="Vm*(AICAR/Km2/(1+AICAR/Km2))*(FFH2/(FFH2+Km1*(1+MTX1/Ki21+MTX2/Ki22+MTX3/Ki23+MTX4/Ki24+MTX5/Ki25+FH2f/Ki1+CHOFH4/Ki1f)))"
 ),
 
 list( id="AICARsyn", reversible=FALSE,

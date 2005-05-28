@@ -33,4 +33,7 @@ version changes
 1.21    Cleaning. The model field names rxns, prods, mods, reacts => reactions, products, modifiers and reactants.
 	Better names for functions by starting them with action verb, e.g. readSBML, readSBMLR, saveSBML, saveSBMLR.  
 	getIncidenceMatrix was incoporated into getModelInfo. (5/5/2005)
+
+1.22    Simulate fixed to have vector rather than matrix passed for mod=1 with "Control" column now automatic for t<0. Simulate
+	was also modified to take an initial state vector override of the one in the model. (5/28/2005)
  
