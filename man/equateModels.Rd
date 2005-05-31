@@ -6,12 +6,13 @@
   This function tests the equivalence of two models with respect to their summary data frames.  
 }
 \usage{
-model1==model2
+"==.SBML"(model1, model2, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{model1}{The first of the two model objects of class SBML which are to be compared.}
   \item{model2}{The second model object.}
+  \item{...}{ For compatibility with \code{==} of the base package.}
  }
 % \details{no details}
 

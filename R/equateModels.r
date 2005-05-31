@@ -1,4 +1,4 @@
-"==.SBML"<-function(model1,model2)
+"==.SBML"<-function(model1,model2,...)
 {
 mi=getModelInfo(model1)
 attach(mi)
