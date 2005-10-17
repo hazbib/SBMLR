@@ -126,7 +126,7 @@ aa=cbind(aa,control=rep(1,dim(gpeset)[1]))
 
 rownames(aa)=morrsym
 
-mi=getModelInfo(morr)
+mi=simulate(morr)
 attach(mi)  # this gives rIDs
 
 M=matrix(rep(1,dim(aa)[2]*length(rIDs)),nrow=length(rIDs))

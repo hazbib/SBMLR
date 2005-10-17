@@ -1,13 +1,13 @@
 "==.SBML"<-function(model1,model2,...)
 {
-mi=getModelInfo(model1)
+mi=summary(model1)
 attach(mi)
 DFs1=data.frame(initialConcentrations=S0,boundaryConditions=BC,speciesIDs=I(sIDs))
 DFr1=data.frame(Laws=I(rLaws),reactionIDs=I(rIDs),initialFluxes=V0)
 #print(DFr)
 detach(mi)
 
-mi=getModelInfo(model2)
+mi=summary(model2)
 attach(mi)
 DFs2=data.frame(initialConcentrations=S0,boundaryConditions=BC,speciesIDs=I(sIDs)) 
 DFr2=data.frame(Laws=I(rLaws),reactionIDs=I(rIDs),initialFluxes=V0);

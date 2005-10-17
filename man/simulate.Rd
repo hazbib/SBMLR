@@ -6,7 +6,7 @@
   This function simulates a model given the report times and optional modulators. It uses \code{lsoda} of the odesolve package.
 }
 \usage{
-simulate(model, times, modulator=NULL,X0=NULL)
+simulate(model, times, modulator=NULL,X0=NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,6 +16,7 @@ simulate(model, times, modulator=NULL,X0=NULL)
   a vector of numbers if there are steady state Vmax modulators,  
   and a list of interpolating functions if there are time course Vmax modulators. }
   \item{X0}{ Override model initial conditions in simulations, particularly piece-wise perturbation simulations.} 
+  \item{...}{ For compatibility with \code{simulate} of the stats package.}
 }
 \details{
   This is a wrapper for lsoda. }
@@ -26,7 +27,6 @@ simulate(model, times, modulator=NULL,X0=NULL)
 \note{ Rules are implemented through time varying boundary conditions updated at each time point 
 as a side effect within the (now internal) function \code{fderiv}. }
 
-\seealso{ \code{\link{getModelInfo}} }
 \examples{
 ##---- The following example performs a perturbation in PRPP from 5 to 50 uM in Curto et al.'s model.
 library(SBMLR) 

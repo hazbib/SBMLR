@@ -1,10 +1,10 @@
 "simulate" <-
-function(model,times, modulator=NULL,X0=NULL)  # this is a wrapper for lsoda
+function(model,times, modulator=NULL,X0=NULL, ...)  # this is a wrapper for lsoda
 {
 
 
 
- mi=getModelInfo(model)
+ mi=summary(model)
 # print(mi);next
  attach(mi)
  my.atol <- rep(1e-4,nStates)

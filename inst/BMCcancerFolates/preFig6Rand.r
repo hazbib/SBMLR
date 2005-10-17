@@ -21,7 +21,7 @@ aa=cbind(aa,control=rep(1,length(morrsym)) )
 rownames(aa)=morrsym
 colnames(aa)<-c(paste("r",1:npats,sep=""),"control")
 
-mi=getModelInfo(morr)
+mi=simulate(morr)
 attach(mi)  # this gives rIDs
 
 M=matrix(rep(1,dim(aa)[2]*length(rIDs)),nrow=length(rIDs))
