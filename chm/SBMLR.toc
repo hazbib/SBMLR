@@ -14,10 +14,6 @@
 <param name="Local" value="equateModels.html">
 </OBJECT>
 <LI> <OBJECT type="text/sitemap">
-<param name="Name" value="getModelInfo">
-<param name="Local" value="getModelInfo.html">
-</OBJECT>
-<LI> <OBJECT type="text/sitemap">
 <param name="Name" value="makeLaw">
 <param name="Local" value="makeLaw.html">
 </OBJECT>
@@ -65,10 +61,6 @@
 <LI> <OBJECT type="text/sitemap">
 <param name="Name" value="Generate an R function for the reaction rate law">
 <param name="Local" value="makeLaw.html">
-</OBJECT>
-<LI> <OBJECT type="text/sitemap">
-<param name="Name" value="Get info from an SBML model">
-<param name="Local" value="getModelInfo.html">
 </OBJECT>
 <LI> <OBJECT type="text/sitemap">
 <param name="Name" value="Get summary data frames from an SBML model">

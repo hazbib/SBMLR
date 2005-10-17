@@ -43,6 +43,33 @@ For compatibility with <code>summary</code> of the base package.</td></tr>
 A list containing the following named dataframe elements
 </p>
 <table summary="R argblock">
+<tr valign="top"><td><code>BC</code></td>
+<td>
+A logical vector indicating which species are not state variables, 
+i.e. which species are boundary conditions or auxillary variables.</td></tr>
+<tr valign="top"><td><code>y0</code></td>
+<td>
+The initial state (boundary conditions excluded!). </td></tr>
+<tr valign="top"><td><code>nStates</code></td>
+<td>
+The length of the state vector, i.e. the number of system states.</td></tr>
+<tr valign="top"><td><code>S0</code></td>
+<td>
+The full set of species initial values.</td></tr>
+<tr valign="top"><td><code>nReactions</code></td>
+<td>
+The number of reactions.</td></tr>
+<tr valign="top"><td><code>nSpecies</code></td>
+<td>
+The number of species, including 
+states, boundary conditions and possibly auxillary variables such as the total concentration of 
+dihydofolate reductase in the morrison.r  model. </td></tr>
+<tr valign="top"><td><code>incid</code></td>
+<td>
+The incidence/stoichiometry matrix. This usually contains ones and minus ones corresponding to fluxes either synthesizing or degrading (respectively) 
+a state variable
+chemical species. This matrix multiplied by the flux vector on its right yields 
+the corresponding concentration state variable time derivatives. </td></tr>
 <tr valign="top"><td><code>species</code></td>
 <td>
 Species information (i.e. names, ICs, BCs, and compartments) as a data frame.</td></tr>
@@ -50,6 +77,13 @@ Species information (i.e. names, ICs, BCs, and compartments) as a data frame.</t
 <td>
 Reaction information tabularized as a dataframe, including string laws and initial fluxes.</td></tr>
 </table>
+
+<h3>Note</h3>
+
+<p>
+The list output can be attached to immediately define many model variables of interest.
+</p>
+
 
 <h3>Author(s)</h3>
 
@@ -76,6 +110,6 @@ summary(curto)
 
 
 
-<hr><div align="center">[Package <em>SBMLR</em> version 1.21 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>SBMLR</em> version 1.26.0 <a href="00Index.html">Index]</a></div>
 
 </body></html>

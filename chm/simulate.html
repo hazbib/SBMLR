@@ -22,7 +22,7 @@ This function simulates a model given the report times and optional modulators. 
 <h3>Usage</h3>
 
 <pre>
-simulate(model, times, modulator=NULL,X0=NULL)
+simulate(model, times, modulator=NULL,X0=NULL, ...)
 </pre>
 
 
@@ -43,6 +43,9 @@ and a list of interpolating functions if there are time course Vmax modulators. 
 <tr valign="top"><td><code>X0</code></td>
 <td>
 Override model initial conditions in simulations, particularly piece-wise perturbation simulations.</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+For compatibility with <code>simulate</code> of the stats package.</td></tr>
 </table>
 
 <h3>Details</h3>
@@ -77,13 +80,6 @@ Tomas Radivoyevitch
 <p>
 For the folate cycle example given below: Morrison PF, Allegra CJ: Folate cycle kinetics in human 
 breast cancer cells. JBiolChem 1989, 264(18):10552-10566.
-</p>
-
-
-<h3>See Also</h3>
-
-<p>
-<code><a href="getModelInfo.html">getModelInfo</a></code>
 </p>
 
 
@@ -147,6 +143,6 @@ morr$species$EMTX$ic=0
 
 
 
-<hr><div align="center">[Package <em>SBMLR</em> version 1.22 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>SBMLR</em> version 1.26.0 <a href="00Index.html">Index]</a></div>
 
 </body></html>

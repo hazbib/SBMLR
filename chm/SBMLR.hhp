@@ -12,7 +12,6 @@ Full text search stop list file=..\..\..\gnuwin32\help\R.stp
 [FILES]
 00Index.html
 equateModels.html
-getModelInfo.html
 makeLaw.html
 readSBML.html
 readSBMLR.html
