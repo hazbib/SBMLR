@@ -1,6 +1,6 @@
 library(SBMLR)
 setwd(file.path(.path.package("SBMLR"), "BMCcancerFolates")) #default dump site 
-setwd("C:/cwru/active/Morrison")  # set this to where figs should be dumped, with comment removed
+#setwd("C:/cwru/active/Morrison")  # set this to where figs should be dumped, with comment removed
 
 morr=readSBMLR(file.path(.path.package("SBMLR"), "models/morrison.r"))  
 out1=simulate(morr,seq(-20,0,1))
@@ -21,7 +21,6 @@ plot(time,TYMS,type="l",xlab="Hours",ylab="TYMS")
 par(mfrow=c(1,1))
 detach(outs)
 morr$species$EMTX$ic=0
-attach(outs)
 dev.copy(pdf,file="fig2.pdf", width = 7, height = 7)
 dev.off()
 

@@ -126,7 +126,7 @@ aa=cbind(aa,control=rep(1,dim(gpeset)[1]))
 
 rownames(aa)=morrsym
 
-mi=simulate(morr)
+mi=summary(morr)
 attach(mi)  # this gives rIDs
 
 M=matrix(rep(1,dim(aa)[2]*length(rIDs)),nrow=length(rIDs))
@@ -196,6 +196,7 @@ par(mfrow=c(1,1))
 
 flux=data.frame(flux)
 conc=data.frame(conc)
+detach(mi)
 save(flux,conc,file="FmorrYeohALL.Rdata")# save flux array since it takes much time to recompute
 #  END big computation loop
 

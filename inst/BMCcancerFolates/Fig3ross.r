@@ -124,7 +124,7 @@ aa=cbind(aa,control=rep(1,dim(gpeset)[1]))
 
 rownames(aa)=morrsym
 
-mi=simulate(morr)
+mi=summary(morr)
 attach(mi)  # this gives rIDs
 
 
@@ -136,7 +136,6 @@ tmp=as.matrix(aa[key,])
 rownames(tmp)<-names(key)
 M[names(key),]=tmp
 M
-
 
 out1=simulate(morr,seq(-20,0,1))
 morr$species$EMTX$ic=1
@@ -191,6 +190,8 @@ plot(FH4~time,data=outs)
 plot(CH2FH4~time,data=outs)
 par(mfrow=c(1,1))
 }
+
+detach(mi)
 
 flux=data.frame(flux)
 conc=data.frame(conc)

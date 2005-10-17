@@ -21,7 +21,7 @@ aa=cbind(aa,control=rep(1,length(morrsym)) )
 rownames(aa)=morrsym
 colnames(aa)<-c(paste("r",1:npats,sep=""),"control")
 
-mi=simulate(morr)
+mi=summary(morr)
 attach(mi)  # this gives rIDs
 
 M=matrix(rep(1,dim(aa)[2]*length(rIDs)),nrow=length(rIDs))
@@ -65,6 +65,7 @@ par(mfrow=c(1,1))
 
 flux=data.frame(flux)
 conc=data.frame(conc)
+detach(mi)
 save(flux,conc,file="FmorrRand.Rdata")# save flux array since it takes much time to recompute
 #  END big computation loop
 
@@ -73,3 +74,5 @@ save(flux,conc,file="FmorrRand.Rdata")# save flux array since it takes much time
 attach(flux)
 attach(conc)
 plot(TYMS,MTHFD/2,pch=1,xlim=range(TYMS),ylim=range(MTHFD/2),xlab="dTMP Flux (uM/hr)",ylab="DNPS Flux (uM/hr)")
+detach(flux)
+detach(conc)

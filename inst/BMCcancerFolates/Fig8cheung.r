@@ -56,7 +56,7 @@ aa=na/(cnt%o%rep(1,dim(na)[2]));aa
 aa=cbind(aa,ctrl=rep(1,dim(na)[1]))
 rownames(aa)=morrsym
 
-mi=simulate(morr)
+mi=summary(morr)
 attach(mi)  # this gives rIDs
 
 M=matrix(rep(1,dim(aa)[2]*length(rIDs)),nrow=length(rIDs))
@@ -125,6 +125,7 @@ lines(finet,mods10[[toPlot[i]]](finet),lty=2)
 if (i==1) legend(5,2,legend=c("3 gray","10 gray"),pch=c(2,3))
 }
 par(mfrow=c(1,1))
+detach(mi)  
 
 # use the other cheung script to get figure 7 with all of the genes!
 
