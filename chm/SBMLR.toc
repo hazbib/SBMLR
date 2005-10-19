@@ -47,7 +47,7 @@
 </OBJECT>
 <UL>
 <LI> <OBJECT type="text/sitemap">
-<param name="Name" value="Check the equality of the summary data frames of two SBML models">
+<param name="Name" value="Check the equality of the species and reaction summary data frames of two SBML models">
 <param name="Local" value="equateModels.html">
 </OBJECT>
 <LI> <OBJECT type="text/sitemap">
@@ -63,7 +63,7 @@
 <param name="Local" value="makeLaw.html">
 </OBJECT>
 <LI> <OBJECT type="text/sitemap">
-<param name="Name" value="Get summary data frames from an SBML model">
+<param name="Name" value="Get summary information from an SBML model">
 <param name="Local" value="summary.SBML.html">
 </OBJECT>
 <LI> <OBJECT type="text/sitemap">
