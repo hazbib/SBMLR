@@ -1,7 +1,7 @@
 \name{summary.SBML}
 \alias{summary.SBML}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Get summary data frames from an SBML model}
+\title{ Get summary information from an SBML model}
 \description{
   This function extracts information from a model of class \code{SBML} and returns it as a list. The list includes
   species and reaction information tabularized as data frames. 
