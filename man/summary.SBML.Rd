@@ -3,7 +3,8 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Get summary data frames from an SBML model}
 \description{
-  This function extracts species and reaction information from a model of class \code{SBML} and tabularizes them as two R data frames. 
+  This function extracts information from a model of class \code{SBML} and returns it as a list. The list includes
+  species and reaction information tabularized as data frames. 
 }
 \usage{
 summary.SBML(object, ...)
@@ -16,7 +17,7 @@ summary.SBML(object, ...)
 %\details{no details
      
 }
-\value{ A list containing the following named dataframe elements
+\value{ A list containing the following elements
  \item{BC}{ A logical vector indicating which species are not state variables, 
   i.e. which species are boundary conditions or auxillary variables.}
   \item{y0}{ The initial state (boundary conditions excluded!). }
