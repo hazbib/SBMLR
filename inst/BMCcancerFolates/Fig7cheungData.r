@@ -1,11 +1,11 @@
 # This is Morrison's folate model driven by Vivian Cheung et al's Radiation time course response data (GDS479).
-setwd(file.path(.path.package("SBMLR"), "BMCcancerFolates")) #default dump site 
-#setwd("C:/cwru/active/Morrison")  # set this to where figs should be dumped, with comment removed
 library(Biobase)
 library(odesolve)
 library(annotate)
 library(hgu95av2)
 library(SBMLR)  
+setwd(file.path(.path.package("SBMLR"), "BMCcancerFolates")) #default dump site 
+#setwd("C:/cwru/active/Morrison")  # set this to where figs should be dumped, with comment removed
 
 
 morr=readSBMLR(file.path(.path.package("SBMLR"), "models/morrison.r"))  
