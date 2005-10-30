@@ -37,5 +37,8 @@ version changes
 1.22    Simulate fixed to have vector rather than matrix passed for mod=1 with "Control" column now automatic for t<0. Simulate
 	was also modified to take an initial state vector override of the one in the model. (5/28/2005)
 	
-1.26	getModelInfo was replaced by an expanded summary method output. The manual and BMCcancerFolates were updated (10/17/2005)
+1.25.1	getModelInfo was replaced by an expanded summary method output. The manual and BMCcancerFolates were updated (10/17/2005)
+
+1.25.2	globalParameters now attached in summary method to sync changes in parameters in reactions (10/30/2005)
+
  

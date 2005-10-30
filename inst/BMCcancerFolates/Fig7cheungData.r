@@ -27,6 +27,45 @@ outdat=data.frame(ID=mID,sym=msym,om)#[om>500,]
 outdat  # dump out the table
 
 
+#   This is what this looked like on publication using R 2.1.0/Bioc 1.6
+#                 ID    sym         om
+#38811_at   38811_at   ATIC 11923.9750
+#1610_s_at 1610_s_at   DHFR  1988.0250
+#37913_at   37913_at   DHFR  4882.2083
+#38384_at   38384_at   GART  3494.9500
+#673_at       673_at MTHFD1 11503.7667
+#674_g_at   674_g_at MTHFD1 11146.0083
+#32897_at   32897_at  MTHFR  -697.2583
+#705_at       705_at  MTHFR   389.3500
+#38383_at   38383_at    MTR   583.5250
+#34738_at   34738_at  SHMT1  1759.7917
+#712_s_at   712_s_at  SHMT1   460.9250
+#1505_at     1505_at   TYMS 30066.8333
+#37899_at   37899_at   TYMS  7798.2083
+#> 
+#    And this is how it changed on going to R 2.2/Bioc 1.7  (Oct 20, 2005)
+#                 ID    sym         om
+#38811_at   38811_at   ATIC 11923.9750
+#1610_s_at 1610_s_at   DHFR  1988.0250
+#37913_at   37913_at   DHFR  4882.2083
+#38384_at   38384_at   GART  3494.9500
+#673_at       673_at MTHFD1 11503.7667
+#674_g_at   674_g_at MTHFD1 11146.0083
+#32897_at   32897_at  MTHFR  -697.2583
+#38383_at   38383_at    MTR   583.5250
+#34738_at   34738_at  SHMT1  1759.7917
+#1505_at     1505_at   TYMS 30066.8333
+#37899_at   37899_at   TYMS  7798.2083
+#> 
+#
+#  Note that the higher MTHFR probe set was lost (altering the data plot in Fig. 7)
+#  and that so too was the lower SHMT1 set (not altering the data plot since only the higher is taken).
+#  Fortunately, MTHFR was declared as noise in the paper and thus not used to drive the model, 
+#  so none of these changes really matter to the paper or to the plot in fig 8.
+#  Coincidentally, SHMT1 was the only other gene (in the set) also declared as noise.
+
+
+
 counts=summary(outdat$sym)
 noutdat=data.frame(NULL)
 k=1

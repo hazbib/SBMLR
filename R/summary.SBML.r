@@ -17,6 +17,7 @@ names(BC)<-sIDs
 y0=S0[BC==FALSE]
 nStates=length(y0)
 
+attach(model$globalParameters)  # e.g. for Vmax global coordination in RNR
 # Reactions
 rLaws=NULL;V0=NULL # initialize
 for (j in 1:nReactions) {
@@ -25,6 +26,8 @@ for (j in 1:nReactions) {
    }
 names(rLaws)<-rIDs
 names(V0)<-rIDs
+detach(model$globalParameters)  
+
 
 # Incidence Matrix
 incid=matrix(rep(0,nStates*nReactions),nrow=nStates)
@@ -38,6 +41,7 @@ for (i in 1:nStates)
 rownames(incid)<-names(y0)
 
 # return a list of model information
+
 
 DFs=data.frame(initialConcentrations=S0,boundaryConditions=BC,speciesIDs=sIDs); row.names(DFs)<-1:nSpecies
 DFr=data.frame(Laws=rLaws,reactionIDs=rIDs,initialFluxes=V0);   row.names(DFr)<-1:nReactions
