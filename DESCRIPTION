@@ -6,5 +6,6 @@ Author: Tomas Radivoyevitch
 Description: This package contains a systems biology markup language (SBML) interface and biochemical system analysis tools with illustrative examples.
 Maintainer: Tomas Radivoyevitch <radivot@hal.cwru.edu>
 Depends: XML,odesolve
+biocViews: GraphsAndNetworks
 License: GPL
 URL: http://epbi-radivot.cwru.edu/
