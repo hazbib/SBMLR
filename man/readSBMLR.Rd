@@ -25,8 +25,8 @@ It includes rate law and rule string to function, expression and MathML mappings
 \examples{
 library(SBMLR)
 library(odesolve)
-curtoX=readSBML(file.path(.path.package("SBMLR"), "models/curto.xml"))  
-curtoR=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
+curtoX=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
+curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
 curtoX==curtoR
 }
 \keyword{ arith }% at least one, from doc/KEYWORDS

@@ -26,8 +26,8 @@
 \seealso{ \code{\link{summary.SBML}}  }
 \examples{
 library(SBMLR)  
-curto1=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
-curto2=readSBML(file.path(.path.package("SBMLR"), "models/curto.xml"))  
+curto1=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
+curto2=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
 curto1==curto2
 
 }

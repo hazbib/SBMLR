@@ -31,7 +31,7 @@ as a side effect within the (now internal) function \code{fderiv}. }
 ##---- The following example performs a perturbation in PRPP from 5 to 50 uM in Curto et al.'s model.
 library(SBMLR) 
 library(odesolve)
-curto=readSBML(file.path(.path.package("SBMLR"), "models/curto.xml"))  
+curto=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
 out1=simulate(curto,seq(-20,0,1))
 curto$species$PRPP$ic=50
 out2=simulate(curto,0:70)
@@ -44,7 +44,7 @@ par(mfrow=c(1,1))
 detach(outs)
 
 # which should be the same plots as 
-curto=readSBMLR(file.path(.path.package("SBMLR"), "models/curto.r"))  
+curto=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
 out1=simulate(curto,seq(-20,0,1))
 curto$species$PRPP$ic=50
 out2=simulate(curto,0:70)
@@ -58,7 +58,7 @@ detach(outs)
 
 ##---- The following example uses fderiv to generate Morrison's folate system response to 1uM MTX 
 
-morr=readSBMLR(file.path(.path.package("SBMLR"), "models/morrison.r"))  
+morr=readSBMLR(file.path(system.file(package="SBMLR"), "models/morrison.r"))  
 out1=simulate(morr,seq(-20,0,1))
 morr$species$EMTX$ic=1
 out2=simulate(morr,0:30)
