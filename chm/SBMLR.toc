@@ -2,15 +2,15 @@
 <HEAD></HEAD><HTML><BODY>
 <UL>
 <LI> <OBJECT type="text/sitemap">
-<param name="Name" value="Package SBMLR:  Contents">
+<param name="Name" value="Package sbmlr:  Contents">
 <param name="Local" value="00Index.html">
 </OBJECT>
 <LI> <OBJECT type="text/sitemap">
-<param name="Name" value="Package SBMLR:  R objects">
+<param name="Name" value="Package sbmlr:  R objects">
 </OBJECT>
 <UL>
 <LI> <OBJECT type="text/sitemap">
-<param name="Name" value="==.SBML">
+<param name="Name" value="equateModels">
 <param name="Local" value="equateModels.html">
 </OBJECT>
 <LI> <OBJECT type="text/sitemap">
@@ -38,12 +38,16 @@
 <param name="Local" value="simulate.html">
 </OBJECT>
 <LI> <OBJECT type="text/sitemap">
+<param name="Name" value="summary">
+<param name="Local" value="summary.SBML.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
 <param name="Name" value="summary.SBML">
 <param name="Local" value="summary.SBML.html">
 </OBJECT>
 </UL>
 <LI> <OBJECT type="text/sitemap">
-<param name="Name" value="Package SBMLR:  Titles">
+<param name="Name" value="Package sbmlr:  Titles">
 </OBJECT>
 <UL>
 <LI> <OBJECT type="text/sitemap">

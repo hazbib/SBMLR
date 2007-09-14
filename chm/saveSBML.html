@@ -1,9 +1,10 @@
 <html><head><title>Saves an R model object as an SBML file</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" type="text/css" href="Rchm.css">
 </head>
 <body>
 
-<table width="100%"><tr><td>saveSBML(SBMLR)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<table width="100%"><tr><td>saveSBML(sbmlr)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
 <param name="keyword" value="R:   saveSBML">
 <param name="keyword" value=" Saves an R model object as an SBML file">
 </object>
@@ -94,11 +95,11 @@ curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))
 saveSBML(curtoR,file.path(system.file(package="SBMLR"), "models/curtoR.xml")) 
 curtoX=readSBML(file.path(system.file(package="SBMLR"), "models/curtoR.xml"))  
 
-curtoX==curtoR
+equateModels(curtoX,curtoR)
 </pre>
 
 
 
-<hr><div align="center">[Package <em>SBMLR</em> version 1.29.0 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>sbmlr</em> version 1.31.0 <a href="00Index.html">Index]</a></div>
 
 </body></html>

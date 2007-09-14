@@ -1,9 +1,10 @@
 <html><head><title>Convert an SBMLR file into an R model object of class SBML</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" type="text/css" href="Rchm.css">
 </head>
 <body>
 
-<table width="100%"><tr><td>readSBMLR(SBMLR)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<table width="100%"><tr><td>readSBMLR(sbmlr)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
 <param name="keyword" value="R:   readSBMLR">
 <param name="keyword" value=" Convert an SBMLR file into an R model object of class SBML">
 </object>
@@ -76,11 +77,11 @@ library(SBMLR)
 library(odesolve)
 curtoX=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
 curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
-curtoX==curtoR
+equateModels(curtoX,curtoR)
 </pre>
 
 
 
-<hr><div align="center">[Package <em>SBMLR</em> version 1.29.0 <a href="00Index.html">Index]</a></div>
+<hr><div align="center">[Package <em>sbmlr</em> version 1.31.0 <a href="00Index.html">Index]</a></div>
 
 </body></html>

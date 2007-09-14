@@ -15,9 +15,7 @@
   \item{object}{ A model object of class \code{SBML} from which information is to be extracted.}
   \item{...}{ For compatibility with \code{summary} of the base package.}
  }
-%\details{no details
-     
-}
+\details{no details}
 \value{ A list containing the following elements
  \item{BC}{ A logical vector indicating which species are not state variables, 
   i.e. which species are boundary conditions or auxillary variables.}
