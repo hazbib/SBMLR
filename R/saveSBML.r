@@ -97,7 +97,7 @@ cat("</listOfRules>", file=fid, sep="\n")
 cat("<listOfReactions>", file=fid, sep="\n")
 for (i in 1:nReactions) 
 {cat(sprintf("  <reaction id=\"%s\"  reversible=\"%s\">",
-reactions[[i]][["id"]],ifelse(reactions[[i]][["rever"]],"true","false")), file=fid, sep="\n")
+reactions[[i]][["id"]],ifelse(reactions[[i]][["reversible"]],"true","false")), file=fid, sep="\n")
 reactants=reactions[[i]][["reactants"]]
 if (!is.null(reactants[[1]])) {
 cat("    <listOfReactants>", file=fid, sep="\n")

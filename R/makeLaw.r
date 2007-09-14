@@ -1,8 +1,8 @@
 "makeLaw"<-function(r,p,e){
 # takes reactant list r, parameter list p and rate law R expression e 
 # and makes a reaction rate law function out of them.
-lawTempl=function(r,p){ }
-if (is.null(p)) lawTempl=function(r){ }  
+#if (is.null(p)) lawTempl=function(r){ }  else lawTempl=function(r,p){ }
+lawTempl=function(r,p=NULL){ }
 i=2
 if(!is.null(p))
 for (j in 1:length(p)){

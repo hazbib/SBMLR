@@ -26,7 +26,7 @@ library(SBMLR)
 library(odesolve)
 curtoX=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
 curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
-curtoX==curtoR
+equateModels(curtoX,curtoR)
 }
 \keyword{ arith }% at least one, from doc/KEYWORDS
 \keyword{ math }% __ONLY ONE__ keyword per line

@@ -51,8 +51,8 @@ file=fid, sep="\n")
 if(nSpecies>0){
 cat("species=list(", file=fid, sep="\n")
 for (i in 1:nSpecies) 
-cat(sprintf(paste("list(id=%-20s,ic=%8g,    compartment=%-10s,bc=%-7s)%s",sep=""),dQuote(species[[i]][["id"]]),species[[i]][["ic"]],
-dQuote(species[[i]][["compartment"]]),ifelse(species[[i]][["bc"]],"TRUE","FALSE"),ifelse(i==nSpecies,"\n),\n",",") ), file=fid, sep="\n")
+cat(sprintf("list(id=\"%20s\",ic=%8g,    compartment=\"%10s\",bc=%7s)%s",species[[i]][["id"]],species[[i]][["ic"]],
+species[[i]][["compartment"]],ifelse(species[[i]][["bc"]],"TRUE","FALSE"),ifelse(i==nSpecies,"\n),\n",",") ), file=fid, sep="\n")
 }
 
 

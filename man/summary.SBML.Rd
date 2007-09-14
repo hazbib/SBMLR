@@ -1,5 +1,6 @@
 \name{summary.SBML}
 \alias{summary.SBML}
+\alias{summary}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Get summary information from an SBML model}
 \description{
@@ -7,7 +8,7 @@
   species and reaction information tabularized as data frames. 
 }
 \usage{
-summary.SBML(object, ...)
+\method{summary}{SBML}(object,\dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -41,7 +42,8 @@ summary.SBML(object, ...)
 
 \author{ Tomas Radivoyevitch  (radivot@hal.cwru.edu)}
 
-\seealso{ \code{\link{==.SBML}}  }
+%\seealso{ \code{\link{==.SBML}}  }
+\seealso{ \code{\link{equateModels}}  }
 \examples{
 library(SBMLR)  
 curto=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  

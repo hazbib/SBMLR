@@ -37,7 +37,7 @@ curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))
 saveSBML(curtoR,file.path(system.file(package="SBMLR"), "models/curtoR.xml")) 
 curtoX=readSBML(file.path(system.file(package="SBMLR"), "models/curtoR.xml"))  
 
-curtoX==curtoR
+equateModels(curtoX,curtoR)
 }
 \keyword{ arith }% at least one, from doc/KEYWORDS
 \keyword{ math }% __ONLY ONE__ keyword per line

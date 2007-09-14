@@ -1,22 +1,19 @@
-"==.SBML"<-function(model1,model2,...)
+#"==.SBML"<-function(model1,model2)
+"equateModels"<-function(model1,model2)
 {
 mi=summary(model1)
-attach(mi)
-DFs1=data.frame(initialConcentrations=S0,boundaryConditions=BC,speciesIDs=I(sIDs))
-DFr1=data.frame(Laws=I(rLaws),reactionIDs=I(rIDs),initialFluxes=V0)
+DFs1=data.frame(initialConcentrations=mi$S0,boundaryConditions=mi$BC,speciesIDs=I(mi$sIDs))
+DFr1=data.frame(Laws=I(mi$rLaws),reactionIDs=I(mi$rIDs),initialFluxes=mi$V0)
 #print(DFr)
-detach(mi)
 
 mi=summary(model2)
-attach(mi)
-DFs2=data.frame(initialConcentrations=S0,boundaryConditions=BC,speciesIDs=I(sIDs)) 
-DFr2=data.frame(Laws=I(rLaws),reactionIDs=I(rIDs),initialFluxes=V0);
+DFs2=data.frame(initialConcentrations=mi$S0,boundaryConditions=mi$BC,speciesIDs=I(mi$sIDs))
+DFr2=data.frame(Laws=I(mi$rLaws),reactionIDs=I(mi$rIDs),initialFluxes=mi$V0)
 
 species=DFs1==DFs2
 reactions=DFr1==DFr2
-rownames(species)<-sIDs
-rownames(reactions)<-rIDs
-detach(mi)
+rownames(species)<-mi$sIDs
+rownames(reactions)<-mi$rIDs
 
 return(list(species=species, reactions=reactions))
 }
