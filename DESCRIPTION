@@ -4,7 +4,7 @@ Version: 1.33.0
 Date: 2007-9-14
 Author: Tomas Radivoyevitch
 Description: This package contains a systems biology markup language (SBML) interface and biochemical system analysis tools with illustrative examples.
-Maintainer: Tomas Radivoyevitch <radivot@hal.cwru.edu>
+Maintainer: Tomas Radivoyevitch <txr24@case.edu>
 Depends: XML,odesolve
 biocViews: GraphsAndNetworks
 License: GPL
