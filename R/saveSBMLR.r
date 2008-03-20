@@ -90,7 +90,7 @@ if(nReactions>0){
 cat("\n\n#BEGIN the Reaction Section \nreactions=list(", file=fid, sep="\n")
 for (i in 1:nReactions)
 {
-cat(sprintf("list( id=\"%s\", reversible=%s,",reactions[[i]][["id"]],ifelse(reactions[[i]][["rever"]],"TRUE","FALSE")),file=fid, sep="\n")
+cat(sprintf("list( id=\"%s\", reversible=%s,",reactions[[i]][["id"]],ifelse(reactions[[i]][["reversible"]],"TRUE","FALSE")),file=fid, sep="\n")
 law=reactions[[i]][["law"]]
 parameters=reactions[[i]][["parameters"]]
 reactants=reactions[[i]][["reactants"]]
