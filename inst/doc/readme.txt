@@ -42,4 +42,7 @@ version changes
 1.25.2	globalParameters now attached in summary method to sync changes in parameters in reactions (10/30/2005)
 
 1.31.0  converted == method on SBML object to equateModels(model1,model2) function to remove check warnings (9/14/2007) 
+
+1.37.1  Added namespaces file (11/20/2008)
+
  
