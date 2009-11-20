@@ -17,8 +17,8 @@ makeLaw(r,p,e)
  \item{e}{ An R expression (i.e. nested calls and tokens) of the reaction rate law. }
  }
 
-\details{
-}
+%\details{
+%}
 
 \value{ An R function that returns the value of \code{e} given \code{r} and \code{p}, e.g. a rate law.}
 
