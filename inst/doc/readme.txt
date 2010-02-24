@@ -45,7 +45,7 @@ version changes
 
 1.37.1  Added namespaces file (11/20/2008)
 
-1.41.0 Fixed makeLaw example to take names of p. Replaced recursive function calls in saveSBML with saveXML calls.    
+1.42.0 Fixed makeLaw example to take names of p. Replaced recursive function calls in saveSBML with saveXML calls.    
        Removed species renaming block in readSBML (since already done in eventHandler), simplified readSBMLR species 
        block (and readSBML rule and reaction name blocks) using sapply rather than a for loop. 
        Used StatET's autoindent feature to format the codes better. Moved makeLaw() into end of readSBML.R to
