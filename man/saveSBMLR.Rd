@@ -18,7 +18,7 @@ saveSBMLR(model,filename)
 \references{
 Radivoyevitch, T. A two-way interface between limited Systems Biology Markup Language and R. BMC Bioinformatics 5, 190 (2004).
 }
-\author{ Tomas Radivoyevitch  (radivot@hal.cwru.edu)}
+\author{ Tom Radivoyevitch  }
 \note{Similar to saveSBML, the file is written incrementally. }
 
 \section{Warning }{SBML events and function definitions are NOT implemented.}
@@ -27,11 +27,12 @@ Radivoyevitch, T. A two-way interface between limited Systems Biology Markup Lan
 \examples{
 library(SBMLR)
 library(odesolve)
-curto=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
-saveSBMLR(curto,file.path(system.file(package="SBMLR"), "models/curtoR.r"))  
-curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curtoR.r"))  
-
-equateModels(curto,curtoR)
+curto=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))
+saveSBMLR(curto,"curtoR.r")  
+curtoR=readSBMLR("curtoR.r")  
+curto==curtoR
+summary(curtoR)
+unlink("curtoR.r")
 }
 \keyword{ arith }% at least one, from doc/KEYWORDS
 \keyword{ math }% __ONLY ONE__ keyword per line

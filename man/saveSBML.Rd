@@ -22,7 +22,7 @@ saveSBML(model,filename)
 \references{
 Radivoyevitch, T. A two-way interface between limited Systems Biology Markup Language and R. BMC Bioinformatics 5, 190 (2004).
 }
-\author{ Tomas Radivoyevitch  (radivot@hal.cwru.edu)}
+\author{ Tom Radivoyevitch }
 \note{For speed, the SBML file is written incrementally, rather than first built as a DOM in R and then saved using \code{xmlSave}.
 }
 
@@ -34,10 +34,11 @@ function definitions are NOT implemented.}
 library(SBMLR)
 library(odesolve)
 curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
-saveSBML(curtoR,file.path(system.file(package="SBMLR"), "models/curtoR.xml")) 
-curtoX=readSBML(file.path(system.file(package="SBMLR"), "models/curtoR.xml"))  
-
-equateModels(curtoX,curtoR)
+saveSBML(curtoR,"curtoR.xml") 
+curtoX=readSBML("curtoR.xml")  
+curtoX==curtoR
+summary(curtoR)
+unlink("curtoR.xml")
 }
 \keyword{ arith }% at least one, from doc/KEYWORDS
 \keyword{ math }% __ONLY ONE__ keyword per line

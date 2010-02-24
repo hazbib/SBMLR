@@ -45,4 +45,16 @@ version changes
 
 1.37.1  Added namespaces file (11/20/2008)
 
+1.41.0 Fixed makeLaw example to take names of p. Replaced recursive function calls in saveSBML with saveXML calls.    
+       Removed species renaming block in readSBML (since already done in eventHandler), simplified readSBMLR species 
+       block (and readSBML rule and reaction name blocks) using sapply rather than a for loop. 
+       Used StatET's autoindent feature to format the codes better. Moved makeLaw() into end of readSBML.R to
+       avoid the need to document it: it's only needed in readSBML* files (not by users) and it is
+       too trivial to justify documentation maintenance for maintainer use (I also removed it form export). 
+       Replaced dQuote in rule writing in saveSBMLR with escaped double quotes in format (else they come out slanted).
+       Created Ops.SBML to handle overloaded "==" to work as before (see 1.31.0 above), replacing equateModels().
+       A quick-start Sweave vignette was also added. (2/24/2010)
+
+          
+          
  

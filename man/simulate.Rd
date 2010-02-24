@@ -23,7 +23,7 @@ simulate(model, times, modulator=NULL,X0=NULL, ...)
 \value{ The data frame output that comes out of \code{lsoda}.}
 \references{For the folate cycle example given below: Morrison PF, Allegra CJ: Folate cycle kinetics in human 
   breast cancer cells. JBiolChem 1989, 264(18):10552-10566.}
-\author{ Tomas Radivoyevitch}
+\author{ Tom Radivoyevitch}
 \note{ Rules are implemented through time varying boundary conditions updated at each time point 
 as a side effect within the (now internal) function \code{fderiv}. }
 

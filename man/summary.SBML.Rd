@@ -38,10 +38,10 @@
 \note{The list output can be attached to immediately define many model variables of interest. }
 
 
-\author{ Tomas Radivoyevitch  (radivot@hal.cwru.edu)}
+\author{ Tom Radivoyevitch }
 
 %\seealso{ \code{\link{==.SBML}}  }
-\seealso{ \code{\link{equateModels}}  }
+%\seealso{ \code{\link{equateModels}}  }
 \examples{
 library(SBMLR)  
 curto=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  

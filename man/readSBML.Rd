@@ -17,7 +17,7 @@ A limited subset of SBML level 2 models is currently supported, e.g. events and
 function definitions are not covered.
 }
 \value{A corresponding SBML model object in R. }
-\author{ Tomas Radivoyevitch  (radivot@hal.cwru.edu)}
+\author{ Tom Radivoyevitch }
 \note{This function replaces \code{read.SBML} of older versions. }
 
 \seealso{ \code{\link{readSBMLR}} }
@@ -26,7 +26,7 @@ library(SBMLR)
 library(odesolve)
 curtoX=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
 curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
-equateModels(curtoX,curtoR)
+curtoX==curtoR
 }
 \keyword{ arith }% at least one, from doc/KEYWORDS
 \keyword{ math }% __ONLY ONE__ keyword per line

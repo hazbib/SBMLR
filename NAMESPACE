@@ -1,3 +1,4 @@
 import(XML,odesolve)
-export(equateModels,makeLaw,readSBML,readSBMLR,saveSBML,saveSBMLR,simulate)
+export(readSBML,readSBMLR,saveSBML,saveSBMLR,simulate)
 S3method(summary, SBML)
+S3method(Ops, SBML)
