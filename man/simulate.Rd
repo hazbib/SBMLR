@@ -30,7 +30,6 @@ as a side effect within the (now internal) function \code{fderiv}. }
 \examples{
 ##---- The following example performs a perturbation in PRPP from 5 to 50 uM in Curto et al.'s model.
 library(SBMLR) 
-library(odesolve)
 curto=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
 out1=simulate(curto,seq(-20,0,1))
 curto$species$PRPP$ic=50

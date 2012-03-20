@@ -32,7 +32,6 @@ function definitions are NOT implemented.}
 \seealso{ \code{\link{saveSBMLR}} }
 \examples{
 library(SBMLR)
-library(odesolve)
 curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
 saveSBML(curtoR,"curtoR.xml") 
 curtoX=readSBML("curtoR.xml")  

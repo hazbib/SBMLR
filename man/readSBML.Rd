@@ -23,7 +23,6 @@ function definitions are not covered.
 \seealso{ \code{\link{readSBMLR}} }
 \examples{
 library(SBMLR)
-library(odesolve)
 curtoX=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
 curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
 curtoX==curtoR

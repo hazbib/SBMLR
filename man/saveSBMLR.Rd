@@ -26,7 +26,6 @@ Radivoyevitch, T. A two-way interface between limited Systems Biology Markup Lan
 \seealso{ \code{\link{saveSBML}} }
 \examples{
 library(SBMLR)
-library(odesolve)
 curto=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))
 saveSBMLR(curto,"curtoR.r")  
 curtoR=readSBMLR("curtoR.r")  

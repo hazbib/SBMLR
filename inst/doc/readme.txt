@@ -32,7 +32,7 @@ version changes
         
 1.21    Cleaning. The model field names rxns, prods, mods, reacts => reactions, products, modifiers and reactants.
 	Better names for functions by starting them with action verb, e.g. readSBML, readSBMLR, saveSBML, saveSBMLR.  
-	getIncidenceMatrix was incoporated into getModelInfo. (5/5/2005)
+	getIncidenceMatrix was incorporated into getModelInfo. (5/5/2005)
 
 1.22    Simulate fixed to have vector rather than matrix passed for mod=1 with "Control" column now automatic for t<0. Simulate
 	was also modified to take an initial state vector override of the one in the model. (5/28/2005)
@@ -55,6 +55,7 @@ version changes
        Created Ops.SBML to handle overloaded "==" to work as before (see 1.31.0 above), replacing equateModels().
        A quick-start Sweave vignette was also added. (2/24/2010)
 
+1.51.1 replaced odesolve dependence with deSolve dependence. Updated url in description (3/20/2012)
           
           
  

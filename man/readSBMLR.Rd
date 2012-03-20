@@ -24,7 +24,6 @@ It includes rate law and rule string to function, expression and MathML mappings
 \seealso{ \code{\link{readSBML}} }
 \examples{
 library(SBMLR)
-library(odesolve)
 curtoX=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
 curtoR=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
 curtoX==curtoR
