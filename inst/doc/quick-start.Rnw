@@ -41,7 +41,7 @@ Values in these two dataframes are TRUE where the initial concentrations, fluxes
 (as strings) are equal. 
 
 \section*{Model simulation}
-The following simulation first shows that the initial conditions is a steady state. It then shows the  
+The following simulation first shows that the initial condition is a steady state. It then shows the  
 time course response to an increase in [PRPP] from 5 uM to 50 uM. 
 <<simulation>>=
 out1=simulate(curto,seq(-20,0,1))
@@ -58,7 +58,7 @@ detach(outs)
 
 The modulator argument to \textit{simulate} is either NULL, a vector of numbers, or a list of interpolation functions
 (time varying enzyme concentration boundary conditions). The vector and list 
-lengths equal to the number of reactions; in the vector case reaction rate law amplitude parameters are multipied by 
+lengths are equal to the number of reactions; in the vector case reaction rate law amplitude parameters are multipied by 
 1 at times less
 than zero and the corresponding vector element thereafter. 
 The following code doubles the amplitude parameters 

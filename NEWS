@@ -1,0 +1,34 @@
+CHANGES IN VERSION 1.57.1
+------------------------
+
+NEW FEATURES
+
+    o Layout info
+
+    o Additional (cancer relevant) examples added
+
+
+SIGNIFICANT USER-LEVEL CHANGES
+
+    o SBML Level 3 version 1
+
+Notes
+
+    o Vishak Venkateswaran developed a branch of SBMLR on github in July 2011. A goal of this 
+      version is to incoporate his improvements that allow it to read more models.
+      
+    o A second goal is to include additional, cancer-relevant models found
+      in the BioModels Database, http://www.ebi.ac.uk/biomodels-main/
+
+
+
+CHANGES IN VERSION 1.51.1
+------------------------
+
+NEW FEATURES
+
+    o Replaced odesolve dependence with deSolve dependence. 
+
+    o Updated url in description
+
+    o This is the last version with changes logged into doc/readme.txt (3/20/2012)

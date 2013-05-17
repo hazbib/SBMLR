@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Simulate a model of class SBML}
 \description{
-  This function simulates a model given the report times and optional modulators. It uses \code{lsoda} of the odesolve package.
+  This function simulates a model given the report times and optional modulators. It uses \code{lsoda} of the deSolve package.
 }
 \usage{
 simulate(model, times, modulator=NULL,X0=NULL, ...)
