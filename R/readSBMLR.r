@@ -105,7 +105,7 @@
       m=model$reactions[[i]]$modifiers
       r=c(r,m)
       p=names(model$reactions[[i]]$parameters)
-      e=model$reactions[[i]]$exprLaw;e
+      e=model$reactions[[i]]$exprLaw
       model$reactions[[i]]$law=makeLaw(r,p,e)
       model$reactions[[i]]$mathmlLaw=R2MathML(e)$value()[[1]]
       rIDs[i]<-model$reactions[[i]]$id
