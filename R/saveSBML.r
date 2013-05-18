@@ -20,7 +20,7 @@
     nGlobalParameters=length(globalParameters)
     nRules=length(rules)
     nUnits=length(units)
-        
+    
     cat("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", file=fid, sep="\n")
     cat("<sbml xmlns=\"http://www.sbml.org/sbml/level2\" level=\"2\" version=\"1\">", file=fid, sep="\n")
     #print(sprintf("<model id=\"%s\">",filename))
@@ -62,21 +62,23 @@
         idOutput=rules[[i]][["idOutput"]][[1]]
         cat(sprintf("  <assignmentRule variable=\"%s\">",idOutput), file=fid, sep="\n")
         cat("    <math xmlns=\"http://www.w3.org/1998/Math/MathML\">", file=fid, sep="\n")
-        #       ml=saveXML(rules[[i]]$mathmlLaw,prefix=NULL,file=fid)  
-        #       cat("    </math>", file=fid, sep="\n")           
-        #       cat("  </assignmentRule>", file=fid, sep="\n")   # VV replaces these with ifelse below  
-        if(!(is.null(newtry$rules[[i]]$mathmlLaw)))# In case of dirty xml file with messed up rules, we shouldn't write
-        {							# the messed up parts.
-          ml=saveXML(rules[[i]]$mathmlLaw,prefix=NULL,file=fid)  
-          cat("    </math>", file=fid, sep="\n")     
-          cat("  </assignmentRule>", file=fid, sep="\n")     
-        }
-        else
-        {
-          cat("    </math>", file=fid, sep="\n")     
-          cat("  </assignmentRule>", file=fid, sep="\n")     
-          next;						#move onto next rule
-        }
+        ml=saveXML(rules[[i]]$mathmlLaw,prefix=NULL,file=fid)  
+        cat("    </math>", file=fid, sep="\n")           
+        cat("  </assignmentRule>", file=fid, sep="\n")   
+# VV replaces the last 3 lines with this, but I don't get where newtry comes from????  
+# In case of dirty xml file with messed up rules, we shouldn't write
+#         if(!(is.null(newtry$rules[[i]]$mathmlLaw)))
+#         {							# the messed up parts.
+#           ml=saveXML(rules[[i]]$mathmlLaw,prefix=NULL,file=fid)  
+#           cat("    </math>", file=fid, sep="\n")     
+#           cat("  </assignmentRule>", file=fid, sep="\n")     
+#         }
+#         else
+#         {
+#           cat("    </math>", file=fid, sep="\n")     
+#           cat("  </assignmentRule>", file=fid, sep="\n")     
+#           next;						#move onto next rule
+#         }
         
       }
       cat("</listOfRules>", file=fid, sep="\n")
@@ -120,13 +122,14 @@
      #         cat(sprintf("      <parameter id = \"%s\" value = \"%g\"/>", names(parameters)[j],-parameters[[j]][[1]]), file=fid, sep="\n")
      #     cat("    </listOfParameters>", file=fid, sep="\n") # I forgot what the else is for, i.e. when is it not 1? is it >1 or 0???
      # VV replaces block above with this block. 
+     parameters=reactions[[i]][["parameters"]]
      nlocalParameters = length(parameters)
      if(nlocalParameters > 0)			#if local parameters exist, we write it. Else we avoid it.
      { cat("    <listOfParameters>", file=fid, sep="\n")
-       for (j in 1:nlocal_parameters)		# Write each and every local parameter.
+       for (j in 1:nlocalParameters)		# Write each and every local parameter.
          cat(sprintf("      <parameter id = \"%s\" value = \"%g\"/>", names(parameters)[j],parameters[[j]]), file=fid, sep="\n")
        cat("    </listOfParameters>", file=fid, sep="\n")   }
-   
+     
      cat("    </kineticLaw>", file=fid, sep="\n")
      cat("  </reaction>", file=fid, sep="\n")
     }

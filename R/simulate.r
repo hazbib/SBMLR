@@ -3,7 +3,7 @@
 {
   mi=summary(model) # mi = model info
 # print(mi);next
-  my.atol <- rep(1e-4,mi$nStates)
+#   my.atol <- rep(1e-4,mi$nStates)
   attach(model$globalParameters)  # in Morrison this makes Keq globally available 
   mod=0
   if (class(modulator)=="numeric") mod=1
@@ -66,9 +66,11 @@
   }    
   # ******************  END fderiv function definition
   
-  if (!is.null(X0)) 
-    out=lsoda(y=X0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) else
-    out=lsoda(y=mi$y0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) 
+  if (is.null(X0)) X0=mi$y0
+    out=ode(y=X0,times=times,fderiv,  parms=c(mod=mod), ...)
+#       out=ode(y=mi$y0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) 
+#   out=lsoda(y=X0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) else
+#     out=lsoda(y=mi$y0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) 
   detach(model$globalParameters)
   out
 } 

@@ -12,12 +12,10 @@
   #Parameters
   P0 = NULL; VP = NULL
   if(nParams > 0)
-  {
     for (i in 1:nParams){
       P0[i]=model$ParametersList[[i]]$id; 
       VP[i]=model$ParametersList[[i]]$value
     }
-  }
   names(VP)<-pIDs
 ################  
   
@@ -62,7 +60,7 @@
   DFs=data.frame(index=1:nSpecies,initialConcentrations=S0,boundaryConditions=BC); row.names(DFs)<-sIDs
   DFr=data.frame(index=1:nReactions,Laws=rLaws,initialFluxes=V0);   row.names(DFr)<-rIDs
   list(nSpecies=nSpecies,sIDs=sIDs,S0=S0,BC=BC,nStates=nStates,y0=y0,nReactions=nReactions,rIDs=rIDs,rLaws=rLaws, V0=V0, 
-      incid=incid,nRules=nRules,ruleIDs=ruleIDs,species=DFs,reactions=DFr, VP = VP, P0=P0) #last 2 are VV add ons
+      incid=incid,nRules=nRules,ruleIDs=ruleIDs,species=DFs,reactions=DFr) #,VP=VP,P0=P0) #VV add ons
 }
 
 
