@@ -123,4 +123,4 @@
     # state Units in Notes from here on out!
     cat(")  # END of the Model!", file=fid, sep="\n")
     close(fid)
-  } # end read.SBML function definition
+  } # end saveSBMLR function definition
