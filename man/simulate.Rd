@@ -28,35 +28,21 @@ simulate(model, times, modulator=NULL,X0=NULL, ...)
 as a side effect within the (now internal) function \code{fderiv}. }
 
 \examples{
-##---- The following example performs a perturbation in PRPP from 5 to 50 uM in Curto et al.'s model.
+##---- The following perturbs PRPP from 5 to 50 uM in Curto et al.'s model.
 library(SBMLR) 
 curto=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
-out1=simulate(curto,seq(-20,0,1))
-curto$species$PRPP$ic=50
-out2=simulate(curto,0:70)
-outs=data.frame(rbind(out1,out2))
-attach(outs)
-par(mfrow=c(2,1))
-plot(time,IMP,type="l")
-plot(time,HX,type="l")
-par(mfrow=c(1,1))
-detach(outs)
+(dPRPP10 <- data.frame(var = "PRPP", time = 0, value = 10,method = "mult"))
+(out=simulate(curto,times=seq(-20,70,1),events = list(data = dPRPP10) ) )
+plot(out,which=c("PRPP","den","IMP","HX","Gua","aprt","XMP","Xa","UA"))
 
 # which should be the same plots as 
 curto=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
-out1=simulate(curto,seq(-20,0,1))
-curto$species$PRPP$ic=50
-out2=simulate(curto,0:70)
-outs=data.frame(rbind(out1,out2))
-attach(outs)
-par(mfrow=c(2,1))
-plot(time,IMP,type="l")
-plot(time,HX,type="l")
-par(mfrow=c(1,1))
-detach(outs)
+(dPRPP10 <- data.frame(var = "PRPP", time = 0, value = 10,method = "mult"))
+(out=simulate(curto,times=seq(-20,70,1),events = list(data = dPRPP10) ) )
+plot(out,which=c("PRPP","den","IMP","HX","Gua","aprt","XMP","Xa","UA"))
 
-##---- The following example uses fderiv to generate Morrison's folate system response to 1uM MTX 
 
+##---- The following generates Morrison's folate system response to 1uM MTX 
 morr=readSBMLR(file.path(system.file(package="SBMLR"), "models/morrison.r"))  
 out1=simulate(morr,seq(-20,0,1))
 morr$species$EMTX$ic=1
@@ -80,5 +66,11 @@ plot(time,DHFReductase,type="l",xlab="Hours")
 par(mfrow=c(1,1))
 detach(outs)
 morr$species$EMTX$ic=0
+
+## Note: This does not work, since EMTX is not a state variable, it is a bc
+##(dEMTX1 <- data.frame(var = "EMTX", time = 0, value = 1,method = "add"))
+##(out=simulate(morr,times=seq(-20,30,1),events = list(data = dEMTX1) ) )
+
+
 }
 \keyword{ math }% at least one, from doc/KEYWORDS

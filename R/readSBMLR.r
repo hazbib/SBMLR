@@ -80,7 +80,7 @@
     ruleIDs=NULL
     for (i in 1:nRules)
     {
-#cat(i,"     ",class(model$rules[[i]]$strLaw),"\n")
+      #cat(i,"     ",class(model$rules[[i]]$strLaw),"\n")
       model$rules[[i]]$exprLaw=parse(text=model$rules[[i]]$strLaw)[[1]]
       r=model$rules[[i]]$inputs
       e=model$rules[[i]]$exprLaw
@@ -99,6 +99,7 @@
     rIDs=NULL
     for (i in 1:nReactions)
     {
+      if (is.null(model$reactions[[i]]$reversible)) model$reactions[[i]]$reversible=FALSE 
 #cat(i,"     ",class(model$reactions[[i]]$strLaw),"\n")
       model$reactions[[i]]$exprLaw=parse(text=model$reactions[[i]]$strLaw)[[1]]
       r=model$reactions[[i]]$reactants
@@ -109,6 +110,7 @@
       model$reactions[[i]]$law=makeLaw(r,p,e)
       model$reactions[[i]]$mathmlLaw=R2MathML(e)$value()[[1]]
       rIDs[i]<-model$reactions[[i]]$id
+      
     }
     names(model$reactions)<-rIDs
   }

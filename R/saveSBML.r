@@ -35,9 +35,10 @@
     if(nCompartments>0){
       cat("<listOfCompartments>", file=fid, sep="\n")
       for (i in 1:nCompartments) 
-        cat(sprintf("   <compartment id=\"%s\"  size=\"%g\" name=\"%s\"/>",  # VV 
-                    compartments[[i]][["id"]],compartments[[i]][["size"]],compartments[[i]][["name"]]), file=fid, sep="\n")
-      #       cat(sprintf("   <compartment id=\"%s\"  size=\"%g\" />",compartments[[i]][[1]],compartments[[i]][[2]]), file=fid, sep="\n")
+        cat(sprintf("   <compartment id=\"%s\"  size=\"%g\" />",
+                    compartments[[i]][["id"]],compartments[[i]][["size"]]), file=fid, sep="\n")
+      # cat(sprintf("   <compartment id=\"%s\"  size=\"%g\" name=\"%s\"/>",  # VV 
+      #     compartments[[i]][["id"]],compartments[[i]][["size"]],compartments[[i]][["name"]]), file=fid, sep="\n")
       cat("</listOfCompartments>", file=fid, sep="\n")
     }
     if(nSpecies>0){
@@ -65,20 +66,20 @@
         ml=saveXML(rules[[i]]$mathmlLaw,prefix=NULL,file=fid)  
         cat("    </math>", file=fid, sep="\n")           
         cat("  </assignmentRule>", file=fid, sep="\n")   
-# VV replaces the last 3 lines with this, but I don't get where newtry comes from????  
-# In case of dirty xml file with messed up rules, we shouldn't write
-#         if(!(is.null(newtry$rules[[i]]$mathmlLaw)))
-#         {							# the messed up parts.
-#           ml=saveXML(rules[[i]]$mathmlLaw,prefix=NULL,file=fid)  
-#           cat("    </math>", file=fid, sep="\n")     
-#           cat("  </assignmentRule>", file=fid, sep="\n")     
-#         }
-#         else
-#         {
-#           cat("    </math>", file=fid, sep="\n")     
-#           cat("  </assignmentRule>", file=fid, sep="\n")     
-#           next;						#move onto next rule
-#         }
+        # VV replaces the last 3 lines with this, but I don't get where newtry comes from????  
+        # In case of dirty xml file with messed up rules, we shouldn't write
+        #         if(!(is.null(newtry$rules[[i]]$mathmlLaw)))
+        #         {							# the messed up parts.
+        #           ml=saveXML(rules[[i]]$mathmlLaw,prefix=NULL,file=fid)  
+        #           cat("    </math>", file=fid, sep="\n")     
+        #           cat("  </assignmentRule>", file=fid, sep="\n")     
+        #         }
+        #         else
+        #         {
+        #           cat("    </math>", file=fid, sep="\n")     
+        #           cat("  </assignmentRule>", file=fid, sep="\n")     
+        #           next;						#move onto next rule
+        #         }
         
       }
       cat("</listOfRules>", file=fid, sep="\n")
@@ -86,52 +87,55 @@
     
     cat("<listOfReactions>", file=fid, sep="\n")
     for (i in 1:nReactions) 
-    {cat(sprintf("  <reaction id=\"%s\"  reversible=\"%s\">",
-                 reactions[[i]][["id"]],ifelse(reactions[[i]][["reversible"]],"true","false")), file=fid, sep="\n")
-     reactants=reactions[[i]][["reactants"]]
-     if (!is.null(reactants[[1]])) {
-       cat("    <listOfReactants>", file=fid, sep="\n")
-       for (j in 1:length(reactants)) 
-         cat(sprintf("      <speciesReference species = \"%s\" />", reactants[[j]]), file=fid, sep="\n")
-       cat("    </listOfReactants>", file=fid, sep="\n")}
-     
-     # Just switched the order of these two blocks to fix the errors
-     products=reactions[[i]][["products"]]
-     if (!is.null(products[[1]])) {
-       cat("    <listOfProducts>", file=fid, sep="\n")
-       for (j in 1:length(products)) 
-         cat(sprintf("      <speciesReference species = \"%s\" />", products[[j]]), file=fid, sep="\n")
-       cat("    </listOfProducts>", file=fid, sep="\n")     }
-     
-     modifiers=reactions[[i]][["modifiers"]]
-     if (!is.null(modifiers[[1]])) {
-       cat("    <listOfModifiers>", file=fid, sep="\n")
-       for (j in 1:length(modifiers)) 
-         cat(sprintf("      <modifierSpeciesReference species = \"%s\" />", modifiers[[j]]), file=fid, sep="\n")
-       cat("    </listOfModifiers>", file=fid, sep="\n")}
-     
-     cat("  <kineticLaw>", file=fid, sep="\n")
-     cat("    <math xmlns=\"http://www.w3.org/1998/Math/MathML\">", file=fid, sep="\n")
-     ml=saveXML(reactions[[i]]$mathmlLaw,prefix=NULL,file=fid) # annoying warnings were coming from here without file=fid
-     cat("    </math>", file=fid, sep="\n")     
-     #     cat("    <listOfParameters>", file=fid, sep="\n")
-     #     parameters=reactions[[i]][["parameters"]]
-     #     for (j in 1:length(parameters)) 
-     #       if (length(parameters[[j]])==1) 
-     #         cat(sprintf("      <parameter id = \"%s\" value = \"%g\"/>", names(parameters)[j],parameters[[j]]), file=fid, sep="\n") else
-     #         cat(sprintf("      <parameter id = \"%s\" value = \"%g\"/>", names(parameters)[j],-parameters[[j]][[1]]), file=fid, sep="\n")
-     #     cat("    </listOfParameters>", file=fid, sep="\n") # I forgot what the else is for, i.e. when is it not 1? is it >1 or 0???
-     # VV replaces block above with this block. 
-     parameters=reactions[[i]][["parameters"]]
-     nlocalParameters = length(parameters)
-     if(nlocalParameters > 0)			#if local parameters exist, we write it. Else we avoid it.
-     { cat("    <listOfParameters>", file=fid, sep="\n")
-       for (j in 1:nlocalParameters)		# Write each and every local parameter.
-         cat(sprintf("      <parameter id = \"%s\" value = \"%g\"/>", names(parameters)[j],parameters[[j]]), file=fid, sep="\n")
-       cat("    </listOfParameters>", file=fid, sep="\n")   }
-     
-     cat("    </kineticLaw>", file=fid, sep="\n")
-     cat("  </reaction>", file=fid, sep="\n")
+    { 
+      if (is.null(reactions[[i]][["reversible"]])) 
+        print("Internal SBMLR object should have reverse flag set") else
+      cat(sprintf("  <reaction id=\"%s\"  reversible=\"%s\">",reactions[[i]][["id"]],
+                  ifelse(reactions[[i]][["reversible"]],"true","false")), file=fid, sep="\n")
+      reactants=reactions[[i]][["reactants"]]
+      if (!is.null(reactants[[1]])) {
+        cat("    <listOfReactants>", file=fid, sep="\n")
+        for (j in 1:length(reactants)) 
+          cat(sprintf("      <speciesReference species = \"%s\" />", reactants[[j]]), file=fid, sep="\n")
+        cat("    </listOfReactants>", file=fid, sep="\n")}
+      
+      # Just switched the order of these two blocks to fix the errors
+      products=reactions[[i]][["products"]]
+      if (!is.null(products[[1]])) {
+        cat("    <listOfProducts>", file=fid, sep="\n")
+        for (j in 1:length(products)) 
+          cat(sprintf("      <speciesReference species = \"%s\" />", products[[j]]), file=fid, sep="\n")
+        cat("    </listOfProducts>", file=fid, sep="\n")     }
+      
+      modifiers=reactions[[i]][["modifiers"]]
+      if (!is.null(modifiers[[1]])) {
+        cat("    <listOfModifiers>", file=fid, sep="\n")
+        for (j in 1:length(modifiers)) 
+          cat(sprintf("      <modifierSpeciesReference species = \"%s\" />", modifiers[[j]]), file=fid, sep="\n")
+        cat("    </listOfModifiers>", file=fid, sep="\n")}
+      
+      cat("  <kineticLaw>", file=fid, sep="\n")
+      cat("    <math xmlns=\"http://www.w3.org/1998/Math/MathML\">", file=fid, sep="\n")
+      ml=saveXML(reactions[[i]]$mathmlLaw,prefix=NULL,file=fid) # annoying warnings were coming from here without file=fid
+      cat("    </math>", file=fid, sep="\n")     
+      #     cat("    <listOfParameters>", file=fid, sep="\n")
+      #     parameters=reactions[[i]][["parameters"]]
+      #     for (j in 1:length(parameters)) 
+      #       if (length(parameters[[j]])==1) 
+      #         cat(sprintf("      <parameter id = \"%s\" value = \"%g\"/>", names(parameters)[j],parameters[[j]]), file=fid, sep="\n") else
+      #         cat(sprintf("      <parameter id = \"%s\" value = \"%g\"/>", names(parameters)[j],-parameters[[j]][[1]]), file=fid, sep="\n")
+      #     cat("    </listOfParameters>", file=fid, sep="\n") # I forgot what the else is for, i.e. when is it not 1? is it >1 or 0???
+      # VV replaces block above with this block. 
+      parameters=reactions[[i]][["parameters"]]
+      nlocalParameters = length(parameters)
+      if(nlocalParameters > 0)			#if local parameters exist, we write it. Else we avoid it.
+      { cat("    <listOfParameters>", file=fid, sep="\n")
+        for (j in 1:nlocalParameters)		# Write each and every local parameter.
+          cat(sprintf("      <parameter id = \"%s\" value = \"%g\"/>", names(parameters)[j],parameters[[j]]), file=fid, sep="\n")
+        cat("    </listOfParameters>", file=fid, sep="\n")   }
+      
+      cat("    </kineticLaw>", file=fid, sep="\n")
+      cat("  </reaction>", file=fid, sep="\n")
     }
     cat("</listOfReactions>", file=fid, sep="\n")
     cat("</model>", file=fid, sep="\n")

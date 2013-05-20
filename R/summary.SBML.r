@@ -30,7 +30,7 @@
   names(BC)<-sIDs 
   y0=S0[BC==FALSE]
   nStates=length(y0)
-  
+#   attach(model$ParametersList)
   attach(model$globalParameters)  # e.g. for Vmax global coordination in RNR
 # Reactions
   rLaws=NULL;V0=NULL # initialize
@@ -41,6 +41,7 @@
   names(rLaws)<-rIDs
   names(V0)<-rIDs
   detach(model$globalParameters)  
+#   detach(model$ParametersList)
   
   
 # Incidence Matrix

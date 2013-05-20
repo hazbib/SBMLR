@@ -35,26 +35,27 @@
       .startElement <- function(name, atts, ...) {
         #   cat("Start: Name =",name," ",paste(names(atts),atts,sep=" = "),"\n")
         if(name=="sbml")  sbml<<-atts 
-        
-        #       if(name=="model")  {modelid<<-atts[[1]]} # VV replaces this with ...
-        if(name=="model")  
-        {   numitems <- length(atts)
-            if(numitems < 1)			#if model does not contain a name/id, we give it an arbitrary one.
-              modelid[[1]]<<-"BioModel"	  
-            else if(numitems == 1)				# if only one attribute supplied
-            {
-              if(is.character(atts[[1]]))	#if the attribute is a string, it must be model name. Copy to also id.
-              {
-                modelname<<-atts[[1]]   # store model name
-                modelid<<-atts[[1]]     # store as model id (copy Essentially)
-              }
-            }   
-            else if(numitems > 1)			#both Id and name of model are supplied, read both
-            {
-              modelname<<-atts[["name"]]   # first element is model name
-              modelid <<-atts[["id"]]    # second element has to be model id
-            }
-        }
+        if(name=="annotation")  print("skipping annotation") 
+              
+       if(name=="model")  {modelid<<-atts[["id"]]} # VV replaces this with ...
+#         if(name=="model")  
+#         {   numitems <- length(atts)
+#             if(numitems < 1)			#if model does not contain a name/id, we give it an arbitrary one.
+#               modelid[[1]]<<-"BioModel"	  
+#             else if(numitems == 1)				# if only one attribute supplied
+#             {
+#               if(is.character(atts[[1]]))	#if the attribute is a string, it must be model name. Copy to also id.
+#               {
+#                 modelname<<-atts[[1]]   # store model name
+#                 modelid<<-atts[[1]]     # store as model id (copy Essentially)
+#               }
+#             }   
+#             else if(numitems > 1)			#both Id and name of model are supplied, read both
+#             {
+#               modelname<<-atts[["name"]]   # first element is model name
+#               modelid <<-atts[["id"]]    # second element has to be model id
+#             }
+#         }
         
         #       if(name=="compartment")  {compartments[[atts[1]]]<<-atts}
         if(name=="compartment")        {
@@ -91,7 +92,8 @@
             count <- count + 1
           }
           reactions[[atts["id"]]]$id<<-id
-          reactions[[atts["id"]]]$reversible<<-reverse
+          reactions[[atts["id"]]]$reversible<<-reverse  
+#           if(reverse) reactions[[atts["id"]]]$reversible<<-reverse #carry in R only  if true
           currRxnID<<-atts["id"]
           #reactions[[atts["id"]]]$id<<-atts[["id"]]
           #reactions[[atts[1]]]$reversible<<-as.logical(atts[[2]])
@@ -99,10 +101,10 @@
         }
         
         
-        if(name=="listOfReactants")  {reactant<<-TRUE}
-        if(name=="listOfProducts")  {product<<-TRUE}
-        if(name=="kineticLaw")  {law<<-TRUE}
-        if(name=="math")  {math<<-TRUE}
+        if(name=="listOfReactants")  reactant<<-TRUE
+        if(name=="listOfProducts")  product<<-TRUE
+        if(name=="kineticLaw")  law<<-TRUE
+        if(name=="math")  math<<-TRUE
         if((name=="speciesReference")&reactant)
           reactants<<-c(reactants,species=atts[["species"]])
         #         reactants<<-c(reactants,species=atts[[1]])
@@ -111,10 +113,10 @@
         #         products<<-c(products,species=atts[[1]])
         if(name=="modifierSpeciesReference")
           modifiers<<-c(modifiers,species=atts[["species"]])
+
         #       if((name=="parameter")&law){
         #         parameterIDs<<-c(parameterIDs,atts[[1]])
         #         parameters<<-c(parameters,atts[[2]])}
-        
         if((name=="parameter")&law)  		#parameter encountered within a kinetic law definition
         {
           values <- names(atts)
@@ -160,11 +162,11 @@
       
       
       .endElement <- function(name) {
-        if(name=="listOfReactants")  {reactant<<-FALSE  }
-        if(name=="listOfProducts")  {product<<-FALSE   }
-        if(name=="kineticLaw")  {law<<-FALSE}
-        if(name=="math")  {math<<-FALSE}
-        if((name=="listOfParameters")&(!law)) {names(globalParameters)<<-globalParameterIDs } 
+        if(name=="listOfReactants")  reactant<<-FALSE  
+        if(name=="listOfProducts")  product<<-FALSE   
+        if(name=="kineticLaw")  law<<-FALSE
+        if(name=="math")  math<<-FALSE
+        if((name=="listOfParameters")&(!law)) names(globalParameters)<<-globalParameterIDs  
         if(name=="reaction")  {
           names(reactants)<<-NULL
           names(modifiers)<<-NULL
@@ -184,16 +186,14 @@
         #  cat("Txt:", x,"\n")
       }
       
-      getModel<- function() 
+      getModel<- function()       
       { 
-        
         #       fixComps=function(x) {
         #         lst=list(x[[1]],as.numeric(x[[2]]) ); 
         #         names(lst)<-names(x); 
         #         lst 
         #       }
         #  VV replaces fixComps with the following:
-        
         fixComps=function(x) 
         {
           lstnames <- names(x)
@@ -212,40 +212,22 @@
             )
             count = count + 1
           }
-          
-          #---DEBUG----
           #cat("Compartment id:", id,"\n", "Compartment size:" , size, "\n","Compartment name:", name, "\n")
-          #-------------
           if(numit == 2)						# only 2 attributes present. We need to find them.
-          {
-            
-            
-            if(id == "x")		#id not set but name and size are.
-            {
-              id <- "default"		
-            }
+          { if(id == "x")		#id not set but name and size are.
+            id <- "default"		
             else if(name == "x")    #name not set, we copy the id.
-            {
               name <- id
-            }
             else if(size== "0")	#size not set
-            {
               size <- 1 	#arbitrary setting as 1
-            }
             lst = list(id,size,name)	
             names(lst)<-c("id","size","name")
             lst
-          }
-          else if(numit == 3)					# 3 attributes present.
-          {
-            lst = list(id,size,name)
+          } else if(numit == 3)					# 3 attributes/items present.
+          { lst = list(id,size,name)
             names(lst)<-c("id","size","name")
             lst 
           }
-          #old-------
-          #lst=list(x[[1]],as.numeric(x[[2]]) ); 	#compartment id and compartment size
-          #names(lst) <- names(x) 	
-          #---------
         }
         
         #       fixSpecies=function(x) {
@@ -254,8 +236,6 @@
         #         lst 
         #       }
         #  VV replaces fixSpecies with the following
-        
-        
         fixSpecies=function(x) 
         {
           #cat (names(x), "\n")
@@ -276,14 +256,10 @@
                    "name" = { name <- x[[count]]; nameslist[[length(nameslist)+1]] <- "name"},
                    "initialConcentration" = { ic <- as.numeric(x[[count]]) ;nameslist[[length(nameslist)+1]] <- "ic" },
                    "compartment" = { compart <- as.character(x[[count]]); nameslist[[length(nameslist)+1]] <- "compartment"},
-                   
-                   
-                   
                    "boundaryCondition" = { bc <- as.logical(x[[count]]); nameslist[[length(nameslist)+1]] <- "bc"}
             )
             count = count + 1
           }
-          #old lst=list(x[[1]],as.numeric(x[[2]]),x[[3]],as.logical(x[[4]])); 
           #lst = list(id,ic,compart,bc, name)
           lst = list(id,as.numeric(ic), compart, as.logical(bc))
           names(lst) <- c("id","ic","compartment","bc")
@@ -292,7 +268,6 @@
         }
         
         # and VV adds in fixParams
-        
         fixParams=function(x) 
         {
           numitems <- length(x)
@@ -319,9 +294,6 @@
           lst 
         }		
         
-        
-        
-        
         compartments=sapply(compartments,fixComps, simplify = FALSE)
         #species=t(sapply(species,fixSpecies, simplify = TRUE)[2:4,]) # this changes the species model structure for better looks in R dumps
         species=sapply(species,fixSpecies, simplify = FALSE)     # this keeps the better looks in the SBMLR model definition file
@@ -329,7 +301,6 @@
         
         list(sbml=sbml,id=modelid[[1]], notes=lnotes,compartments=compartments, # VV, not clear how ParametersList differs from globalParameters
              species=species,globalParameters=globalParameters, ParametersList=ParametersList, rules=rules,reactions=reactions)
-        
         #       list(sbml=sbml,id=modelid[[1]], notes=lnotes,compartments=compartments, # TR may revert to this??
         #           species=species,globalParameters=globalParameters, rules=rules,reactions=reactions) # returns values accrued in parent env
       }
@@ -479,7 +450,8 @@
     for (j in 1:length(p)){
       body(lawTempl)[[i]]<-call("=",as.name(p[j]),call("[",as.name("p"),p[j]))
       i=i+1}
-  for (j in 1:length(r)){ 
+#   for (j in 1:length(r)){ 
+    for (j in seq(along=r)){
     body(lawTempl)[[i]]<-call("=",as.name(r[j]),call("[",as.name("r"),r[j]))
     i=i+1}
   body(lawTempl)[[i]]<-e
