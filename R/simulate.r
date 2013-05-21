@@ -14,7 +14,7 @@
     v=rep(0,mi$nReactions)
     xp=rep(0,mi$nStates)
     St=mi$S0
-    X[X<0]=0
+#     X[X<0]=0  # need this out else sod model rattles a lot
     St[mi$BC==FALSE]=X
 
 # TR version of this    

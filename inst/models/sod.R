@@ -4,11 +4,11 @@ model=list(
   id="sod",
   
   notes=c(
-    "This is the SOD model of Kowald et al, JTB 238 (2006) 828–840.", 
+    "This is the SOD model of Kowald et al, JTB 238 (2006) 828-840.", 
     "Below, L is lipid radical, SO is superoxide, OH=hydroxyl radical,",
     "LOO is a radical, and LOOH is stable oxidized lipid.",
     "SOD is the total SOD, SODII=metal oxidized, SODII=reduced.",
-    "HSO is protonated SO, a fast reaction; HSO's neutral charge => it crosses membranes.",
+    "HSO is protonated SO, a fast reaction; HSO neutral so it crosses membranes.",
     "Catalase. T and SODT are externally manipulated boundary conditions (bc).",
     "HSO and SODI are rule/algebraically determined. They are cloaked here as bc.",
     "Units are all in molar (M) and in seconds."
@@ -28,21 +28,23 @@ model=list(
     list(id="L"		  ,ic=       0,    compartment="cell",bc=  FALSE),
     list(id="LOO"   ,ic=       0,    compartment="cell",bc=  FALSE),
     list(id="LOOH"	,ic=       0,    compartment="cell",bc=  FALSE),
-    list(id="HSO"		,ic=  0.0024,	   compartment="cell",bc=	 TRUE),
-    list(id="SODI"	,ic=    0.64,	   compartment="cell",bc=	 TRUE),
+#     list(id="HSO"		,ic=  0.0024,	   compartment="cell",bc=	 TRUE), # from BioModel
+#     list(id="SODI"	,ic=    0.64,	   compartment="cell",bc=	 TRUE), #
+    list(id="HSO"  	,ic=       0,	   compartment="cell",bc=	 TRUE), # from paper
+    list(id="SODI"	,ic=    5e-6,	   compartment="cell",bc=	 TRUE), #
     list(id="SOD" 	,ic=   1e-05,    compartment="cell",bc=  TRUE),
     list(id="catalase"		,ic=   1e-05,    compartment="cell",bc=  TRUE)
   ),
   
-#   globalParameters=list(Keq=100), 
+   globalParameters=list(Keq=100), 
   
   
   #BEGIN the Rules Section
   rules=list(
     list(idOutput="HSO",
          inputs=c("SO"),
-#          strLaw = "SO/Keq"
-         strLaw = "SO/100"
+          strLaw = "SO/Keq"
+#          strLaw = "SO/100"
     ),
     
     list(idOutput="SODI",
@@ -103,7 +105,7 @@ model=list(
           strLaw="k7*H2O2*catalase"
     ),
     
-    list( id="leakV9",  
+    list( id="ohSinkV9",  
           reactants=c("OH"),
           parameters=c(k9=1e6),
           strLaw="k9*OH"
@@ -142,6 +144,14 @@ model=list(
           parameters=c(k13b=0.0087),
           strLaw="k13b*SODII"
     ),
+
+#     list( id="hsoSynFastV16",  # v16 also not shown in Fig. 1 
+#           reactants=c("SO"),
+#           parameters=c(k10=1000),
+#           strLaw="k10*SO"
+#     ),
+    
+  
     
     list( id="lipRadOxV17",  
           reactants=c("L"),
@@ -157,12 +167,7 @@ model=list(
           strLaw="k18*LOO"
     ),
     
-    
-#     list( id="hsoSynFastV16",  
-#           reactants=c("SO"),
-#           parameters=c(k10=1000),
-#           strLaw="k10*SO"
-#     ),
+  
     
     list( id="looSelfV19",  
           reactants=c("LOO","LOO"),

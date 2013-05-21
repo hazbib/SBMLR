@@ -3,12 +3,12 @@
 <model id="sod">
 <notes>
  <body xmlns="http://www.w3.org/1999/xhtml">
-   <p> This is the SOD model of Kowald et al, JTB 238 (2006) 828–840.  </p>
+   <p> This is the SOD model of Kowald et al, JTB 238 (2006) 828-840.  </p>
    <p> Below, L is lipid radical, SO is superoxide, OH=hydroxyl radical,  </p>
    <p> LOO is a radical, and LOOH is stable oxidized lipid.  </p>
-   <p> SODT is the total SOD, SODII=metal oxidized, SODII=reduced.  </p>
-   <p> HSO is protonated SO, a fast reaction; HSO's neutral charge => it crosses membranes.  </p>
-   <p> CAT is catalase. CAT and SODT are externally manipulated boundary conditions (bc).  </p>
+   <p> SOD is the total SOD, SODII=metal oxidized, SODII=reduced.  </p>
+   <p> HSO is protonated SO, a fast reaction; HSO neutral so it crosses membranes.  </p>
+   <p> Catalase. T and SODT are externally manipulated boundary conditions (bc).  </p>
    <p> HSO and SODI are rule/algebraically determined. They are cloaked here as bc.  </p>
    <p> Units are all in molar (M) and in seconds.  </p>
  </body>
@@ -24,18 +24,21 @@
    <species id="L"  initialConcentration="0"  compartment="cell" boundaryCondition="false"/>
    <species id="LOO"  initialConcentration="0"  compartment="cell" boundaryCondition="false"/>
    <species id="LOOH"  initialConcentration="0"  compartment="cell" boundaryCondition="false"/>
-   <species id="HSO"  initialConcentration="0.0024"  compartment="cell" boundaryCondition="true"/>
-   <species id="SODI"  initialConcentration="0.64"  compartment="cell" boundaryCondition="true"/>
+   <species id="HSO"  initialConcentration="0"  compartment="cell" boundaryCondition="true"/>
+   <species id="SODI"  initialConcentration="5e-06"  compartment="cell" boundaryCondition="true"/>
    <species id="SOD"  initialConcentration="1e-05"  compartment="cell" boundaryCondition="true"/>
-   <species id="cat"  initialConcentration="1e-05"  compartment="cell" boundaryCondition="true"/>
+   <species id="catalase"  initialConcentration="1e-05"  compartment="cell" boundaryCondition="true"/>
 </listOfSpecies>
+<listOfParameters>
+   <parameter id="Keq"  value="100" />
+</listOfParameters>
 <listOfRules>
   <assignmentRule variable="HSO">
     <math xmlns="http://www.w3.org/1998/Math/MathML">
 <apply>
  <divide/>
  <ci>SO</ci>
- <cn>100</cn>
+ <ci>Keq</ci>
 </apply>
     </math>
   </assignmentRule>
@@ -173,6 +176,7 @@
     </listOfReactants>
     <listOfProducts>
       <speciesReference species = "OH" />
+      <speciesReference species = "OH" />
     </listOfProducts>
     <listOfModifiers>
       <modifierSpeciesReference species = "SODII" />
@@ -199,7 +203,7 @@
       <speciesReference species = "H2O2" />
     </listOfReactants>
     <listOfModifiers>
-      <modifierSpeciesReference species = "cat" />
+      <modifierSpeciesReference species = "catalase" />
     </listOfModifiers>
   <kineticLaw>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -210,7 +214,7 @@
   <ci>k7</ci>
   <ci>H2O2</ci>
  </apply>
- <ci>cat</ci>
+ <ci>catalase</ci>
 </apply>
     </math>
     <listOfParameters>
@@ -218,7 +222,7 @@
     </listOfParameters>
     </kineticLaw>
   </reaction>
-  <reaction id="leakV9"  reversible="false">
+  <reaction id="ohSinkV9"  reversible="false">
     <listOfReactants>
       <speciesReference species = "OH" />
     </listOfReactants>
