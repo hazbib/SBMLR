@@ -1,9 +1,9 @@
 \name{saveSBML}
 \alias{saveSBML}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Saves an R model object as an SBML file}
+\title{ Saves an R model object as an SBMLR file}
 \description{
-  This function converts a class \code{SBML} model object in R into an SBML level 2 file.
+  This function converts a class \code{SBMLR} model object in R into an SBML level 2 file.
 }
 \usage{
 saveSBML(model,filename)
@@ -23,7 +23,7 @@ saveSBML(model,filename)
 Radivoyevitch, T. A two-way interface between limited Systems Biology Markup Language and R. BMC Bioinformatics 5, 190 (2004).
 }
 \author{ Tom Radivoyevitch }
-\note{For speed, the SBML file is written incrementally, rather than first built as a DOM in R and then saved using \code{xmlSave}.
+\note{The SBML file is written incrementally, rather than first built as a DOM in R and then saved using \code{xmlSave}.
 }
 
 \section{Warning }{SBML events and 

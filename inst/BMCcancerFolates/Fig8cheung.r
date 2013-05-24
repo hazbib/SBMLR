@@ -1,12 +1,10 @@
 # This is Morrison's folate model driven by Vivian Cheung et al's Radiation time course response data (GDS479).
 library(Biobase)
-library(odesolve)
 library(annotate)
 library(hgu95av2)
 library(SBMLR)  
-setwd(file.path(.path.package("SBMLR"), "BMCcancerFolates")) #default dump site 
-#setwd("C:/cwru/active/Morrison")  # set this to where figs should be dumped, with comment removed
-morr=readSBMLR(file.path(.path.package("SBMLR"), "models/morrison.r"))  
+setwd(file.path(system.file(package="SBMLR"), "BMCcancerFolates")) #default dump site 
+morr=readSBMLR(file.path(system.file(package="SBMLR"), "models/morrison.r"))  
 library(cheungEset)
 eset=cheung
 pD=pData(eset);pD
@@ -91,12 +89,12 @@ mods10[[i]]=approxfun(times,M10[rIDs[i],],method="linear",rule=2)
 }
 
 Mt=mods3
-out1=simulate(morr,seq(-10,0,1),Mt)
-out2=simulate(morr,0:30,Mt)
+out1=sim(morr,seq(-10,0,1),Mt)
+out2=sim(morr,0:30,Mt)
 gray3=data.frame(rbind(out1,out2))
 Mt=mods10  
-out1=simulate(morr,seq(-10,0,1),Mt)
-out2=simulate(morr,0:30,Mt)
+out1=sim(morr,seq(-10,0,1),Mt)
+out2=sim(morr,0:30,Mt)
 gray10=data.frame(rbind(out1,out2))
 
 graphics.off()  # clear off current figures

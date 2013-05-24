@@ -1,9 +1,9 @@
 \name{readSBMLR}
 \alias{readSBMLR}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Convert an SBMLR file into an R model object of class SBML}
+\title{ Convert an SBMLR file into an R model object of class SBMLR}
 \description{
-  This function converts an SBMLR model definition in filename into a corresponding returned SBML model structure.
+  This function converts an SBMLR model definition in filename into a corresponding returned SBMLR model object in R.
 }
 \usage{
 readSBMLR(filename)
@@ -16,10 +16,10 @@ readSBMLR(filename)
 A limited subset of SBML level 2 models is currently supported, e.g. events and 
 function definitions are not covered.
 }
-\value{A corresponding \code{SBML} model object in R. }
+\value{A corresponding \code{SBMLR} model object in R. }
 \author{ Tom Radivoyevitch  }
 \note{This function replaces the use of \code{source} in older versions of SBMLR. 
-It includes rate law and rule string to function, expression and MathML mappings. }
+It converts rate law and rule strings to R functions and expressions and to MathML. }
 
 \seealso{ \code{\link{readSBML}} }
 \examples{

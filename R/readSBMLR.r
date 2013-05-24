@@ -116,6 +116,6 @@
   }
   
   
-  class(model)<-"SBML"
+  class(model)<-"SBMLR"
   return(model)}
 

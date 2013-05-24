@@ -322,11 +322,29 @@
     
     mathml2R.XMLDocument <-function(doc) {return(mathml2R(doc$doc$children))}
     
+#     mathml2R.default<-function(children) 
+#     {  expr <- expression()  # this gets used when a "list" of children nodes are sent in
+#        for(i in children)  expr=c(expr, mathml2R(i)) 
+#        return(expr)
+#     }
+    
     mathml2R.default<-function(children) 
     {  expr <- expression()  # this gets used when a "list" of children nodes are sent in
-       for(i in children)  expr=c(expr, mathml2R(i)) 
+       n=length(children)
+       #    cat("into default length n is ",n,"\n")
+       #    for(i in children)  expr=c(expr, mathml2R(i)) 
+       for(i in 1:n)  expr=c(expr, mathml2R(children[[i]])) 
+       if (n>3) {#print("n>3")  # this fixes libsbml problem that times is not binary
+         if (expr[[1]]=="*") expr[[1]]=as.name("prod") # in R, prod takes arb # of args
+         if (expr[[1]]=="+") expr[[1]]=as.name("sum")  # similary for sum
+       }
+       #    print(children)
+       #    print(expr)
+       #    print("leaving default")
        return(expr)
     }
+    
+    
     
     mathml2R.XMLNode <-function(node){
       nm <- xmlName(node) 
@@ -435,7 +453,7 @@
       #    names(model$reactions)<-sapply(model$reactions,function(x) x$id)
     }
     
-    class(model)<-"SBML"
+    class(model)<-"SBMLR"
     model
   }
 

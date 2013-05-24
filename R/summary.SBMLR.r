@@ -1,4 +1,4 @@
-"summary.SBML"<-function(object, ...)
+"summary.SBMLR"<-function(object, ...)
 {
   model=object
   sIDs=names(model$species)
@@ -60,8 +60,8 @@
   options(stringsAsFactors=FALSE)
   DFs=data.frame(index=1:nSpecies,initialConcentrations=S0,boundaryConditions=BC); row.names(DFs)<-sIDs
   DFr=data.frame(index=1:nReactions,Laws=rLaws,initialFluxes=V0);   row.names(DFr)<-rIDs
-  list(nSpecies=nSpecies,sIDs=sIDs,S0=S0,BC=BC,nStates=nStates,y0=y0,nReactions=nReactions,rIDs=rIDs,rLaws=rLaws, V0=V0, 
-      incid=incid,nRules=nRules,ruleIDs=ruleIDs,species=DFs,reactions=DFr) #,VP=VP,P0=P0) #VV add ons
+  list(VP=VP,P0=P0,nSpecies=nSpecies,sIDs=sIDs,S0=S0,BC=BC,nStates=nStates,y0=y0,nReactions=nReactions,rIDs=rIDs,rLaws=rLaws, V0=V0, 
+      incid=incid,nRules=nRules,ruleIDs=ruleIDs,species=DFs,reactions=DFr) 
 }
 
 

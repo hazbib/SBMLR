@@ -3,13 +3,13 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Save an R model object of class SBML as an SBMLR file}
 \description{
-  This function converts \code{SBML} model object in R into an SBMLR model definition file. }
+  This function converts an \code{SBMLR} model object in R into an SBMLR model definition file. }
 \usage{
 saveSBMLR(model,filename)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{ The \code{SBML} model object to be mapped into the SBMLR model definition file. }
+  \item{model}{ The \code{SBMLR} model object to be mapped into the SBMLR model definition file. }
   \item{filename}{ The file name of the destination SBMLR model definition file.  }
 }
 \value{

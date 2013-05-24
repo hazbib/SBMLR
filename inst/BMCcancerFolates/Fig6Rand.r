@@ -1,4 +1,4 @@
-setwd(file.path(.path.package("SBMLR"), "BMCcancerFolates")) #default dump site 
+setwd(file.path(system.file(package="SBMLR"), "BMCcancerFolates")) #default dump site 
 #setwd("C:/cwru/active/Morrison")  # set this to where figs should be dumped, with comment removed
 load("FmorrRand.Rdata") 
 DF=flux[,c("MTHFD","TYMS")]

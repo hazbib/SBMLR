@@ -1,12 +1,12 @@
-\name{simulate}
-\alias{simulate}
+\name{sim}
+\alias{sim}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Simulate a model of class SBML}
+\title{ Simulate a model of class SBMLR}
 \description{
   This function simulates a model given the report times and optional modulators. It uses \code{lsoda} of the deSolve package.
 }
 \usage{
-simulate(model, times, modulator=NULL,X0=NULL, ...)
+sim(model, times, modulator=NULL,X0=NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,11 +16,11 @@ simulate(model, times, modulator=NULL,X0=NULL, ...)
   a vector of numbers if there are steady state Vmax modulators,  
   and a list of interpolating functions if there are time course Vmax modulators. }
   \item{X0}{ Override model initial conditions in simulations, particularly piece-wise perturbation simulations.} 
-  \item{...}{ For compatibility with \code{simulate} of the stats package.}
+  \item{...}{ To pass extra args such as event data frames to deSolve.}
 }
 \details{
-  This is a wrapper for lsoda. }
-\value{ The data frame output that comes out of \code{lsoda}.}
+  This is a wrapper for ode. }
+\value{ The data frame output that comes out of \code{ode}.}
 \references{For the folate cycle example given below: Morrison PF, Allegra CJ: Folate cycle kinetics in human 
   breast cancer cells. JBiolChem 1989, 264(18):10552-10566.}
 \author{ Tom Radivoyevitch}
@@ -32,21 +32,21 @@ as a side effect within the (now internal) function \code{fderiv}. }
 library(SBMLR) 
 curto=readSBML(file.path(system.file(package="SBMLR"), "models/curto.xml"))  
 (dPRPP10 <- data.frame(var = "PRPP", time = 0, value = 10,method = "mult"))
-(out=simulate(curto,times=seq(-20,70,1),events = list(data = dPRPP10) ) )
+(out=sim(curto,times=seq(-20,70,1),events = list(data = dPRPP10) ) )
 plot(out,which=c("PRPP","den","IMP","HX","Gua","aprt","XMP","Xa","UA"))
 
 # which should be the same plots as 
 curto=readSBMLR(file.path(system.file(package="SBMLR"), "models/curto.r"))  
 (dPRPP10 <- data.frame(var = "PRPP", time = 0, value = 10,method = "mult"))
-(out=simulate(curto,times=seq(-20,70,1),events = list(data = dPRPP10) ) )
+(out=sim(curto,times=seq(-20,70,1),events = list(data = dPRPP10) ) )
 plot(out,which=c("PRPP","den","IMP","HX","Gua","aprt","XMP","Xa","UA"))
 
 
 ##---- The following generates Morrison's folate system response to 1uM MTX 
 morr=readSBMLR(file.path(system.file(package="SBMLR"), "models/morrison.r"))  
-out1=simulate(morr,seq(-20,0,1))
+out1=sim(morr,seq(-20,0,1))
 morr$species$EMTX$ic=1
-out2=simulate(morr,0:30)
+out2=sim(morr,0:30)
 outs=data.frame(rbind(out1,out2))
 attach(outs)
 par(mfrow=c(3,4))

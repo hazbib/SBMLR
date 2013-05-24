@@ -1,14 +1,11 @@
 # This is Morrison's folate model driven by [M.E. Ross et al, Blood (2003)] TEL-AML1 & T-cell data
 library(Biobase)
-library(odesolve)
 library(annotate)
 library(hgu133a)
 library(SBMLR)  
 
-setwd(file.path(.path.package("SBMLR"), "BMCcancerFolates")) #default dump site 
-#setwd("C:/cwru/active/Morrison")  # set this to where figs should be dumped, with comment removed
-
-morr=readSBMLR(file.path(.path.package("SBMLR"), "models/morrison.r"))  
+setwd(file.path(system.file(package="SBMLR"), "BMCcancerFolates")) #default dump site 
+morr=readSBMLR(file.path(system.file(package="SBMLR"), "models/morrison.r"))  
 
 library(rossEset)
 pD=subset(pData(ross),subset=(type=="TEL.AML1")|(type=="T.Cell")|(type=="BCR.ABL"))
@@ -137,9 +134,9 @@ rownames(tmp)<-names(key)
 M[names(key),]=tmp
 M
 
-out1=simulate(morr,seq(-20,0,1))
+out1=sim(morr,seq(-20,0,1))
 morr$species$EMTX$ic=1
-out2=simulate(morr,0:30)
+out2=sim(morr,0:30)
 outs=data.frame(rbind(out1,out2))
 attach(outs)
 
@@ -176,8 +173,8 @@ conc
 for (patient in 1:50)
 {
 print(patient)
-out1=simulate(morr,seq(-20,0,1),M[,patient])
-out2=simulate(morr,0:30,M[,patient])
+out1=sim(morr,seq(-20,0,1),M[,patient])
+out2=sim(morr,0:30,M[,patient])
 outs=data.frame(rbind(out1,out2))
 
 conc[patient,]=as.numeric(outs[dim(outs)[1],2:(nStates+1)])

@@ -1,4 +1,4 @@
-"simulate" <-
+"sim" <-
     function(model,times, modulator=NULL,X0=NULL, ...)  # this is a wrapper for lsoda
 {
   mi=summary(model) # mi = model info

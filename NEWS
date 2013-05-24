@@ -4,9 +4,16 @@ NEW FEATURES
 
     o Includes code from Vishak Venkateswaran's branch of SBMLR on github (July 2011).
       This is may allow it to read more models in http://www.ebi.ac.uk/biomodels-main/
+      I say may because I don't fully understand all of his codes, but add it in anyway.
+
+    o Problem of libsbml allowing multiple args to multiplication operator was solved
+      by using prod(). Similarly for sum(). Note that "*"() is strictly a binary operator.
 
 
 SIGNIFICANT USER-LEVEL CHANGES
+
+    o Call my model object call SBMLR now to let SBML refer to rsbml's SBML object. Similary
+      my simulate() is now sim() to keep it clear of rsbml's simulate().
 
     o SBMLR model files no longer need to have the reversible flag set. The default is FALSE, 
       which is the opposite of Level 2: all of my reaction rate laws have always been positive,
@@ -19,15 +26,14 @@ SIGNIFICANT USER-LEVEL CHANGES
 
     o The SOD model of Kowald et al, JTB 238 (2006) 828–840 is now also in this folder. 
 
+    o Two pdfs of publications that are freely available were removed to make the package lighter.
+
+    o Similarly, only manual.doc remains: its redundant pdf is now out. 
+
 Notes
 
-    o Internal S3 SBML objects do need to have their reversible flag set. The assumption of a 
-      FALSE default is thus strictly between this S3 object and the SBMLR file specification. We
-      are not trying to keep the internal R object pretty/simple.
+    o SBMLR objects do need to have their reversible flag set in files, but do in SBMLR objects in R. 
 
-    o TODO: preserve layout info
-
-    o TODO: convert rsbml S4 objects to SBMLR S3 objects
       
 
 

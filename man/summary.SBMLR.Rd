@@ -1,18 +1,19 @@
-\name{summary.SBML}
-\alias{summary.SBML}
+\name{summary.SBMLR}
+\alias{summary.SBMLR}
 \alias{summary}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Get summary information from an SBML model}
+\title{ Get summary information from an SBMLR model}
 \description{
-  This function extracts information from a model of class \code{SBML} and returns it as a list. The list includes
+  This function extracts information from a model of class \code{SBMLR} 
+  and returns it as a list. The list includes
   species and reaction information tabularized as data frames. 
 }
 \usage{
-\method{summary}{SBML}(object,\dots)
+\method{summary}{SBMLR}(object,\dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{object}{ A model object of class \code{SBML} from which information is to be extracted.}
+  \item{object}{ A model object of class \code{SBMLR} from which information is to be extracted.}
   \item{...}{ For compatibility with \code{summary} of the base package.}
  }
 \details{no details}
