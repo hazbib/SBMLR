@@ -1,7 +1,7 @@
 \name{readSBML}
 \alias{readSBML}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Convert an SBML file into an R model object of class SBMLR}
+\title{ Convert an SBML file into an R object of class SBMLR}
 \description{
   This function converts an SBML level 2 file into a corresponding 
   R model structure of class \code{SBMLR}.

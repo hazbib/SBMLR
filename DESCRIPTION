@@ -6,6 +6,7 @@ Author: Tomas Radivoyevitch, Vishak Venkateswaran
 Description: This package contains a systems biology markup language (SBML) interface to R.
 Maintainer: Tomas Radivoyevitch <txr24@case.edu>
 Depends: XML, deSolve
+Suggests: rsbml
 biocViews: GraphsAndNetworks, Pathways, NetworkAnalysis
 License: GPL-2
 URL: http://epbi-radivot.cwru.edu/SBMLR/SBMLR.html

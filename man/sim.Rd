@@ -1,16 +1,17 @@
 \name{sim}
 \alias{sim}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Simulate a model of class SBMLR}
+\title{ Simulate a model of S3 class SBMLR}
 \description{
-  This function simulates a model given the report times and optional modulators. It uses \code{lsoda} of the deSolve package.
+  This function simulates a model given report times and optional modulators. 
+  It uses \code{lsoda} of the deSolve package.
 }
 \usage{
 sim(model, times, modulator=NULL,X0=NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{ The model object to be simulated. Initial conditions are passed through this object.}
+  \item{model}{ The S3 model object to be simulated. Initial conditions are passed through this object.}
   \item{times}{ The sequence of time points to be sampled and provided as rows of the output matrix.}
   \item{modulator}{ Null if there are no modulators (default), 
   a vector of numbers if there are steady state Vmax modulators,  

@@ -2,6 +2,8 @@ CHANGES IN VERSION 1.57.1
 ------------------------
 NEW FEATURES
 
+    o Added new function S4toS3() for converting S4 SBML models of rsbml into S3 SBMLR models.
+
     o Includes code from Vishak Venkateswaran's branch of SBMLR on github (July 2011).
       This is may allow it to read more models in http://www.ebi.ac.uk/biomodels-main/
       I say may because I don't fully understand all of his codes, but add it in anyway.

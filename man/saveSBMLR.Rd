@@ -1,9 +1,11 @@
 \name{saveSBMLR}
 \alias{saveSBMLR}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Save an R model object of class SBML as an SBMLR file}
+\title{ Save an R model object of class SBMLR to a file.}
 \description{
-  This function converts an \code{SBMLR} model object in R into an SBMLR model definition file. }
+  This function converts an \code{SBMLR} model object in R into an SBMLR model definition file.
+  Rate laws are provided only in string form. Redundancy is eliminated to make the file easier
+  to edit. }
 \usage{
 saveSBMLR(model,filename)
 }

@@ -1,41 +1,6 @@
 "readSBMLR"<-function(filename)
 {# SBMLR file input, SBML model object output
   
-  R2MathML <-function(e)
-  {  # takes R expressions into mathML XMLNode
-    a <- xmlOutputDOM()
-    
-    r2ml<- function(type)   # maps R operator symbols into MathML 
-      switch(type,
-          "*" = "times",
-          "/" = "divide",
-          "+" = "plus",
-          "-" = "minus",
-          "^" = "power",
-          "exp" = "exp",
-          "log" = "ln",
-          "not found")    # end of r2ml sub-function definition. 
-    
-    
-    recurs<-function(e)  
-    { if(e[[1]]=="(") {e=e[[2]]} # remove parentheses  
-      a$addTag("apply", close=FALSE  )
-      a$addTag(r2ml(as.character(e[[1]])))
-      for (j in 2:length(e))
-        if ((class(e[[j]])=="name")|(class(e[[j]])=="numeric"))  {
-          op<-switch(class(e[[j]]),name="ci",numeric="cn")
-          a$addTag(op,as.character(e[[j]]))
-        } else  Recall(e[[j]]) 
-      
-      a$closeTag()
-    }
-    recurs(e)
-    return(a)
-  }
-  
-# NOTE: because I decided to keep the mathML when reading SBML, to make it easier to save later, 
-# I thought I should make the mathML upfront from the SBMLR representation, so that the model in R
-# is the same regardless of the source being SBML or SBMLR
   
   source(filename,local=TRUE) # loads in model as a list of lists
   
@@ -104,10 +69,11 @@
       model$reactions[[i]]$exprLaw=parse(text=model$reactions[[i]]$strLaw)[[1]]
       r=model$reactions[[i]]$reactants
       m=model$reactions[[i]]$modifiers
-      r=c(r,m)
+#      r=c(r,m)
       p=names(model$reactions[[i]]$parameters)
       e=model$reactions[[i]]$exprLaw
-      model$reactions[[i]]$law=makeLaw(r,p,e)
+      model$reactions[[i]]$law=makeLaw(c(r,m),p,e)
+#      model$reactions[[i]]$law=makeLaw(r,p,e)
       model$reactions[[i]]$mathmlLaw=R2MathML(e)$value()[[1]]
       rIDs[i]<-model$reactions[[i]]$id
       
@@ -117,5 +83,42 @@
   
   
   class(model)<-"SBMLR"
-  return(model)}
+  return(model)
+}
 
+
+R2MathML <-function(e)
+{  # takes R expressions into mathML XMLNode
+  a <- xmlOutputDOM()
+  
+  r2ml<- function(type)   # maps R operator symbols into MathML 
+    switch(type,
+           "*" = "times",
+           "/" = "divide",
+           "+" = "plus",
+           "-" = "minus",
+           "^" = "power",
+           "exp" = "exp",
+           "log" = "ln",
+           "not found")    # end of r2ml sub-function definition. 
+  
+  
+  recurs<-function(e)  
+  { if(e[[1]]=="(") {e=e[[2]]} # remove parentheses  
+    a$addTag("apply", close=FALSE  )
+    a$addTag(r2ml(as.character(e[[1]])))
+    for (j in 2:length(e))
+      if ((class(e[[j]])=="name")|(class(e[[j]])=="numeric"))  {
+        op<-switch(class(e[[j]]),name="ci",numeric="cn")
+        a$addTag(op,as.character(e[[j]]))
+      } else  Recall(e[[j]]) 
+    
+    a$closeTag()
+  }
+  recurs(e)
+  return(a)
+}
+
+# NOTE: because I decided to keep the mathML when reading SBML, to make it easier to save later, 
+# I thought I should make the mathML upfront from the SBMLR representation, so that the model in R
+# is the same regardless of the source being SBML or SBMLR
