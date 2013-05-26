@@ -31,10 +31,14 @@
 
 # these 4 lines replace the block commented after it  
   rLaws=sapply(model$reactions,function(x) x$strLaw)
-	V0=with(model$globalParameters,
-			sapply(model$reactions,function(x) x$law(S0[c(x$reactants,x$modifiers)],x$parameters)))
+  globals=model$globalParameters
+	attach(globals)  # e.g. for global coordination of k5 in SOD2012
+#   V0=with(model$globalParameters, # not sure why this didn't work in SOD2012
+# 			sapply(model$reactions,function(x) x$law(S0[c(x$reactants,x$modifiers)],x$parameters)))
+	V0=sapply(model$reactions,function(x) x$law(S0[c(x$reactants,x$modifiers)],x$parameters))
 	names(V0)<-rIDs
-
+	detach(globals)  
+	
 # 	attach(model$globalParameters)  # e.g. for Vmax global coordination in RNR
 # 	
 # 	# Reactions
@@ -65,7 +69,7 @@
 	DFs=data.frame(index=1:nSpecies,initialConcentrations=S0,boundaryConditions=BC);row.names(DFs)<-sIDs
 	DFr=data.frame(index=1:nReactions,Laws=rLaws,initialFluxes=V0);   row.names(DFr)<-rIDs
 	list(nSpecies=nSpecies,sIDs=sIDs,S0=S0,BC=BC,nStates=nStates,
-			y0=y0,nReactions=nReactions,rIDs=rIDs,rLaws=rLaws, V0=V0, # P0, VP,
+			y0=y0,nReactions=nReactions,rIDs=rIDs,rLaws=rLaws, V0=V0,globalVec=unlist(globals), # P0, VP,
 			incid=incid,nRules=nRules,ruleIDs=ruleIDs,species=DFs,reactions=DFr) 
 }
 
