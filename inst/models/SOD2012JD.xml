@@ -1,0 +1,1480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by XMLPrettyPrinter on 5/26/2013 from JDesigner 2.4.7 -->
+<sbml xmlns = "http://www.sbml.org/sbml/level2" level = "2" version = "1" xmlns:jd2 = "http://www.sys-bio.org/sbml/jd2">
+   <!--                     -->
+   <!--  Model Starts Here  -->
+   <!--                     -->
+   <model id = "SODoverExpression">
+      <notes>
+         <p xmlns = "http://www.w3.org/1999/xhtml">
+            <body xmlns = "http://www.w3.org/1999/xhtml">
+               <p>
+                     This model aims to reproduce the negative effects of overexpressing SOD seen in
+               </p>
+               <p>
+                     Zintel et al. 2010 (PMID 20080171).
+               </p>
+               <p>
+                     It is created as part of the GerontoMitoSys project and based on the Bachelor work of Sebastian Ullrich.
+               </p>
+               <p>
+                     Modifications after the Bachelor by Axel Kowald (Axel.Kowald@hu-berlin.de):
+               </p>
+               <p>
+                     05.06.2011 Added non-enzymatic dismutation reaction for superoxide.
+               </p>
+               <p>
+                     13.04.2011 Moved paraquat inside compartment and made reaction unidirectional.
+               </p>
+               <p>
+                     Currently PRX degradation is first order,
+               </p>
+               <p>
+                     while PRXox degradation is second order reaction!
+               </p>
+               <p>
+                     Maybe both have to be 2nd order.
+               </p>
+               <p>
+                     Vmax in M/s from Forquet 85 (PMID 18498222) H2O2detox
+               </p>
+               <p>
+                     Vmax in M/s for MnSOD from Crosti 85 (PMID 2931296)O2detox
+               </p>
+               <p>
+                     Degradation of oxidized proteins is second order, while degradation
+               </p>
+               <p>
+                     of intact proteins is of first order. If CLPP concentration is 10&#94;-5M, a value
+               </p>
+               <p>
+                     of k10=10 results in equal degradation rates. Since we assume that oxidized
+               </p>
+               <p>
+                     proteins are degraded faster than intact proteins, we chose a value of k10
+               </p>
+               <p>
+                     Got rate of oxigen radical production from Joenje et al. 1985 (PMID: 2984461)O2normal
+               </p>
+               <p>
+                     Currently CLPP degradation is first order,
+               </p>
+               <p>
+                     while CLPPox degradation is second order reaction!
+               </p>
+               <p>
+                     Maybe both have to be 2nd order. CLPPdegrad
+               </p>
+               <p>
+                     H2O2 can diffuse from an external pool into
+               </p>
+               <p>
+                     and out of the cell with the same diffusion
+               </p>
+               <p>
+                     constant. Therefore we marked the reaction
+               </p>
+               <p>
+                     as reversible. But thats only for the optic.
+               </p>
+               <p>
+                     The kinetic law has to describe the flux in
+               </p>
+               <p>
+                     relation to reactants and products as shown
+               </p>
+               <p>
+                     in the Reactions list.influxH2O2
+               </p>
+               <p>
+                     Non enzymatic dismutation reaction.
+               </p>
+               <p>
+                     Rate constant from Free Radicals in Biology
+               </p>
+               <p>
+                     and Medicine 2nd Edn p74O2dismutation
+               </p>
+            </body>
+         </p>
+      </notes>
+      <annotation>
+         <jd2:JDesignerLayout version = "2.0" MajorVersion = "2" MinorVersion = "4" BuildVersion = "54"
+                              xmlns:jd2 = "http://www.sys-bio.org/sbml/jd2">
+            <jd2:header>
+               <jd2:VersionHeader JDesignerVersion = "2.0"/>
+               <jd2:ModelHeader Author = "Author not set" ModelVersion = "0.0" ModelTitle = "SODoverExpression"/>
+               <jd2:TimeCourseDetails timeStart = "0" timeEnd = "10" numberOfPoints = "1000"/>
+            </jd2:header>
+            <jd2:JDGraphicsHeader BackGroundColor = "FFFFFFEF"/>
+            <jd2:listOfCompartments>
+               <jd2:compartment id = "compartment" size = "1" visible = "false">
+                  <jd2:boundingBox x = "0" y = "0" w = "20" h = "20"/>
+                  <jd2:membraneStyle thickness = "12" color = "FFFFA500"/>
+                  <jd2:interiorStyle color = "FFFFEEEE"/>
+                  <jd2:text value = "compartment" visible = "true">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+               </jd2:compartment>
+               <jd2:compartment id = "MITOCHONDRION" size = "1" visible = "true">
+                  <jd2:boundingBox x = "156" y = "50" w = "835" h = "357"/>
+                  <jd2:membraneStyle thickness = "12" color = "FFFFA500"/>
+                  <jd2:interiorStyle color = "FFFFEEEE"/>
+                  <jd2:text value = "MITOCHONDRION" visible = "true">
+                     <jd2:position rx = "375" ry = "341"/>
+                     <jd2:font fontName = "Arial" fontSize = "12" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+               </jd2:compartment>
+            </jd2:listOfCompartments>
+            <jd2:listOfSpecies>
+               <jd2:species id = "O2rad" boundaryCondition = "false" compartment = "MITOCHONDRION" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "286" y = "133"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "O2rad" visible = "true">
+                     <jd2:position rx = "12" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "O2rad" displayName = "untitled" w = "65" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "65" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "24" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "H2O2" boundaryCondition = "false" compartment = "MITOCHONDRION" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "211" y = "269"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "H2O2" visible = "true">
+                     <jd2:position rx = "9" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "H2O2" displayName = "untitled" w = "57" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "57" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "20" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "PRX" boundaryCondition = "false" compartment = "MITOCHONDRION" initialConcentration = "1E-5">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "600" y = "190"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "PRX" visible = "true">
+                     <jd2:position rx = "9" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "PRX" displayName = "untitled" w = "49" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "49" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "16" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "PRXox" boundaryCondition = "false" compartment = "MITOCHONDRION" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "590" y = "357"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "PRXox" visible = "true">
+                     <jd2:position rx = "9" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "PRXox" displayName = "untitled" w = "65" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "65" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "24" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "CLPP" boundaryCondition = "false" compartment = "MITOCHONDRION" initialConcentration = "1E-5">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "813" y = "190"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "CLPP" visible = "true">
+                     <jd2:position rx = "9" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "CLPP" displayName = "untitled" w = "57" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "57" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "20" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "CLPPox" boundaryCondition = "false" compartment = "MITOCHONDRION" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "804" y = "340"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "CLPPox" visible = "true">
+                     <jd2:position rx = "10" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "CLPPox" displayName = "untitled" w = "73" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "73" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "28" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "exH2O2" boundaryCondition = "true" compartment = "compartment" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "59" y = "284"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "exH2O2" visible = "true">
+                     <jd2:position rx = "10" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "exH2O2" displayName = "untitled" w = "73" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "73" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "28" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "degraded" boundaryCondition = "true" compartment = "compartment" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "431" y = "55"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "degraded" visible = "true">
+                     <jd2:position rx = "14" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "degraded" displayName = "untitled" w = "89" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "89" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "36" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "O2" boundaryCondition = "true" compartment = "compartment" initialConcentration = "0.1">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "183" y = "77"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "O2" visible = "true">
+                     <jd2:position rx = "9" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "O2" displayName = "untitled" w = "41" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "41" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "12" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "praePRX" boundaryCondition = "true" compartment = "compartment" initialConcentration = "0.1">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "601" y = "57"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "praePRX" visible = "true">
+                     <jd2:position rx = "11" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "praePRX" displayName = "untitled" w = "81" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "81" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "32" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "praeCLPP" boundaryCondition = "true" compartment = "compartment" initialConcentration = "0.1">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "801" y = "64"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "praeCLPP" visible = "true">
+                     <jd2:position rx = "11" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "praeCLPP" displayName = "untitled" w = "89" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "89" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "36" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "paraquat" boundaryCondition = "true" compartment = "compartment" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "167" y = "198"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "paraquat" visible = "true">
+                     <jd2:position rx = "16" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "paraquat" displayName = "untitled" w = "89" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "89" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "36" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+            </jd2:listOfSpecies>
+            <jd2:listOfReactions>
+               <jd2:reaction id = "O2normal" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "O2" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "O2rad" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "O2normal_k1*1"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "203" y = "89" type = "substrate" speciesRef = "O2"/>
+                           <jd2:pt x = "302" y = "84" type = "controlPoint"/>
+                           <jd2:pt x = "290" y = "108" type = "controlPoint"/>
+                           <jd2:pt x = "318" y = "145" type = "product" speciesRef = "O2rad"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "O2detox" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "O2rad" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "O2detox_k2*O2detox_SOD*O2rad"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "318" y = "145" type = "substrate" speciesRef = "O2rad"/>
+                           <jd2:pt x = "361" y = "361" type = "controlPoint"/>
+                           <jd2:pt x = "332" y = "331" type = "controlPoint"/>
+                           <jd2:pt x = "239" y = "281" type = "product" speciesRef = "H2O2"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "H2O2detox" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "degraded" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "PRX"/>
+                        <jd2:destinationReaction name = "H2O2detox" regulatorType = "rtPositive" relativePosition = "0.6" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "624" y = "202" type = "modifier" speciesRef = "PRX"/>
+                              <jd2:pt x = "369" y = "178"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "H2O2detox_k3*PRX*H2O2"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "239" y = "281" type = "substrate" speciesRef = "H2O2"/>
+                           <jd2:pt x = "323" y = "207" type = "controlPoint"/>
+                           <jd2:pt x = "367" y = "165" type = "controlPoint"/>
+                           <jd2:pt x = "475" y = "67" type = "product" speciesRef = "degraded"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "O2paraquat" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "paraquat" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "O2rad" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "O2paraquat_k4*paraquat"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "211" y = "210" type = "substrate" speciesRef = "paraquat"/>
+                           <jd2:pt x = "271" y = "151" type = "controlPoint"/>
+                           <jd2:pt x = "274" y = "163" type = "controlPoint"/>
+                           <jd2:pt x = "318" y = "145" type = "product" speciesRef = "O2rad"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "influxH2O2" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "exH2O2" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "k5*exH2O2"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "95" y = "296" type = "substrate" speciesRef = "exH2O2"/>
+                           <jd2:pt x = "182" y = "314" type = "controlPoint"/>
+                           <jd2:pt x = "181" y = "301" type = "controlPoint"/>
+                           <jd2:pt x = "239" y = "281" type = "product" speciesRef = "H2O2"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "effluxH2O2" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "exH2O2" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "k5*H2O2"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "239" y = "281" type = "substrate" speciesRef = "H2O2"/>
+                           <jd2:pt x = "183" y = "287" type = "controlPoint"/>
+                           <jd2:pt x = "176" y = "286" type = "controlPoint"/>
+                           <jd2:pt x = "95" y = "296" type = "product" speciesRef = "exH2O2"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "altPathway" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "O2rad" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "degraded" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "altPathway_k6*O2rad"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "318" y = "145" type = "substrate" speciesRef = "O2rad"/>
+                           <jd2:pt x = "373" y = "126" type = "controlPoint"/>
+                           <jd2:pt x = "371" y = "93" type = "controlPoint"/>
+                           <jd2:pt x = "475" y = "67" type = "product" speciesRef = "degraded"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "CLPPproduction" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "praeCLPP" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "CLPP" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "CLPPox"/>
+                        <jd2:destinationReaction name = "CLPPproduction" regulatorType = "rtNegative" relativePosition = "0.596707818930041" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" negativeMarkerStyle = "rmBar">
+                           <jd2:lineType type = "ltSegmentedLine">
+                              <jd2:pt x = "840" y = "352" type = "modifier" speciesRef = "CLPPox"/>
+                              <jd2:pt x = "906" y = "356"/>
+                              <jd2:pt x = "917" y = "134"/>
+                              <jd2:pt x = "859" y = "141"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "CLPP"/>
+                        <jd2:destinationReaction name = "CLPPproduction" regulatorType = "rtNegative" relativePosition = "0.621399176954732" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" negativeMarkerStyle = "rmBar">
+                           <jd2:lineType type = "ltSegmentedLine">
+                              <jd2:pt x = "841" y = "202" type = "modifier" speciesRef = "CLPP"/>
+                              <jd2:pt x = "802" y = "150"/>
+                              <jd2:pt x = "801" y = "148"/>
+                              <jd2:pt x = "837" y = "147"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "k7*(pow(C,n)/(pow(CLPP+CLPPox,n)+pow(C,n)))"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "845" y = "76" type = "substrate" speciesRef = "praeCLPP"/>
+                           <jd2:pt x = "848" y = "111" type = "controlPoint"/>
+                           <jd2:pt x = "854" y = "154" type = "controlPoint"/>
+                           <jd2:pt x = "841" y = "202" type = "product" speciesRef = "CLPP"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "CLPPdegrad" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "CLPP" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "degraded" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "k8*CLPP"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "841" y = "202" type = "substrate" speciesRef = "CLPP"/>
+                           <jd2:pt x = "737" y = "304" type = "controlPoint"/>
+                           <jd2:pt x = "567" y = "260" type = "controlPoint"/>
+                           <jd2:pt x = "475" y = "67" type = "product" speciesRef = "degraded"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "PRXproduction" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "praePRX" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "PRX" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "PRXox"/>
+                        <jd2:destinationReaction name = "PRXproduction" regulatorType = "rtNegative" relativePosition = "0.662393162393162" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" negativeMarkerStyle = "rmBar">
+                           <jd2:lineType type = "ltSegmentedLine">
+                              <jd2:pt x = "622" y = "369" type = "modifier" speciesRef = "PRXox"/>
+                              <jd2:pt x = "674" y = "151"/>
+                              <jd2:pt x = "645" y = "150"/>
+                              <jd2:pt x = "638" y = "150"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "PRX"/>
+                        <jd2:destinationReaction name = "PRXproduction" regulatorType = "rtNegative" relativePosition = "0.662393162393162" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" negativeMarkerStyle = "rmBar">
+                           <jd2:lineType type = "ltSegmentedLine">
+                              <jd2:pt x = "624" y = "202" type = "modifier" speciesRef = "PRX"/>
+                              <jd2:pt x = "594" y = "151"/>
+                              <jd2:pt x = "594" y = "150"/>
+                              <jd2:pt x = "616" y = "150"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "k7*(pow(C,n)/(pow(PRX+PRXox,n)+pow(C,n)))"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "641" y = "69" type = "substrate" speciesRef = "praePRX"/>
+                           <jd2:pt x = "633" y = "112" type = "controlPoint"/>
+                           <jd2:pt x = "626" y = "146" type = "controlPoint"/>
+                           <jd2:pt x = "624" y = "202" type = "product" speciesRef = "PRX"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "PRXdegrad" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "PRX" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "degraded" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "k8*PRX"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "624" y = "202" type = "substrate" speciesRef = "PRX"/>
+                           <jd2:pt x = "591" y = "192" type = "controlPoint"/>
+                           <jd2:pt x = "513" y = "118" type = "controlPoint"/>
+                           <jd2:pt x = "475" y = "67" type = "product" speciesRef = "degraded"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "PRXoxidation" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "PRX" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "PRXox" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "H2O2"/>
+                        <jd2:destinationReaction name = "PRXoxidation" regulatorType = "rtPositive" relativePosition = "0.6" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "239" y = "281" type = "modifier" speciesRef = "H2O2"/>
+                              <jd2:pt x = "610" y = "292"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "PRXoxidation_k9*H2O2*PRX"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "624" y = "202" type = "substrate" speciesRef = "PRX"/>
+                           <jd2:pt x = "630" y = "245" type = "controlPoint"/>
+                           <jd2:pt x = "616" y = "311" type = "controlPoint"/>
+                           <jd2:pt x = "622" y = "369" type = "product" speciesRef = "PRXox"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "PRXoxdetox" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "PRXox" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "degraded" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "CLPP"/>
+                        <jd2:destinationReaction name = "PRXoxdetox" regulatorType = "rtPositive" relativePosition = "0.6" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "841" y = "202" type = "modifier" speciesRef = "CLPP"/>
+                              <jd2:pt x = "538" y = "263"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "k10*PRXox*CLPP"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "622" y = "369" type = "substrate" speciesRef = "PRXox"/>
+                           <jd2:pt x = "588" y = "334" type = "controlPoint"/>
+                           <jd2:pt x = "490" y = "287" type = "controlPoint"/>
+                           <jd2:pt x = "475" y = "67" type = "product" speciesRef = "degraded"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "CLPPoxdegrad" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "CLPPox" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "degraded" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "CLPP"/>
+                        <jd2:destinationReaction name = "CLPPoxdegrad" regulatorType = "rtPositive" relativePosition = "0.459183673469388" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "841" y = "202" type = "modifier" speciesRef = "CLPP"/>
+                              <jd2:pt x = "697" y = "302"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "k10*CLPPox*CLPP"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "840" y = "352" type = "substrate" speciesRef = "CLPPox"/>
+                           <jd2:pt x = "773" y = "368" type = "controlPoint"/>
+                           <jd2:pt x = "559" y = "282" type = "controlPoint"/>
+                           <jd2:pt x = "475" y = "67" type = "product" speciesRef = "degraded"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "O2dismutation" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "O2rad" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "O2dismutation_k11*O2rad*O2rad"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "318" y = "145" type = "substrate" speciesRef = "O2rad"/>
+                           <jd2:pt x = "366" y = "391" type = "controlPoint"/>
+                           <jd2:pt x = "296" y = "278" type = "controlPoint"/>
+                           <jd2:pt x = "239" y = "281" type = "product" speciesRef = "H2O2"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "CLPPoxidation" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "CLPP" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "CLPPox" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "H2O2"/>
+                        <jd2:destinationReaction name = "CLPPoxidation" regulatorType = "rtPositive" relativePosition = "0.5" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "239" y = "281" type = "modifier" speciesRef = "H2O2"/>
+                              <jd2:pt x = "828" y = "281"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "CLPPoxidation_k13*CLPP*H2O2"/>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "841" y = "202" type = "substrate" speciesRef = "CLPP"/>
+                           <jd2:pt x = "838" y = "268" type = "controlPoint"/>
+                           <jd2:pt x = "841" y = "312" type = "controlPoint"/>
+                           <jd2:pt x = "840" y = "352" type = "product" speciesRef = "CLPPox"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+            </jd2:listOfReactions>
+         </jd2:JDesignerLayout>
+      </annotation>
+      <listOfCompartments>
+         <compartment id = "compartment" size = "1"/>
+         <compartment id = "MITOCHONDRION" size = "1"/>
+      </listOfCompartments>
+      <listOfSpecies>
+         <species id = "O2rad" boundaryCondition = "false" initialConcentration = "0" compartment = "MITOCHONDRION"/>
+         <species id = "H2O2" boundaryCondition = "false" initialConcentration = "0" compartment = "MITOCHONDRION"/>
+         <species id = "PRX" boundaryCondition = "false" initialConcentration = "1E-5" compartment = "MITOCHONDRION"/>
+         <species id = "PRXox" boundaryCondition = "false" initialConcentration = "0" compartment = "MITOCHONDRION"/>
+         <species id = "CLPP" boundaryCondition = "false" initialConcentration = "1E-5" compartment = "MITOCHONDRION"/>
+         <species id = "CLPPox" boundaryCondition = "false" initialConcentration = "0" compartment = "MITOCHONDRION"/>
+         <species id = "exH2O2" boundaryCondition = "true" initialConcentration = "0" compartment = "compartment"/>
+         <species id = "degraded" boundaryCondition = "true" initialConcentration = "0" compartment = "compartment"/>
+         <species id = "O2" boundaryCondition = "true" initialConcentration = "0.1" compartment = "compartment"/>
+         <species id = "praePRX" boundaryCondition = "true" initialConcentration = "0.1" compartment = "compartment"/>
+         <species id = "praeCLPP" boundaryCondition = "true" initialConcentration = "0.1" compartment = "compartment"/>
+         <species id = "paraquat" boundaryCondition = "true" initialConcentration = "0" compartment = "compartment"/>
+      </listOfSpecies>
+      <listOfParameters>
+         <parameter id = "n" value = "3"/>
+         <parameter id = "k5" value = "0"/>
+         <parameter id = "k8" value = "0.0001"/>
+         <parameter id = "k10" value = "30"/>
+         <parameter id = "k7" value = "1E-9"/>
+         <parameter id = "C" value = "1E-5"/>
+         <parameter id = "O2normal_k1" value = "6.6E-7"/>
+         <parameter id = "O2detox_SOD" value = "1E-5"/>
+         <parameter id = "O2detox_k2" value = "11000000"/>
+         <parameter id = "H2O2detox_k3" value = "240000"/>
+         <parameter id = "O2paraquat_k4" value = "1"/>
+         <parameter id = "altPathway_k6" value = "200"/>
+         <parameter id = "PRXoxidation_k9" value = "0"/>
+         <parameter id = "O2dismutation_k11" value = "400000"/>
+         <parameter id = "CLPPoxidation_k13" value = "0"/>
+      </listOfParameters>
+      <listOfReactions>
+         <reaction id = "O2normal" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "O2" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "O2rad" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           O2normal_k1
+                     </ci>
+                     <cn type = "integer">
+                           1
+                     </cn>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "O2detox" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "O2rad" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           O2detox_k2
+                     </ci>
+                     <ci>
+                           O2detox_SOD
+                     </ci>
+                     <ci>
+                           O2rad
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "H2O2detox" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "degraded" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "PRX"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           H2O2detox_k3
+                     </ci>
+                     <ci>
+                           PRX
+                     </ci>
+                     <ci>
+                           H2O2
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "O2paraquat" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "paraquat" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "O2rad" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           O2paraquat_k4
+                     </ci>
+                     <ci>
+                           paraquat
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "influxH2O2" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "exH2O2" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           k5
+                     </ci>
+                     <ci>
+                           exH2O2
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "effluxH2O2" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "exH2O2" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           k5
+                     </ci>
+                     <ci>
+                           H2O2
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "altPathway" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "O2rad" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "degraded" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           altPathway_k6
+                     </ci>
+                     <ci>
+                           O2rad
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "CLPPproduction" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "praeCLPP" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "CLPP" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "CLPPox"/>
+               <modifierSpeciesReference species = "CLPP"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           k7
+                     </ci>
+                     <apply>
+                        <divide/>
+                        <apply>
+                           <power/>
+                           <ci>
+                                 C
+                           </ci>
+                           <ci>
+                                 n
+                           </ci>
+                        </apply>
+                        <apply>
+                           <plus/>
+                           <apply>
+                              <power/>
+                              <apply>
+                                 <plus/>
+                                 <ci>
+                                       CLPP
+                                 </ci>
+                                 <ci>
+                                       CLPPox
+                                 </ci>
+                              </apply>
+                              <ci>
+                                    n
+                              </ci>
+                           </apply>
+                           <apply>
+                              <power/>
+                              <ci>
+                                    C
+                              </ci>
+                              <ci>
+                                    n
+                              </ci>
+                           </apply>
+                        </apply>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "CLPPdegrad" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "CLPP" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "degraded" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           k8
+                     </ci>
+                     <ci>
+                           CLPP
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "PRXproduction" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "praePRX" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "PRX" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "PRXox"/>
+               <modifierSpeciesReference species = "PRX"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           k7
+                     </ci>
+                     <apply>
+                        <divide/>
+                        <apply>
+                           <power/>
+                           <ci>
+                                 C
+                           </ci>
+                           <ci>
+                                 n
+                           </ci>
+                        </apply>
+                        <apply>
+                           <plus/>
+                           <apply>
+                              <power/>
+                              <apply>
+                                 <plus/>
+                                 <ci>
+                                       PRX
+                                 </ci>
+                                 <ci>
+                                       PRXox
+                                 </ci>
+                              </apply>
+                              <ci>
+                                    n
+                              </ci>
+                           </apply>
+                           <apply>
+                              <power/>
+                              <ci>
+                                    C
+                              </ci>
+                              <ci>
+                                    n
+                              </ci>
+                           </apply>
+                        </apply>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "PRXdegrad" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "PRX" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "degraded" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           k8
+                     </ci>
+                     <ci>
+                           PRX
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "PRXoxidation" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "PRX" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "PRXox" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "H2O2"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           PRXoxidation_k9
+                     </ci>
+                     <ci>
+                           H2O2
+                     </ci>
+                     <ci>
+                           PRX
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "PRXoxdetox" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "PRXox" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "degraded" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "CLPP"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           k10
+                     </ci>
+                     <ci>
+                           PRXox
+                     </ci>
+                     <ci>
+                           CLPP
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "CLPPoxdegrad" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "CLPPox" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "degraded" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "CLPP"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           k10
+                     </ci>
+                     <ci>
+                           CLPPox
+                     </ci>
+                     <ci>
+                           CLPP
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "O2dismutation" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "O2rad" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           O2dismutation_k11
+                     </ci>
+                     <ci>
+                           O2rad
+                     </ci>
+                     <ci>
+                           O2rad
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "CLPPoxidation" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "CLPP" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "CLPPox" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "H2O2"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           CLPPoxidation_k13
+                     </ci>
+                     <ci>
+                           CLPP
+                     </ci>
+                     <ci>
+                           H2O2
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+      </listOfReactions>
+   </model>
+</sbml>

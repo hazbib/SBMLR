@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+<model id="sod">
+<notes>
+ <body xmlns="http://www.w3.org/1999/xhtml">
+   <p> This is the SOD model of Kowald et al, JTB 238 (2006) 828-840.  </p>
+   <p> Below, L is lipid radical, SO is superoxide, OH=hydroxyl radical,  </p>
+   <p> LOO is a radical, and LOOH is stable oxidized lipid.  </p>
+   <p> SOD is the total SOD, SODII=metal oxidized, SODII=reduced.  </p>
+   <p> HSO is protonated SO, a fast reaction; HSO neutral so it crosses membranes.  </p>
+   <p> Catalase. T and SODT are externally manipulated boundary conditions (bc).  </p>
+   <p> HSO and SODI are rule/algebraically determined. They are cloaked here as bc.  </p>
+   <p> Units are all in molar (M) and in seconds.  </p>
+ </body>
+</notes>
+<listOfCompartments>
+   <compartment id="cell"  size="1" />
+</listOfCompartments>
+<listOfSpecies>
+   <species id="SO"  initialConcentration="0"  compartment="cell" boundaryCondition="false"/>
+   <species id="SODII"  initialConcentration="5e-06"  compartment="cell" boundaryCondition="false"/>
+   <species id="H2O2"  initialConcentration="0"  compartment="cell" boundaryCondition="false"/>
+   <species id="OH"  initialConcentration="0"  compartment="cell" boundaryCondition="false"/>
+   <species id="L"  initialConcentration="0"  compartment="cell" boundaryCondition="false"/>
+   <species id="LOO"  initialConcentration="0"  compartment="cell" boundaryCondition="false"/>
+   <species id="LOOH"  initialConcentration="0"  compartment="cell" boundaryCondition="false"/>
+   <species id="HSO"  initialConcentration="0"  compartment="cell" boundaryCondition="true"/>
+   <species id="SODI"  initialConcentration="5e-06"  compartment="cell" boundaryCondition="true"/>
+   <species id="SOD"  initialConcentration="1e-05"  compartment="cell" boundaryCondition="true"/>
+   <species id="catalase"  initialConcentration="1e-05"  compartment="cell" boundaryCondition="true"/>
+</listOfSpecies>
+<listOfParameters>
+   <parameter id="Keq"  value="100" />
+</listOfParameters>
+<listOfRules>
+  <assignmentRule variable="HSO">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <divide/>
+ <ci>SO</ci>
+ <ci>Keq</ci>
+</apply>
+    </math>
+  </assignmentRule>
+  <assignmentRule variable="SODI">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <minus/>
+ <ci>SOD</ci>
+ <ci>SODII</ci>
+</apply>
+    </math>
+  </assignmentRule>
+</listOfRules>
+<listOfReactions>
+  <reaction id="etcV1"  reversible="false">
+    <listOfProducts>
+      <speciesReference species = "SO" />
+    </listOfProducts>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k1</ci>
+ <cn>1</cn>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k1" value = "6.6e-07"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="sooV2"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "SO" />
+      <speciesReference species = "SODII" />
+    </listOfReactants>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <apply>
+  <times/>
+  <ci>k2</ci>
+  <ci>SO</ci>
+ </apply>
+ <ci>SODII</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k2" value = "1.6e+09"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="sorV3"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "SO" />
+    </listOfReactants>
+    <listOfProducts>
+      <speciesReference species = "H2O2" />
+      <speciesReference species = "SODII" />
+    </listOfProducts>
+    <listOfModifiers>
+      <modifierSpeciesReference species = "SODI" />
+    </listOfModifiers>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <apply>
+  <times/>
+  <ci>k3</ci>
+  <ci>SO</ci>
+ </apply>
+ <ci>SODI</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k3" value = "1.6e+09"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="loorV4"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "SO" />
+      <speciesReference species = "LOO" />
+    </listOfReactants>
+    <listOfProducts>
+      <speciesReference species = "LOOH" />
+    </listOfProducts>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <apply>
+  <times/>
+  <ci>k4</ci>
+  <ci>SO</ci>
+ </apply>
+ <ci>LOO</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k4" value = "100000"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="habWeiV5"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "SO" />
+      <speciesReference species = "H2O2" />
+    </listOfReactants>
+    <listOfProducts>
+      <speciesReference species = "OH" />
+    </listOfProducts>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <apply>
+  <times/>
+  <ci>k5</ci>
+  <ci>SO</ci>
+ </apply>
+ <ci>H2O2</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k5" value = "20000"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="sodFenV6"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "H2O2" />
+    </listOfReactants>
+    <listOfProducts>
+      <speciesReference species = "OH" />
+      <speciesReference species = "OH" />
+    </listOfProducts>
+    <listOfModifiers>
+      <modifierSpeciesReference species = "SODII" />
+    </listOfModifiers>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <apply>
+  <times/>
+  <ci>k6</ci>
+  <ci>H2O2</ci>
+ </apply>
+ <ci>SODII</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k6" value = "1"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="catGpxV7"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "H2O2" />
+    </listOfReactants>
+    <listOfModifiers>
+      <modifierSpeciesReference species = "catalase" />
+    </listOfModifiers>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <apply>
+  <times/>
+  <ci>k7</ci>
+  <ci>H2O2</ci>
+ </apply>
+ <ci>catalase</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k7" value = "3.4e+07"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="ohSinkV9"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "OH" />
+    </listOfReactants>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k9</ci>
+ <ci>OH</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k9" value = "1e+06"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="hsoLipPeroxV10"  reversible="false">
+    <listOfProducts>
+      <speciesReference species = "L" />
+      <speciesReference species = "H2O2" />
+    </listOfProducts>
+    <listOfModifiers>
+      <modifierSpeciesReference species = "HSO" />
+    </listOfModifiers>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k10</ci>
+ <ci>HSO</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k10" value = "1000"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="hoLipPeroxV11"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "OH" />
+    </listOfReactants>
+    <listOfProducts>
+      <speciesReference species = "L" />
+    </listOfProducts>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k11</ci>
+ <ci>OH</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k11" value = "2.5e+08"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="loohDeOxV12"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "LOOH" />
+    </listOfReactants>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k12</ci>
+ <ci>LOOH</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k12" value = "0.38"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="sodoV13a"  reversible="false">
+    <listOfProducts>
+      <speciesReference species = "SODII" />
+    </listOfProducts>
+    <listOfModifiers>
+      <modifierSpeciesReference species = "SODI" />
+    </listOfModifiers>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k13a</ci>
+ <ci>SODI</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k13a" value = "0.0087"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="sodrV13b"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "SODII" />
+    </listOfReactants>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k13b</ci>
+ <ci>SODII</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k13b" value = "0.0087"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="lipRadOxV17"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "L" />
+    </listOfReactants>
+    <listOfProducts>
+      <speciesReference species = "LOO" />
+    </listOfProducts>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k17</ci>
+ <ci>L</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k17" value = "30000"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="chainRxV18"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "LOO" />
+    </listOfReactants>
+    <listOfProducts>
+      <speciesReference species = "L" />
+      <speciesReference species = "LOOH" />
+    </listOfProducts>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k18</ci>
+ <ci>LOO</ci>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k18" value = "7"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+  <reaction id="looSelfV19"  reversible="false">
+    <listOfReactants>
+      <speciesReference species = "LOO" />
+      <speciesReference species = "LOO" />
+    </listOfReactants>
+  <kineticLaw>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+ <times/>
+ <ci>k19</ci>
+ <apply>
+  <power/>
+  <ci>LOO</ci>
+  <cn>2</cn>
+ </apply>
+</apply>
+    </math>
+    <listOfParameters>
+      <parameter id = "k19" value = "88000"/>
+    </listOfParameters>
+    </kineticLaw>
+  </reaction>
+</listOfReactions>
+</model>
+</sbml>
