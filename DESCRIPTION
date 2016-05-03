@@ -1,0 +1,13 @@
+Package: SBMLR
+Title: SBML-R Interface and Analysis Tools
+Version: 1.68.0
+Date: 2015-03-13
+Author: Tomas Radivoyevitch, Vishak Venkateswaran
+Description: This package contains a systems biology markup language
+        (SBML) interface to R.
+Maintainer: Tomas Radivoyevitch <radivot@gmail.com>
+Depends: XML, deSolve
+Suggests: rsbml
+License: GPL-2
+URL: http://epbi-radivot.cwru.edu/SBMLR/SBMLR.html
+biocViews: GraphAndNetwork, Pathways, Network
