@@ -1,6 +1,6 @@
 Package: SBMLR
 Title: SBML-R Interface and Analysis Tools
-Version: 1.70.0
+Version: 1.71.0
 Date: 2015-03-13
 Author: Tomas Radivoyevitch, Vishak Venkateswaran
 Description: This package contains a systems biology markup language
