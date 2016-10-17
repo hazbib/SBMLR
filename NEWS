@@ -1,0 +1,52 @@
+CHANGES IN VERSION 1.57.1
+------------------------
+NEW FEATURES
+
+    o Added new function S4toS3() for converting S4 SBML models of rsbml into S3 SBMLR models.
+
+    o Includes code from Vishak Venkateswaran's branch of SBMLR on github (July 2011).
+      This is may allow it to read more models in http://www.ebi.ac.uk/biomodels-main/
+      I say may because I don't fully understand all of his codes, but add it in anyway.
+
+    o Problem of libsbml allowing multiple args to multiplication operator was solved
+      by using prod(). Similarly for sum(). Note that "*"() is strictly a binary operator.
+
+
+SIGNIFICANT USER-LEVEL CHANGES
+
+    o Call my model object call SBMLR now to let SBML refer to rsbml's SBML object. Similary
+      my simulate() is now sim() to keep it clear of rsbml's simulate().
+
+    o SBMLR model files no longer need to have the reversible flag set. The default is FALSE, 
+      which is the opposite of Level 2: all of my reaction rate laws have always been positive,
+      and a design objective I like is to keep SBMLR model files as lean as possible (subject to 
+      the constraint that they be valid R code). 
+
+    o Simulate handles lsoda() event dataframes, see simulate help. 
+
+    o curtoNatural.R (see Fig. 7 BMC Bioinformatics 2004, 5:190) is now in the models folder. 
+
+    o The SOD model of Kowald et al, JTB 238 (2006) 828–840 is now also in this folder. 
+
+    o Two pdfs of publications that are freely available were removed to make the package lighter.
+
+    o Similarly, only manual.doc remains: its redundant pdf is now out. 
+
+Notes
+
+    o SBMLR objects do need to have their reversible flag set in files, but do in SBMLR objects in R. 
+
+      
+
+
+
+CHANGES IN VERSION 1.51.1
+------------------------
+
+NEW FEATURES
+
+    o Replaced odesolve dependence with deSolve dependence. 
+
+    o Updated url in description
+
+    o This is the last version with changes logged in doc/readme.txt (3/20/2012)

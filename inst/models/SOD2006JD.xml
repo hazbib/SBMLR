@@ -1,0 +1,1340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by XMLPrettyPrinter on 5/21/2013 from JDesigner 2.4.7 -->
+<sbml xmlns = "http://www.sbml.org/sbml/level2" level = "2" version = "1" xmlns:jd2 = "http://www.sys-bio.org/sbml/jd2">
+   <!--                     -->
+   <!--  Model Starts Here  -->
+   <!--                     -->
+   <model id = "sod">
+      <notes>
+         <p xmlns = "http://www.w3.org/1999/xhtml">
+            <body xmlns = "http://www.w3.org/1999/xhtml">
+               <p>
+                     This is the SOD model of Kowald et al, JTB 238 (2006) 828-840.
+               </p>
+               <p>
+                     Below, L is lipid radical, SO is superoxide, OH=hydroxyl radical,
+               </p>
+               <p>
+                     LOO is a radical, and LOOH is stable oxidized lipid.
+               </p>
+               <p>
+                     SOD is the total SOD, SODII=metal oxidized, SODII=reduced.
+               </p>
+               <p>
+                     HSO is protonated SO, a fast reaction; HSO neutral so it crosses membranes.
+               </p>
+               <p>
+                     Catalase. T and SODT are externally manipulated boundary conditions (bc).
+               </p>
+               <p>
+                     HSO and SODI are rule/algebraically determined. They are cloaked here as bc.
+               </p>
+               <p>
+                     Units are all in molar (M) and in seconds.
+               </p>
+            </body>
+         </p>
+      </notes>
+      <annotation>
+         <jd2:JDesignerLayout version = "2.0" MajorVersion = "2" MinorVersion = "4" BuildVersion = "54"
+                              xmlns:jd2 = "http://www.sys-bio.org/sbml/jd2">
+            <jd2:header>
+               <jd2:VersionHeader JDesignerVersion = "2.0"/>
+               <jd2:ModelHeader Author = "Author not set" ModelVersion = "0.0" ModelTitle = "sod"/>
+               <jd2:TimeCourseDetails timeStart = "0" timeEnd = "10" numberOfPoints = "1000"/>
+            </jd2:header>
+            <jd2:JDGraphicsHeader BackGroundColor = "FFFFFFEF"/>
+            <jd2:listOfCompartments>
+               <jd2:compartment id = "compartment" size = "1" visible = "false">
+                  <jd2:boundingBox x = "0" y = "0" w = "0" h = "0"/>
+                  <jd2:membraneStyle thickness = "12" color = "FFFFA500"/>
+                  <jd2:interiorStyle color = "FFFFEEEE"/>
+                  <jd2:text value = "compartment" visible = "true">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+               </jd2:compartment>
+               <jd2:compartment id = "cell" size = "1" visible = "true">
+                  <jd2:boundingBox x = "179" y = "139" w = "674" h = "531"/>
+                  <jd2:membraneStyle thickness = "12" color = "FFFFA500"/>
+                  <jd2:interiorStyle color = "FFFFEEEE"/>
+                  <jd2:text value = "cell" visible = "true">
+                     <jd2:position rx = "329" ry = "515"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+               </jd2:compartment>
+            </jd2:listOfCompartments>
+            <jd2:listOfSpecies>
+               <jd2:species id = "SO" boundaryCondition = "false" compartment = "cell" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "534" y = "509"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "SO" visible = "true">
+                     <jd2:position rx = "9" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "SO" displayName = "untitled" w = "41" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "41" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "12" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "SODII" boundaryCondition = "false" compartment = "cell" initialConcentration = "5E-6">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "229" y = "577"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "SODII" visible = "true">
+                     <jd2:position rx = "12" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "SODII" displayName = "untitled" w = "65" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "65" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "24" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "H2O2" boundaryCondition = "false" compartment = "cell" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "295" y = "334"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "H2O2" visible = "true">
+                     <jd2:position rx = "9" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "H2O2" displayName = "untitled" w = "57" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "57" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "20" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "OH" boundaryCondition = "false" compartment = "cell" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "435" y = "303"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "OH" visible = "true">
+                     <jd2:position rx = "8" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "OH" displayName = "untitled" w = "41" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "41" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "12" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "L" boundaryCondition = "false" compartment = "cell" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "692" y = "378"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "L" visible = "true">
+                     <jd2:position rx = "11" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "L" displayName = "untitled" w = "33" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "33" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "8" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "LOO" boundaryCondition = "false" compartment = "cell" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "754" y = "189"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "LOO" visible = "true">
+                     <jd2:position rx = "8" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "LOO" displayName = "untitled" w = "49" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "49" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "16" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "LOOH" boundaryCondition = "false" compartment = "cell" initialConcentration = "0">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "665" y = "189"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "LOOH" visible = "true">
+                     <jd2:position rx = "7" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "LOOH" displayName = "untitled" w = "57" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "57" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "20" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "SODI" boundaryCondition = "false" compartment = "cell" initialConcentration = "5E-6">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "334" y = "631"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "SODI" visible = "true">
+                     <jd2:position rx = "10" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "SODI" displayName = "untitled" w = "57" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "57" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "20" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "ETC" boundaryCondition = "true" compartment = "cell" initialConcentration = "1">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "675" y = "522"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "ETC" visible = "true">
+                     <jd2:position rx = "25" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "__src__" displayName = "untitled" w = "81" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "81" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "32" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "gone" boundaryCondition = "true" compartment = "cell" initialConcentration = "1">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "380" y = "153"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "gone" visible = "true">
+                     <jd2:position rx = "31" ry = "4"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "__waste__" displayName = "untitled" w = "97" h = "25"
+                               boundarySpeciesStyle = "bsBox" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" aliasBoundaryColor = "FFFF0000"
+                               aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suRoundSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "97" h = "25"/>
+                        <jd2:text value = "S1" visible = "false">
+                           <jd2:position rx = "40" ry = "4"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtNone" startColor = "FFFAFAD2" endColor = "FF000000"/>
+                        <jd2:edgeStyle color = "FFFF8C00" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+            </jd2:listOfSpecies>
+            <jd2:listOfReactions>
+               <jd2:reaction id = "etcV1" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "ETC" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "SO" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "etcV1_k1*1"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "etcV1_k1" value = "6.6E-7"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "715" y = "534" type = "substrate" speciesRef = "ETC"/>
+                           <jd2:pt x = "668" y = "563" type = "controlPoint"/>
+                           <jd2:pt x = "667" y = "670" type = "controlPoint"/>
+                           <jd2:pt x = "554" y = "521" type = "product" speciesRef = "SO"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "sooV2" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "SO" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "SODII" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "SODI" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "sooV2_k2*SO*SODII"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "sooV2_k2" value = "1600000000"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:edgeCenter x = "406" y = "591"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "554" y = "521" type = "substrate" speciesRef = "SO"/>
+                           <jd2:pt x = "506" y = "540" type = "controlPoint"/>
+                           <jd2:pt x = "407" y = "566" type = "controlPoint"/>
+                           <jd2:pt x = "406" y = "591" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "261" y = "589" type = "substrate" speciesRef = "SODII"/>
+                           <jd2:pt x = "323" y = "584" type = "controlPoint"/>
+                           <jd2:pt x = "407" y = "566" type = "controlPoint"/>
+                           <jd2:pt x = "406" y = "591" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "406" y = "591" type = "centerPoint"/>
+                           <jd2:pt x = "405" y = "616" type = "controlPoint"/>
+                           <jd2:pt x = "395" y = "613" type = "controlPoint"/>
+                           <jd2:pt x = "362" y = "643" type = "product" speciesRef = "SODI"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "sorV3" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "SO" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "SODI" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "SODII" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "sorV3_k3*SO*SODI"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "sorV3_k3" value = "1600000000"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:edgeCenter x = "308" y = "483"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "554" y = "521" type = "substrate" speciesRef = "SO"/>
+                           <jd2:pt x = "504" y = "524" type = "controlPoint"/>
+                           <jd2:pt x = "327" y = "499" type = "controlPoint"/>
+                           <jd2:pt x = "308" y = "483" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "362" y = "643" type = "substrate" speciesRef = "SODI"/>
+                           <jd2:pt x = "360" y = "570" type = "controlPoint"/>
+                           <jd2:pt x = "327" y = "499" type = "controlPoint"/>
+                           <jd2:pt x = "308" y = "483" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "308" y = "483" type = "centerPoint"/>
+                           <jd2:pt x = "289" y = "467" type = "controlPoint"/>
+                           <jd2:pt x = "321" y = "425" type = "controlPoint"/>
+                           <jd2:pt x = "323" y = "346" type = "product" speciesRef = "H2O2"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "308" y = "483" type = "centerPoint"/>
+                           <jd2:pt x = "289" y = "467" type = "controlPoint"/>
+                           <jd2:pt x = "257" y = "545" type = "controlPoint"/>
+                           <jd2:pt x = "261" y = "589" type = "product" speciesRef = "SODII"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "loorV4" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "SO" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "LOO" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "LOOH" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "loorV4_k4*SO*LOO"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "loorV4_k4" value = "100000"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:edgeCenter x = "630" y = "290"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "554" y = "521" type = "substrate" speciesRef = "SO"/>
+                           <jd2:pt x = "578" y = "483" type = "controlPoint"/>
+                           <jd2:pt x = "626" y = "314" type = "controlPoint"/>
+                           <jd2:pt x = "630" y = "290" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "778" y = "201" type = "substrate" speciesRef = "LOO"/>
+                           <jd2:pt x = "750" y = "237" type = "controlPoint"/>
+                           <jd2:pt x = "626" y = "314" type = "controlPoint"/>
+                           <jd2:pt x = "630" y = "290" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "630" y = "290" type = "centerPoint"/>
+                           <jd2:pt x = "635" y = "265" type = "controlPoint"/>
+                           <jd2:pt x = "661" y = "239" type = "controlPoint"/>
+                           <jd2:pt x = "693" y = "201" type = "product" speciesRef = "LOOH"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "habWeiV5" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "SO" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "OH" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "habWeiV5_k5*SO*H2O2"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "habWeiV5_k5" value = "20000"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:edgeCenter x = "474" y = "418"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "554" y = "521" type = "substrate" speciesRef = "SO"/>
+                           <jd2:pt x = "521" y = "485" type = "controlPoint"/>
+                           <jd2:pt x = "474" y = "443" type = "controlPoint"/>
+                           <jd2:pt x = "474" y = "418" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "323" y = "346" type = "substrate" speciesRef = "H2O2"/>
+                           <jd2:pt x = "434" y = "398" type = "controlPoint"/>
+                           <jd2:pt x = "474" y = "443" type = "controlPoint"/>
+                           <jd2:pt x = "474" y = "418" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "474" y = "418" type = "centerPoint"/>
+                           <jd2:pt x = "474" y = "393" type = "controlPoint"/>
+                           <jd2:pt x = "464" y = "357" type = "controlPoint"/>
+                           <jd2:pt x = "455" y = "315" type = "product" speciesRef = "OH"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "sodFenV6" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "OH" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "SODI"/>
+                        <jd2:destinationReaction name = "sodFenV6" regulatorType = "rtPositive" relativePosition = "0.5" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FFFF0000" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "362" y = "643" type = "modifier" speciesRef = "SODI"/>
+                              <jd2:pt x = "361" y = "417"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "sodFenV6_k6*H2O2*SODI"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "sodFenV6_k6" value = "1"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "323" y = "346" type = "substrate" speciesRef = "H2O2"/>
+                           <jd2:pt x = "378" y = "409" type = "controlPoint"/>
+                           <jd2:pt x = "347" y = "461" type = "controlPoint"/>
+                           <jd2:pt x = "455" y = "315" type = "product" speciesRef = "OH"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "catGpxV7" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "gone" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "catGpxV7_k7*H2O2*catGpxV7_catalase"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "catGpxV7_k7" value = "34000000"/>
+                        <jd2:parameter id = "catGpxV7_catalase" value = "1E-5"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "323" y = "346" type = "substrate" speciesRef = "H2O2"/>
+                           <jd2:pt x = "321" y = "297" type = "controlPoint"/>
+                           <jd2:pt x = "216" y = "213" type = "controlPoint"/>
+                           <jd2:pt x = "428" y = "165" type = "product" speciesRef = "gone"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "ohSinkV9" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "OH" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "gone" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "ohSinkV9_k9*OH"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "ohSinkV9_k9" value = "1000000"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "455" y = "315" type = "substrate" speciesRef = "OH"/>
+                           <jd2:pt x = "460" y = "273" type = "controlPoint"/>
+                           <jd2:pt x = "436" y = "226" type = "controlPoint"/>
+                           <jd2:pt x = "428" y = "165" type = "product" speciesRef = "gone"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "hsoLipPeroxV10" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "SO" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "L" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "H2O2" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "hsoLipPeroxV10_k10*SO/100"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "hsoLipPeroxV10_k10" value = "1000"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:edgeCenter x = "556" y = "422"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "554" y = "521" type = "substrate" speciesRef = "SO"/>
+                           <jd2:pt x = "554" y = "479" type = "controlPoint"/>
+                           <jd2:pt x = "556" y = "447" type = "controlPoint"/>
+                           <jd2:pt x = "556" y = "422" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "556" y = "422" type = "centerPoint"/>
+                           <jd2:pt x = "557" y = "397" type = "controlPoint"/>
+                           <jd2:pt x = "662" y = "396" type = "controlPoint"/>
+                           <jd2:pt x = "708" y = "390" type = "product" speciesRef = "L"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "556" y = "422" type = "centerPoint"/>
+                           <jd2:pt x = "557" y = "397" type = "controlPoint"/>
+                           <jd2:pt x = "452" y = "382" type = "controlPoint"/>
+                           <jd2:pt x = "323" y = "346" type = "product" speciesRef = "H2O2"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "hoLipPeroxV11" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "OH" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "L" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "hoLipPeroxV11_k11*OH"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "hoLipPeroxV11_k11" value = "250000000"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "455" y = "315" type = "substrate" speciesRef = "OH"/>
+                           <jd2:pt x = "505" y = "328" type = "controlPoint"/>
+                           <jd2:pt x = "561" y = "341" type = "controlPoint"/>
+                           <jd2:pt x = "708" y = "390" type = "product" speciesRef = "L"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "loohDeOxV12" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "LOOH" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "gone" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "loohDeOxV12_k12*LOOH"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "loohDeOxV12_k12" value = "0.38"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "693" y = "201" type = "substrate" speciesRef = "LOOH"/>
+                           <jd2:pt x = "656" y = "212" type = "controlPoint"/>
+                           <jd2:pt x = "577" y = "235" type = "controlPoint"/>
+                           <jd2:pt x = "428" y = "165" type = "product" speciesRef = "gone"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "sodoV13a" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "SODI" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "SODII" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "sodoV13a_k13a*SODI"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "sodoV13a_k13a" value = "0.0087"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "362" y = "643" type = "substrate" speciesRef = "SODI"/>
+                           <jd2:pt x = "309" y = "644" type = "controlPoint"/>
+                           <jd2:pt x = "306" y = "683" type = "controlPoint"/>
+                           <jd2:pt x = "261" y = "589" type = "product" speciesRef = "SODII"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "sodrV13b" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "SODII" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "SODI" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "sodrV13b_k13b*SODII"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "sodrV13b_k13b" value = "0.0087"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "261" y = "589" type = "substrate" speciesRef = "SODII"/>
+                           <jd2:pt x = "238" y = "628" type = "controlPoint"/>
+                           <jd2:pt x = "209" y = "641" type = "controlPoint"/>
+                           <jd2:pt x = "362" y = "643" type = "product" speciesRef = "SODI"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "lipRadOxV17" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "L" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "LOO" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "lipRadOxV17_k17*L"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "lipRadOxV17_k17" value = "30000"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "708" y = "390" type = "substrate" speciesRef = "L"/>
+                           <jd2:pt x = "747" y = "360" type = "controlPoint"/>
+                           <jd2:pt x = "786" y = "337" type = "controlPoint"/>
+                           <jd2:pt x = "778" y = "201" type = "product" speciesRef = "LOO"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "chainRxV18" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "LOO" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "L" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "LOOH" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "chainRxV18_k18*LOO"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "chainRxV18_k18" value = "7"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:edgeCenter x = "748" y = "277"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "778" y = "201" type = "substrate" speciesRef = "LOO"/>
+                           <jd2:pt x = "762" y = "242" type = "controlPoint"/>
+                           <jd2:pt x = "769" y = "258" type = "controlPoint"/>
+                           <jd2:pt x = "748" y = "277" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "748" y = "277" type = "centerPoint"/>
+                           <jd2:pt x = "727" y = "296" type = "controlPoint"/>
+                           <jd2:pt x = "722" y = "349" type = "controlPoint"/>
+                           <jd2:pt x = "708" y = "390" type = "product" speciesRef = "L"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "748" y = "277" type = "centerPoint"/>
+                           <jd2:pt x = "727" y = "296" type = "controlPoint"/>
+                           <jd2:pt x = "710" y = "245" type = "controlPoint"/>
+                           <jd2:pt x = "693" y = "201" type = "product" speciesRef = "LOOH"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "looSelfV19" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "LOO" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "LOO" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "gone" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "looSelfV19_k19*pow(LOO,2)"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "looSelfV19_k19" value = "88000"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display arrowStyle = "ar1" arrowFillColor = "FF99CC00" lineColor = "FF000000" lineThickness = "2">
+                     <jd2:edgeCenter x = "725" y = "149"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "778" y = "201" type = "substrate" speciesRef = "LOO"/>
+                           <jd2:pt x = "758" y = "182" type = "controlPoint"/>
+                           <jd2:pt x = "744" y = "165" type = "controlPoint"/>
+                           <jd2:pt x = "725" y = "149" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "778" y = "201" type = "substrate" speciesRef = "LOO"/>
+                           <jd2:pt x = "766" y = "158" type = "controlPoint"/>
+                           <jd2:pt x = "744" y = "165" type = "controlPoint"/>
+                           <jd2:pt x = "725" y = "149" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "725" y = "149" type = "centerPoint"/>
+                           <jd2:pt x = "706" y = "133" type = "controlPoint"/>
+                           <jd2:pt x = "660" y = "173" type = "controlPoint"/>
+                           <jd2:pt x = "428" y = "165" type = "product" speciesRef = "gone"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+            </jd2:listOfReactions>
+         </jd2:JDesignerLayout>
+      </annotation>
+      <listOfCompartments>
+         <compartment id = "compartment" size = "1"/>
+         <compartment id = "cell" size = "1"/>
+      </listOfCompartments>
+      <listOfSpecies>
+         <species id = "SO" boundaryCondition = "false" initialConcentration = "0" compartment = "cell"/>
+         <species id = "SODII" boundaryCondition = "false" initialConcentration = "5E-6" compartment = "cell"/>
+         <species id = "H2O2" boundaryCondition = "false" initialConcentration = "0" compartment = "cell"/>
+         <species id = "OH" boundaryCondition = "false" initialConcentration = "0" compartment = "cell"/>
+         <species id = "L" boundaryCondition = "false" initialConcentration = "0" compartment = "cell"/>
+         <species id = "LOO" boundaryCondition = "false" initialConcentration = "0" compartment = "cell"/>
+         <species id = "LOOH" boundaryCondition = "false" initialConcentration = "0" compartment = "cell"/>
+         <species id = "SODI" boundaryCondition = "false" initialConcentration = "5E-6" compartment = "cell"/>
+         <species id = "ETC" boundaryCondition = "true" initialConcentration = "1" compartment = "cell"/>
+         <species id = "gone" boundaryCondition = "true" initialConcentration = "1" compartment = "cell"/>
+      </listOfSpecies>
+      <listOfParameters>
+         <parameter id = "etcV1_k1" value = "6.6E-7"/>
+         <parameter id = "sooV2_k2" value = "1600000000"/>
+         <parameter id = "sorV3_k3" value = "1600000000"/>
+         <parameter id = "loorV4_k4" value = "100000"/>
+         <parameter id = "habWeiV5_k5" value = "20000"/>
+         <parameter id = "sodFenV6_k6" value = "1"/>
+         <parameter id = "catGpxV7_k7" value = "34000000"/>
+         <parameter id = "catGpxV7_catalase" value = "1E-5"/>
+         <parameter id = "ohSinkV9_k9" value = "1000000"/>
+         <parameter id = "hsoLipPeroxV10_k10" value = "1000"/>
+         <parameter id = "hoLipPeroxV11_k11" value = "250000000"/>
+         <parameter id = "loohDeOxV12_k12" value = "0.38"/>
+         <parameter id = "sodoV13a_k13a" value = "0.0087"/>
+         <parameter id = "sodrV13b_k13b" value = "0.0087"/>
+         <parameter id = "lipRadOxV17_k17" value = "30000"/>
+         <parameter id = "chainRxV18_k18" value = "7"/>
+         <parameter id = "looSelfV19_k19" value = "88000"/>
+      </listOfParameters>
+      <listOfReactions>
+         <reaction id = "etcV1" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "ETC" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "SO" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           etcV1_k1
+                     </ci>
+                     <cn type = "integer">
+                           1
+                     </cn>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "sooV2" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "SO" stoichiometry = "1"/>
+               <speciesReference species = "SODII" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "SODI" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           sooV2_k2
+                     </ci>
+                     <ci>
+                           SO
+                     </ci>
+                     <ci>
+                           SODII
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "sorV3" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "SO" stoichiometry = "1"/>
+               <speciesReference species = "SODI" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+               <speciesReference species = "SODII" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           sorV3_k3
+                     </ci>
+                     <ci>
+                           SO
+                     </ci>
+                     <ci>
+                           SODI
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "loorV4" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "SO" stoichiometry = "1"/>
+               <speciesReference species = "LOO" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "LOOH" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           loorV4_k4
+                     </ci>
+                     <ci>
+                           SO
+                     </ci>
+                     <ci>
+                           LOO
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "habWeiV5" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "SO" stoichiometry = "1"/>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "OH" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           habWeiV5_k5
+                     </ci>
+                     <ci>
+                           SO
+                     </ci>
+                     <ci>
+                           H2O2
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "sodFenV6" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "OH" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "SODI"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           sodFenV6_k6
+                     </ci>
+                     <ci>
+                           H2O2
+                     </ci>
+                     <ci>
+                           SODI
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "catGpxV7" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "gone" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           catGpxV7_k7
+                     </ci>
+                     <ci>
+                           H2O2
+                     </ci>
+                     <ci>
+                           catGpxV7_catalase
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "ohSinkV9" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "OH" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "gone" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           ohSinkV9_k9
+                     </ci>
+                     <ci>
+                           OH
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "hsoLipPeroxV10" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "SO" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "L" stoichiometry = "1"/>
+               <speciesReference species = "H2O2" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <divide/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              hsoLipPeroxV10_k10
+                        </ci>
+                        <ci>
+                              SO
+                        </ci>
+                     </apply>
+                     <cn type = "integer">
+                           100
+                     </cn>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "hoLipPeroxV11" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "OH" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "L" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           hoLipPeroxV11_k11
+                     </ci>
+                     <ci>
+                           OH
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "loohDeOxV12" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "LOOH" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "gone" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           loohDeOxV12_k12
+                     </ci>
+                     <ci>
+                           LOOH
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "sodoV13a" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "SODI" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "SODII" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           sodoV13a_k13a
+                     </ci>
+                     <ci>
+                           SODI
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "sodrV13b" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "SODII" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "SODI" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           sodrV13b_k13b
+                     </ci>
+                     <ci>
+                           SODII
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "lipRadOxV17" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "L" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "LOO" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           lipRadOxV17_k17
+                     </ci>
+                     <ci>
+                           L
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "chainRxV18" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "LOO" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "L" stoichiometry = "1"/>
+               <speciesReference species = "LOOH" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           chainRxV18_k18
+                     </ci>
+                     <ci>
+                           LOO
+                     </ci>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "looSelfV19" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "LOO" stoichiometry = "1"/>
+               <speciesReference species = "LOO" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "gone" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <times/>
+                     <ci>
+                           looSelfV19_k19
+                     </ci>
+                     <apply>
+                        <power/>
+                        <ci>
+                              LOO
+                        </ci>
+                        <cn type = "integer">
+                              2
+                        </cn>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+      </listOfReactions>
+   </model>
+</sbml>
