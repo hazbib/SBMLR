@@ -391,6 +391,31 @@
 	
 	
 	print("error")
+	# The next two functions are used by rules and were taken straight from read.SBML
+	# The idea is that SBML doesn't provide a list of atoms/leaves with rules, so we have to create them
+	# to place them in their model slots, and to use them to create the R function definition for the rule
+	# using makeLaw with a null for parameters, since they are passed global for rules.
+	ML2R<- function(type)   # map MathML operator symbols into R symbols
+	  switch(type,
+	         "times" = "*",
+	         "divide" = "/",
+	         "plus" = "+",
+	         "minus" = "-",
+	         "power" = "^",
+	         "exp" = "exp",
+	         "ln" = "log",
+	         "not found") # end definition of ML2R
+	
+	
+	getRuleLeaves<-function(math) 
+	{ n=length(math)
+	S=c(NULL)
+	op=ML2R(xmlName(math[[1]]))
+	for (j in 2:n )
+	  if ((xmlName(math[[j]])=="ci")|(xmlName(math[[j]])=="cn"))  S=c(S,as.character(xmlValue(math[[j]]))) else 
+	    S=c(S,Recall(math[[j]])  ) 
+	S
+	} 
 	
 	
 	
@@ -485,29 +510,4 @@
 #
 
 
-# The next two functions are used by rules and were taken straight from read.SBML
-# The idea is that SBML doesn't provide a list of atoms/leaves with rules, so we have to create them
-# to place them in their model slots, and to use them to create the R function definition for the rule
-# using makeLaw with a null for parameters, since they are passed global for rules.
-ML2R<- function(type)   # map MathML operator symbols into R symbols
-  switch(type,
-         "times" = "*",
-         "divide" = "/",
-         "plus" = "+",
-         "minus" = "-",
-         "power" = "^",
-         "exp" = "exp",
-         "ln" = "log",
-         "not found") # end definition of ML2R
-
-
-getRuleLeaves<-function(math) 
-{ n=length(math)
-  S=c(NULL)
-  op=ML2R(xmlName(math[[1]]))
-  for (j in 2:n )
-    if ((xmlName(math[[j]])=="ci")|(xmlName(math[[j]])=="cn"))  S=c(S,as.character(xmlValue(math[[j]]))) else 
-      S=c(S,Recall(math[[j]])  ) 
-  S
-} 
 
