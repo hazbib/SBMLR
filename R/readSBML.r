@@ -26,10 +26,10 @@
 		law=FALSE; parameter=FALSE; math=FALSE
 		
 # 		# VV's additions
-# 		modelname<-"x"  				#storing the model name if separately given
-# 		paramException <- 1
-# 		globalParamException <- 1
-# 		ParametersList<- list()  			#list of parameter objects	
+ 		modelname<-"x"  				#storing the model name if separately given
+ 		paramException <- 1
+ 		globalParamException <- 1
+ 		ParametersList<- list()  			#list of parameter objects	
 		
 		
 		.startElement <- function(name, atts, ...) {
@@ -135,24 +135,24 @@
 			if(name=="modifierSpeciesReference")
 				modifiers<<-c(modifiers,species=atts[["species"]])
 			
-			      if((name=="parameter")&law){
-			        parameterIDs<<-c(parameterIDs,atts[["id"]])
-			        parameters<<-c(parameters,atts[["value"]])}
-# 			if((name=="parameter")&law)  		#parameter encountered within a kinetic law definition
-# 			{
-# 				values <- names(atts)
-# 				if( "id" %in% values) parameterIDs<<-c(parameterIDs,atts[["id"]])
-# 				else {
-# 					cat('Parameter parsed without id. Setting default id', '\n')
-# 					parameterIDs<<-c(parameterIDs, paste("default", paramException))
-# 					paramException <- paramException + 1
-# 				}
-# 				if( "value" %in% values) parameters<<-c(parameters,atts[["value"]])
-# 				else {
-# 					cat('Warning..Parsing parameter without value. Setting it as 0.' ,'\n')
-# 					parameters<<-c(parameters, as.numeric(0))
-# 				}
-# 			}
+#			      if((name=="parameter")&law){
+#			        parameterIDs<<-c(parameterIDs,atts[["id"]])
+#			        parameters<<-c(parameters,atts[["value"]])}
+ 			if((name=="parameter")&law)  		#parameter encountered within a kinetic law definition
+ 			{
+ 				values <- names(atts)
+ 				if( "id" %in% values) parameterIDs<<-c(parameterIDs,atts[["id"]])
+ 				else {
+ 					cat('Parameter parsed without id. Setting default id', '\n')
+ 					parameterIDs<<-c(parameterIDs, paste("default", paramException))
+					paramException <- paramException + 1
+ 				}
+ 				if( "value" %in% values) parameters<<-c(parameters,atts[["value"]])
+ 				else {
+ 					cat('Warning..Parsing parameter without value. Setting it as 0.' ,'\n')
+ 					parameters<<-c(parameters, as.numeric(0))
+ 				}
+ 			}
 
 			      if((name=="parameter")&(!law)){
 			        globalParameterIDs<<-c(globalParameterIDs,atts[["id"]])
