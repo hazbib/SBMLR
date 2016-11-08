@@ -477,7 +477,7 @@
 	body(lawTempl)[[i]]<-e
 	lawTempl
 }
-
+print ("error1")
 #
 #"makeLaw"<-function(inputs,pars,lawCall)
 #	function(inputs,lawCall,pars=NULL)
@@ -511,4 +511,3 @@ getRuleLeaves<-function(math)
   S
 } 
 
-print ("error1")
