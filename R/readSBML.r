@@ -405,7 +405,7 @@
 	
 	globalParameters=names(model$globalParameters)
 	
-	
+	print ("error1")
 	nRules=length(rules)
 	#print(nRules)
 	#nRules=0
@@ -427,7 +427,7 @@
 		}
 		#    names(model$rules)<-sapply(model$rules,function(x) x$idOutput)
 	} 
-	print ("error1")
+
 	nReactions=length(reactions)
 	if (nReactions>0){
 		#    rIDs=NULL;  
