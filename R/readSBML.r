@@ -179,6 +179,7 @@
  					globalParameters<<-c(globalParameters, as.numeric(0))
  				}
 # 			} # end if param in law
+		}
 		} # end .startElement()  
 		
 		
