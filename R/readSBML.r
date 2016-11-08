@@ -111,7 +111,7 @@
 					)
 					count <- count + 1
 				} 
-				print ("error")
+
 				reactions[[atts["id"]]]$id<<-id
 				reactions[[atts["id"]]]$reversible<<-reverse  
 #           if(reverse) reactions[[atts["id"]]]$reversible<<-reverse #carry in R only  if true
@@ -121,7 +121,7 @@
 				#currRxnID<<-atts[1]
 			}
 			
-		  print ("error2")
+#		  print ("error2")
 			if(name=="listOfReactants")  reactant<<-TRUE
 			if(name=="listOfProducts")  product<<-TRUE
 			if(name=="kineticLaw")  law<<-TRUE
@@ -153,7 +153,7 @@
 # 					parameters<<-c(parameters, as.numeric(0))
 # 				}
 # 			}
-		  print ("error3")
+
 			      if((name=="parameter")&(!law)){
 			        globalParameterIDs<<-c(globalParameterIDs,atts[["id"]])
 			        globalParameters<<-c(globalParameters,as.numeric(atts[["value"]]))}
@@ -390,7 +390,7 @@
 	# ********** END the mathML2R block of method based on node type codes  *************************
 	
 	
-	
+	print("error")
 	
 	
 	
