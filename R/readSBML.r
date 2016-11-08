@@ -45,7 +45,7 @@
          if(name=="model")  
          {   
            numitems <- length(atts)
-           print ("error")
+#           print ("error")
              if(numitems < 1)			#if model does not contain a name/id, we give it an arbitrary one.
              {  
                modelid[[1]]<<-"BioModel"	  
@@ -60,6 +60,7 @@
               }   
              else if(numitems > 1)			#both Id and name of model are supplied, read both
               {
+               print ("error")
                 modelname<<-atts[["name"]]   # first element is model name
                 modelid <<-atts[["id"]]    # second element has to be model id
               }
