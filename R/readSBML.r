@@ -45,7 +45,7 @@
          if(name=="model")  
          {   
            numitems <- length(atts)
-           
+           print ("error")
              if(numitems < 1)			#if model does not contain a name/id, we give it an arbitrary one.
              {  
                modelid[[1]]<<-"BioModel"	  
