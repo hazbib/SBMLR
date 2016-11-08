@@ -34,38 +34,58 @@
 		
 		.startElement <- function(name, atts, ...) {
 			#   cat("Start: Name =",name," ",paste(names(atts),atts,sep=" = "),"\n")
-			if(name=="sbml")  sbml<<-atts 
+			if(name=="sbml")
+			{ 
+			  sbml<<-atts
+			}
+		  
 #			if(name=="annotation")  print("skipping annotation") 
 			
 #			if(name=="model")  {modelid<<-atts[["id"]]} # VV replaces this with ...
          if(name=="model")  
-         {   numitems <- length(atts)
+         {   
+           numitems <- length(atts)
+           
              if(numitems < 1)			#if model does not contain a name/id, we give it an arbitrary one.
+             {  
                modelid[[1]]<<-"BioModel"	  
-             else if(numitems == 1)				# if only one attribute supplied
-             {
-               if(is.character(atts[[1]]))	#if the attribute is a string, it must be model name. Copy to also id.
-               {
-                 modelname<<-atts[[1]]   # store model name
-                 modelid<<-atts[[1]]     # store as model id (copy Essentially)
-               }
-             }   
-             else if(numitems > 1)			#both Id and name of model are supplied, read both
-             {
-               modelname<<-atts[["name"]]   # first element is model name
-               modelid <<-atts[["id"]]    # second element has to be model id
              }
+             else if(numitems == 1)				# if only one attribute supplied
+              {
+                    if(is.character(atts[[1]]))	#if the attribute is a string, it must be model name. Copy to also id.
+                    {
+                       modelname<<-atts[[1]]   # store model name
+                       modelid<<-atts[[1]]     # store as model id (copy Essentially)
+                    }
+              }   
+             else if(numitems > 1)			#both Id and name of model are supplied, read both
+              {
+                modelname<<-atts[["name"]]   # first element is model name
+                modelid <<-atts[["id"]]    # second element has to be model id
+              }
          }
 			
 			#       if(name=="compartment")  {compartments[[atts[1]]]<<-atts}
-			if(name=="compartment")       
-				if( "id" %in% names(atts)) compartments[[atts["id"]]]<<-atts
-			
+			if(name=="compartment")  
+			{
+			  values <<- names(atts)
+				if( "id" %in% values) compartments[[atts["id"]]]<<-atts
+#				if( "id" %in% names(atts)) compartments[[atts["id"]]]<<-atts
+			}
+		  
 			#       if(name=="species")  {species[[atts[1]]]<<-atts }
-			if(name=="species")      
-				if( "id" %in% names(atts)) species[[atts["id"]]]<<-atts 
+			if(name=="species") 
+			{
+			  values <<- names(atts)
+				if( "id" %in% values) species[[atts["id"]]]<<-atts 
+#				if( "id" %in% names(atts)) species[[atts["id"]]]<<-atts 
+			}
+		  
 			#       if(name=="assignmentRule")  rules[[atts[1]]]$idOutput<<-atts[[1]] 
-			if(name=="assignmentRule")  rules[[atts["variable"]]]$idOutput<<-atts[["variable"]] 
+			if(name=="assignmentRule")  
+			{  
+			  rules[[atts["variable"]]]$idOutput<<-atts[["variable"]] 
+			}
 			#       if(name=="reaction")  {reactions[[atts[1]]]$id<<-atts[[1]]
 			#         reactions[[atts[1]]]$reversible<<-as.logical(atts[[2]])
 			#         currRxnID<<-atts[1]}
