@@ -427,7 +427,7 @@
 		}
 		#    names(model$rules)<-sapply(model$rules,function(x) x$idOutput)
 	} 
-	
+	print ("error1")
 	nReactions=length(reactions)
 	if (nReactions>0){
 		#    rIDs=NULL;  
@@ -477,7 +477,7 @@
 	body(lawTempl)[[i]]<-e
 	lawTempl
 }
-print ("error1")
+
 #
 #"makeLaw"<-function(inputs,pars,lawCall)
 #	function(inputs,lawCall,pars=NULL)
