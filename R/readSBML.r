@@ -391,7 +391,6 @@
 	# ********** END the mathML2R block of method based on node type codes  *************************
 	
 	
-	print("error")
 	# The next two functions are used by rules and were taken straight from read.SBML
 	# The idea is that SBML doesn't provide a list of atoms/leaves with rules, so we have to create them
 	# to place them in their model slots, and to use them to create the R function definition for the rule
@@ -421,7 +420,7 @@
 	
 	
 	if(!require(XML)) print("Error in Read.SBML(): First Install the XML package http://www.omegahat.org/RSXML")
-	print ("error1")
+
 	edoc <- xmlEventParse(filename,handlers=sbmlHandler(),ignoreBlanks = TRUE)
 	model=edoc$getModel() # SAX approach using the handler. Output of getModel() in edoc list is what we want.
 	doc <- xmlTreeParse(filename,ignoreBlanks = TRUE)  # use DOM just for rules and reactions
