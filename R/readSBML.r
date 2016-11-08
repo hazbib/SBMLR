@@ -63,6 +63,7 @@
                print ("error")
                 modelname<<-atts[["name"]]   # first element is model name
                 modelid <<-atts[["id"]]    # second element has to be model id
+               print ("post error")
               }
          }
 			
