@@ -35,27 +35,27 @@
 		.startElement <- function(name, atts, ...) {
 			#   cat("Start: Name =",name," ",paste(names(atts),atts,sep=" = "),"\n")
 			if(name=="sbml")  sbml<<-atts 
-			if(name=="annotation")  print("skipping annotation") 
+#			if(name=="annotation")  print("skipping annotation") 
 			
-			if(name=="model")  {modelid<<-atts[["id"]]} # VV replaces this with ...
-#         if(name=="model")  
-#         {   numitems <- length(atts)
-#             if(numitems < 1)			#if model does not contain a name/id, we give it an arbitrary one.
-#               modelid[[1]]<<-"BioModel"	  
-#             else if(numitems == 1)				# if only one attribute supplied
-#             {
-#               if(is.character(atts[[1]]))	#if the attribute is a string, it must be model name. Copy to also id.
-#               {
-#                 modelname<<-atts[[1]]   # store model name
-#                 modelid<<-atts[[1]]     # store as model id (copy Essentially)
-#               }
-#             }   
-#             else if(numitems > 1)			#both Id and name of model are supplied, read both
-#             {
-#               modelname<<-atts[["name"]]   # first element is model name
-#               modelid <<-atts[["id"]]    # second element has to be model id
-#             }
-#         }
+#			if(name=="model")  {modelid<<-atts[["id"]]} # VV replaces this with ...
+         if(name=="model")  
+         {   numitems <- length(atts)
+             if(numitems < 1)			#if model does not contain a name/id, we give it an arbitrary one.
+               modelid[[1]]<<-"BioModel"	  
+             else if(numitems == 1)				# if only one attribute supplied
+             {
+               if(is.character(atts[[1]]))	#if the attribute is a string, it must be model name. Copy to also id.
+               {
+                 modelname<<-atts[[1]]   # store model name
+                 modelid<<-atts[[1]]     # store as model id (copy Essentially)
+               }
+             }   
+             else if(numitems > 1)			#both Id and name of model are supplied, read both
+             {
+               modelname<<-atts[["name"]]   # first element is model name
+               modelid <<-atts[["id"]]    # second element has to be model id
+             }
+         }
 			
 			#       if(name=="compartment")  {compartments[[atts[1]]]<<-atts}
 			if(name=="compartment")       
@@ -190,42 +190,47 @@
 			#         lst 
 			#       }
 			#  VV replaces fixComps with the following:
-			fixComps=function(x) 
-			{
-				lstnames <- names(x)
-				count <- 1
-				numit <- length(lstnames)
-				id <- "x"
-				size <- 0
-				name <- "x"
-				nameslist <- list()
-				while( count <= numit )
-				{
-					switch(lstnames[[count]],
-							"id" = { id = x[[count]]; nameslist[[length(nameslist)+1]] <- "id"}, 
-							"size" = { size = as.numeric(x[[count]]) ;nameslist[[length(nameslist)+1]] <- "size" },
-							"name" = { name = as.character(x[[count]]); nameslist[[length(nameslist)+1]] <- "name"}
-					)
-					count = count + 1
-				}
-				#cat("Compartment id:", id,"\n", "Compartment size:" , size, "\n","Compartment name:", name, "\n")
-				if(numit == 2)						# only 2 attributes present. We need to find them.
-				{ if(id == "x")		#id not set but name and size are.
-						id <- "default"		
-					else if(name == "x")    #name not set, we copy the id.
-						name <- id
-					else if(size== "0")	#size not set
-						size <- 1 	#arbitrary setting as 1
-					lst = list(id,size,name)	
-					names(lst)<-c("id","size","name")
-					lst
-				} else if(numit == 3)					# 3 attributes/items present.
-				{ lst = list(id,size,name)
-					names(lst)<-c("id","size","name")
-					lst 
-				}
-			}
-			
+#			fixComps=function(x) 
+#			{
+#				lstnames <- names(x)
+#				count <- 1
+#				numit <- length(lstnames)
+#				id <- "x"
+#				size <- 0
+#				name <- "x"
+#				nameslist <- list()
+#				while( count <= numit )
+#				{
+#					switch(lstnames[[count]],
+#							"id" = { id = x[[count]]; nameslist[[length(nameslist)+1]] <- "id"}, 
+#							"size" = { size = as.numeric(x[[count]]) ;nameslist[[length(nameslist)+1]] <- "size" },
+#							"name" = { name = as.character(x[[count]]); nameslist[[length(nameslist)+1]] <- "name"}
+#					)
+#					count = count + 1
+#				}
+#				#cat("Compartment id:", id,"\n", "Compartment size:" , size, "\n","Compartment name:", name, "\n")
+#				if(numit == 2)						# only 2 attributes present. We need to find them.
+#				{ if(id == "x")		#id not set but name and size are.
+#						id <- "default"		
+#					else if(name == "x")    #name not set, we copy the id.
+#						name <- id
+#					else if(size== "0")	#size not set
+#						size <- 1 	#arbitrary setting as 1
+#					lst = list(id,size,name)	
+#					names(lst)<-c("id","size","name")
+#					lst
+#				} else if(numit == 3)					# 3 attributes/items present.
+#				{ lst = list(id,size,name)
+#					names(lst)<-c("id","size","name")
+#					lst 
+#				}
+#			}
+
+		  fixComps <- function(x){
+		    out <- as.list(x) 
+		    out$size <- as.numeric(out$size)  # convert size to numeric 
+		  }
+		  			
 			#       fixSpecies=function(x) {
 			#         lst=list(x[[1]],as.numeric(x[[2]]),x[[3]],as.logical(x[[4]])); 
 			#         names(lst)<-c("id","ic","compartment","bc"); 
