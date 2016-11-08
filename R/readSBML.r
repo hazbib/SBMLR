@@ -110,7 +110,8 @@
 							"name" = { name = as.character(atts[[count]]); nameslist[[length(nameslist)+1]] <- "name"}
 					)
 					count <- count + 1
-				} print ("error")
+				} 
+				print ("error")
 				reactions[[atts["id"]]]$id<<-id
 				reactions[[atts["id"]]]$reversible<<-reverse  
 #           if(reverse) reactions[[atts["id"]]]$reversible<<-reverse #carry in R only  if true
