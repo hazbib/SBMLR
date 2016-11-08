@@ -60,10 +60,10 @@
               }   
              else if(numitems > 1)			#both Id and name of model are supplied, read both
               {
-               print ("error")
+ #              print ("error")
                 modelname<<-atts[["name"]]   # first element is model name
                 modelid <<-atts[["id"]]    # second element has to be model id
-               print ("post error")
+ #              print ("post error")
               }
          }
 			
@@ -71,7 +71,9 @@
 			if(name=="compartment")  
 			{
 			  values <<- names(atts)
+			  print ("error")
 				if( "id" %in% values) compartments[[atts["id"]]]<<-atts
+				print ("post error")
 #				if( "id" %in% names(atts)) compartments[[atts["id"]]]<<-atts
 			}
 		  
