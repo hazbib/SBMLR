@@ -335,7 +335,7 @@
           lst 
         }		
         
-        compartments=sapply(compartments,fixComps, simplify = FALSE)
+        compartments <- sapply(compartments,fixComps, simplify = FALSE)
         #species=t(sapply(species,fixSpecies, simplify = TRUE)[2:4,]) # this changes the species model structure for better looks in R dumps
         species=sapply(species,fixSpecies, simplify = FALSE)     # this keeps the better looks in the SBMLR model definition file
         # 			ParametersList = sapply(ParametersList, fixParams, simplify = FALSE)  #VV: building params list 
@@ -344,7 +344,7 @@
         # 					species=species,globalParameters=globalParameters, ParametersList=ParametersList, rules=rules,reactions=reactions)
         list(sbml=sbml,id=modelid[[1]], notes=lnotes,compartments=compartments, # TR may revert to this??
              species=species,globalParameters=globalParameters, rules=rules,reactions=reactions) # returns values accrued in parent env
-      }
+      } # end of getModel
       
       list(.startElement = .startElement, .endElement = .endElement, 
            .text = .text,   # , dom = function() {con}
@@ -478,13 +478,14 @@
         #print(toString(e[1]))
         model$reactions[[i]]$strLaw=gsub(" ","",toString(e[1]))
         #paste(as.character(model$reactions[[i]]$expr)[c(2,1,3)],collapse=""))
-        r=model$reactions[[i]]$reactants
+        # r=model$reactions[[i]]$reactants
         #  VV wants to add products in here, perhaps for reversible reactions
-        #       r=c(model$reactions[[i]]$reactants, model$reactions[[i]]$products)	#build using both reactants and products objects. TODO - add compartments
+        # VP - yes, for reversible reaction we need values of products too
+        r <- c(model$reactions[[i]]$reactants, model$reactions[[i]]$products)	#build using both reactants and products objects. TODO - add compartments
         p=names(model$reactions[[i]]$parameters)
         m=model$reactions[[i]]$modifiers
         e=model$reactions[[i]]$exprLaw
-        model$reactions[[i]]$law=makeLaw(c(r,m),p,e)
+        model$reactions[[i]]$law=makeLaw(c(r,m),p,e, compartments=model$compartments)
         #      rIDs[i]<-model$reactions[[i]]$id
       }
       # This is for indexing by names/IDs of reactions
@@ -506,7 +507,8 @@
 
 # the following is called by both readSBML and readSBMLR so it outside where both can reach it.
 # Note that keeing it here instead of in a separate file => no need to document it
-"makeLaw"<-function(r,p,e){
+"makeLaw"<-function(r,p,e, compartments = NULL){
+    attach(compartments)
   # takes reactant list r, parameter list p and rate law R expression e 
   # and makes a reaction rate law function out of them.
   lawTempl=function(r,p=NULL){ }
