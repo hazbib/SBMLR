@@ -70,8 +70,8 @@
         
         # VP version        
         if(name == "model") {
-          modelname <<- "no name"
-          modelid <<- "no id"
+#          modelname <<- "no name"
+#          modelid <<- "no id"
           # the expected attributes are: name and id
           if("name" %in% names(atts))
             modelname <<- atts[["name"]]
