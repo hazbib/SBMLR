@@ -65,10 +65,10 @@
     list(xp,aux)
   }    
   # ******************  END fderiv function definition
-  
+  times=times
   if (is.null(X0)) 
     X0=mi$y0
-    times=times
+    
     out=ode(y=X0,times=times,fderiv,  parms=c(mod=mod), ...)
 #       out=ode(y=mi$y0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) 
 #   out=lsoda(y=X0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) else
