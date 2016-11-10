@@ -70,7 +70,8 @@
     X0=mi$y0
 #    out=ode(y=X0,times=times,fderiv,  parms=c(mod=mod), ...)
 #       out=ode(y=mi$y0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) 
-   out=lsoda(y=X0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) else
+   out=lsoda(y=X0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) 
+   else
      out=lsoda(y=mi$y0,times=times,fderiv,  parms=c(mod=mod),  rtol=1e-4, atol= my.atol) 
   detach(model$globalParameters)
   out
