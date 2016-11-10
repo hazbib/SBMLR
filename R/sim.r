@@ -1,9 +1,8 @@
-"sim" <-
-    function(model,times, modulator=NULL,X0=NULL, ...)  # this is a wrapper for lsoda
+"sim" <-  function(model,times, modulator=NULL,X0=NULL, ...)  # this is a wrapper for lsoda
 {
   mi=summary(model) # mi = model info
 # print(mi);next
-   my.atol <- rep(1e-4,mi$nStates)
+#   my.atol <- rep(1e-4,mi$nStates)
   attach(model$globalParameters)  # in Morrison this makes Keq globally available 
   mod=0
   if (class(modulator)=="numeric") mod=1
@@ -18,28 +17,28 @@
     St[mi$BC==FALSE]=X
 
 # TR version of this    
-    if (mi$nRules>0) 
-      for (j in 1:mi$nRules)
-        St[model$rules[[j]]$idOutput]=model$rules[[j]]$law(St[model$rule[[j]]$inputs]) 
+#    if (mi$nRules>0) 
+#      for (j in 1:mi$nRules)
+#        St[model$rules[[j]]$idOutput]=model$rules[[j]]$law(St[model$rule[[j]]$inputs]) 
 # # VV version of this. 
-#     Vt = mi$VP  									#parameter values
-#     if (mi$nRules>0) 
-#       for (j in 1:mi$nRules) {
-#         if(!(is.na(St[model$rules[[j]]$idOutput])))							#assignment rule for species not for parameters
-#         {
-#           St[model$rules[[j]]$idOutput]=model$rules[[j]]$law(St[model$rule[[j]]$inputs]) 
-#         }
-#         else if(model$globalParameters[model$rules[[j]]$idOutput] != 0) #assignment rule for parameter object, not species
-#         {
-#           output <- model$rules[[j]]$idOutput
-#           val <- model$rules[[j]]$law(St[model$rule[[j]]$inputs])  			#computing the assigment
-#           model$globalParameters[model$rules[[j]]$idOutput][[1]] = as.numeric(val[[1]])	#retrieving only the value
-#           rule_val[row_count, j] <- as.numeric(val[[1]])
-#           row_count <- row_count + 1
-#         }
-#         else {
-#           next;										#skip that assignment instead of crashing the system.
-#         }
+     Vt = mi$VP  									#parameter values
+     if (mi$nRules>0) 
+       for (j in 1:mi$nRules) {
+         if(!(is.na(St[model$rules[[j]]$idOutput])))							#assignment rule for species not for parameters
+         {
+           St[model$rules[[j]]$idOutput]=model$rules[[j]]$law(St[model$rule[[j]]$inputs]) 
+         }
+         else if(model$globalParameters[model$rules[[j]]$idOutput] != 0) #assignment rule for parameter object, not species
+         {
+           output <- model$rules[[j]]$idOutput
+           val <- model$rules[[j]]$law(St[model$rule[[j]]$inputs])  			#computing the assigment
+           model$globalParameters[model$rules[[j]]$idOutput][[1]] = as.numeric(val[[1]])	#retrieving only the value
+           rule_val[row_count, j] <- as.numeric(val[[1]])
+           row_count <- row_count + 1
+         }
+         else {
+           next;										#skip that assignment instead of crashing the system.
+         }
 #  ######################################       
     
     
