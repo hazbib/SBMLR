@@ -52,7 +52,7 @@
     
     for (j in 1:mi$nReactions) {
         mrj=model$reactions[[j]]
-        rm=c(mrj$reactants,mrj$modifiers)
+        rm=c(mrj$reactants,mrj$modifiers, mrj$products)
         P=mrj$parameters
         if (p["mod"]==0)   v[j]=mrj$law(St[rm],P)
         if (p["mod"]==1)   v[j]=m[mi$rIDs[j]]*mrj$law(St[rm],P)
