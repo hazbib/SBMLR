@@ -508,8 +508,8 @@
 			p=names(model$reactions[[i]]$parameters)
 			m=model$reactions[[i]]$modifiers
 			e=model$reactions[[i]]$exprLaw
-			model$reactions[[i]]$law=makeLaw(c(r,m),p,e, compartments=model$compartments)
-#			model$reactions[[i]]$law=makeLaw(c(r,m),p,e)
+#			model$reactions[[i]]$law=makeLaw(c(r,m),p,e, compartments=model$compartments)
+			model$reactions[[i]]$law=makeLaw(c(r,m),p,e)
 			#      rIDs[i]<-model$reactions[[i]]$id
 		}
 		# This is for indexing by names/IDs of reactions
