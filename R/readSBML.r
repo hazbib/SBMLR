@@ -271,11 +271,11 @@
           out$size <- as.numeric(out$size)  # convert size to numeric 
         }
         
-        #       fixSpecies=function(x) {
-        #         lst=list(x[[1]],as.numeric(x[[2]]),x[[3]],as.logical(x[[4]])); 
-        #         names(lst)<-c("id","ic","compartment","bc"); 
-        #         lst 
-        #       }
+               fixSpecies=function(x) {
+                 lst=list(x[[1]],as.numeric(x[[2]]),x[[3]],as.logical(x[[4]])); 
+                 names(lst)<-c("id","ic","compartment","bc"); 
+                 lst 
+               }
         #  VV replaces fixSpecies with the following
 #        fixSpecies=function(x) 
 #        {
@@ -310,25 +310,25 @@
         
         # VP version 
         
-        fixSpecies = function(x){
-          out <- as.list(x)
+  #      fixSpecies = function(x){
+  #        out <- as.list(x)
           
-          # sorting out amount and concentration
-          if("initialAmount" %in% names(out))
-            out$initialAmount <- as.numeric(initialAmount)
-          if("initialConcentration" %in% names(out)){
-            out$initialConcentration <- as.numeric(initialAmount)      #!!!!! Error: Object 'initialconcentration' not found 
-          }else{
-            out$initialConcentration <- out$initialAmount/compartments[[out$compartment]]
-          }
-          out$ic <- out$initialConcentration
+  #        # sorting out amount and concentration
+  #        if("initialAmount" %in% names(out))
+  #          out$initialAmount <- as.numeric(initialAmount)
+  #        if("initialConcentration" %in% names(out)){
+  #          out$initialConcentration <- as.numeric(initialConcentration)      #!!!!! Error: Object 'initialconcentration' not found 
+  #        }else{
+  #          out$initialConcentration <- out$initialAmount/compartments[[out$compartment]]
+  #        }
+  #        out$ic <- out$initialConcentration
           
-          # boundary condition
-          out$bc <- c("true"=TRUE, "false"=FALSE)[out$boundaryCondition]
+  #        # boundary condition
+  #        out$bc <- c("true"=TRUE, "false"=FALSE)[out$boundaryCondition]
           
-          return(out)
+  #        return(out)
           
-        }
+  #      }
         
         
         # and VV adds in fixParams
