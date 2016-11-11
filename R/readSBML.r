@@ -320,7 +320,7 @@
             out$initialConcentration <- as.numeric(initialConcentration)      #!!!!! Error: Object 'initialconcentration' not found 
           }else{
   #          out$initialConcentration <- out$initialAmount/compartments[[out$size]]
-            out$initialConcentration <- out$initialAmount/1000
+            out$initialConcentration <- (out$initialAmount+1)
           }
           out$ic <- out$initialConcentration
           
