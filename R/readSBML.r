@@ -400,7 +400,31 @@
 	}
 	# ********** END the mathML2R block of method based on node type codes  *************************
 	
+	# The next two functions are used by rules and were taken straight from read.SBML
+	# The idea is that SBML doesn't provide a list of atoms/leaves with rules, so we have to create them
+	# to place them in their model slots, and to use them to create the R function definition for the rule
+	# using makeLaw with a null for parameters, since they are passed global for rules.
+	ML2R<- function(type)   # map MathML operator symbols into R symbols
+	  switch(type,
+	         "times" = "*",
+	         "divide" = "/",
+	         "plus" = "+",
+	         "minus" = "-",
+	         "power" = "^",
+	         "exp" = "exp",
+	         "ln" = "log",
+	         "not found") # end definition of ML2R
 	
+	
+	getRuleLeaves<-function(math) 
+	{ n=length(math)
+	S=c(NULL)
+	op=ML2R(xmlName(math[[1]]))
+	for (j in 2:n )
+	  if ((xmlName(math[[j]])=="ci")|(xmlName(math[[j]])=="cn"))  S=c(S,as.character(xmlValue(math[[j]]))) else 
+	    S=c(S,Recall(math[[j]])  ) 
+	S
+	} 
 	
 	
 	if(!require(XML)) print("Error in Read.SBML(): First Install the XML package http://www.omegahat.org/RSXML")
@@ -454,13 +478,21 @@
 			p=names(model$reactions[[i]]$parameters)
 			m=model$reactions[[i]]$modifiers
 			e=model$reactions[[i]]$exprLaw
-			model$reactions[[i]]$law=makeLaw(c(r,m),p,e)
+			model$reactions[[i]]$law=makeLaw(c(r,m),p,e, compartments=model$compartments)
+#			model$reactions[[i]]$law=makeLaw(c(r,m),p,e)
 			#      rIDs[i]<-model$reactions[[i]]$id
 		}
 		# This is for indexing by names/IDs of reactions
 		#    names(model$reactions)<-rIDs
 		#    names(model$reactions)<-sapply(model$reactions,function(x) x$id)
 	}
+	#---DEBUG CODE
+	cat("Number of species: " , length(model$species), "\n")
+	cat("Number of rules: ", nRules, "\n")
+	cat("Number of Global Parameters: " , length(globalParameters), "\n")
+	cat("Number of reactions: " , nReactions, "\n")
+	cat("Parsing Successful !" , "\n")
+	#-----------
 	
 	class(model)<-"SBMLR"
 	model
@@ -493,29 +525,5 @@
 #
 
 
-# The next two functions are used by rules and were taken straight from read.SBML
-# The idea is that SBML doesn't provide a list of atoms/leaves with rules, so we have to create them
-# to place them in their model slots, and to use them to create the R function definition for the rule
-# using makeLaw with a null for parameters, since they are passed global for rules.
-ML2R<- function(type)   # map MathML operator symbols into R symbols
-  switch(type,
-         "times" = "*",
-         "divide" = "/",
-         "plus" = "+",
-         "minus" = "-",
-         "power" = "^",
-         "exp" = "exp",
-         "ln" = "log",
-         "not found") # end definition of ML2R
 
-
-getRuleLeaves<-function(math) 
-{ n=length(math)
-  S=c(NULL)
-  op=ML2R(xmlName(math[[1]]))
-  for (j in 2:n )
-    if ((xmlName(math[[j]])=="ci")|(xmlName(math[[j]])=="cn"))  S=c(S,as.character(xmlValue(math[[j]]))) else 
-      S=c(S,Recall(math[[j]])  ) 
-  S
-} 
 
