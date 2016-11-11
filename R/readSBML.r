@@ -277,36 +277,59 @@
         #         lst 
         #       }
         #  VV replaces fixSpecies with the following
-        fixSpecies=function(x) 
-        {
-          #cat (names(x), "\n")
-          #cat(toString(x) , "\n")
-          numitems <- length(x)
-          lstnames <- names(x)
-          count <-1
-          id <- "x"			#species Id
-          ic <- 0				#species initial concentration
-          compart <- "def"		#species compartment
-          bc <- FALSE			#species boundary condition
-          name <- "def"
-          nameslist <- list()
-          while( count <= numitems)
-          {
-            switch(lstnames[[count]],
-                   "id" = { id <- x[[count]]; nameslist[[length(nameslist)+1]] <- "id"},
-                   "name" = { name <- x[[count]]; nameslist[[length(nameslist)+1]] <- "name"},
-                   "initialConcentration" = { ic <- as.numeric(x[[count]]) ;nameslist[[length(nameslist)+1]] <- "ic" },
-                   "compartment" = { compart <- as.character(x[[count]]); nameslist[[length(nameslist)+1]] <- "compartment"},
-                   "boundaryCondition" = { bc <- as.logical(x[[count]]); nameslist[[length(nameslist)+1]] <- "bc"}
-            )
-            count = count + 1
+#        fixSpecies=function(x) 
+#        {
+#          #cat (names(x), "\n")
+#          #cat(toString(x) , "\n")
+#          numitems <- length(x)
+#          lstnames <- names(x)
+#          count <-1
+#          id <- "x"			#species Id
+#          ic <- 0				#species initial concentration
+#          compart <- "def"		#species compartment
+#          bc <- FALSE			#species boundary condition
+#          name <- "def"
+#          nameslist <- list()
+#          while( count <= numitems)
+#          {
+#            switch(lstnames[[count]],
+#                   "id" = { id <- x[[count]]; nameslist[[length(nameslist)+1]] <- "id"},
+#                   "name" = { name <- x[[count]]; nameslist[[length(nameslist)+1]] <- "name"},
+#                   "initialConcentration" = { ic <- as.numeric(x[[count]]) ;nameslist[[length(nameslist)+1]] <- "ic" },
+#                   "compartment" = { compart <- as.character(x[[count]]); nameslist[[length(nameslist)+1]] <- "compartment"},
+#                   "boundaryCondition" = { bc <- as.logical(x[[count]]); nameslist[[length(nameslist)+1]] <- "bc"}
+#            )
+#            count = count + 1
+#          }
+#          #lst = list(id,ic,compart,bc, name)
+#          lst = list(id,as.numeric(ic), compart, as.logical(bc))
+#          names(lst) <- c("id","ic","compartment","bc")
+#          #names(lst)<-c("id","ic","compartment","bc", "name"); 
+#          lst 
+#        }
+        
+        # VP version 
+        
+        fixSpecies = function(x){
+          out <- as.list(x)
+          
+          # sorting out amount and concentration
+          if("initialAmount" %in% names(out))
+            out$initialAmount <- as.numeric(initialAmount)
+          if("initialConcentration" %in% names(out)){
+            out$initialConcentration <- as.numeric(initialConcentration)
+          }else{
+            out$initialConcentration <- out$initialAmount/compartments[[out$compartment]]
           }
-          #lst = list(id,ic,compart,bc, name)
-          lst = list(id,as.numeric(ic), compart, as.logical(bc))
-          names(lst) <- c("id","ic","compartment","bc")
-          #names(lst)<-c("id","ic","compartment","bc", "name"); 
-          lst 
+          out$ic <- out$initialConcentration
+          
+          # boundary condition
+          out$bc <- c("true"=TRUE, "false"=FALSE)[out$boundaryCondition]
+          
+          return(out)
+          
         }
+        
         
         # and VV adds in fixParams
         fixParams=function(x) 
@@ -335,10 +358,14 @@
           lst 
         }		
         
-        compartments <- sapply(compartments,fixComps, simplify = FALSE)
+#        compartments <- sapply(compartments,fixComps, simplify = FALSE)
         #species=t(sapply(species,fixSpecies, simplify = TRUE)[2:4,]) # this changes the species model structure for better looks in R dumps
-        species=sapply(species,fixSpecies, simplify = FALSE)     # this keeps the better looks in the SBMLR model definition file
+#        species=sapply(species,fixSpecies, simplify = FALSE)     # this keeps the better looks in the SBMLR model definition file
         # 			ParametersList = sapply(ParametersList, fixParams, simplify = FALSE)  #VV: building params list 
+        compartments <- lapply(compartments, fixComps)
+        species <- lapply(species, fixSpecies)
+        
+        
         
         # 			list(sbml=sbml,id=modelid[[1]], notes=lnotes,compartments=compartments, # VV, not clear how ParametersList differs from globalParameters
         # 					species=species,globalParameters=globalParameters, ParametersList=ParametersList, rules=rules,reactions=reactions)
