@@ -62,8 +62,8 @@
       #        }   
       #       else if(numitems > 1)			#both Id and name of model are supplied, read both
       #        {
-                modelname<<-atts[["name"]]   # first element is model name
-                modelid <<-atts[["id"]]    # second element has to be model id
+#                modelname<<-atts[["name"]]   # first element is model name
+#                modelid <<-atts[["id"]]    # second element has to be model id
       #        }
       #   }
                 
