@@ -146,50 +146,50 @@
 			if(name=="modifierSpeciesReference")
 				modifiers<<-c(modifiers,species=atts[["species"]])
 			
-			      if((name=="parameter")&law){
-			        parameterIDs<<-c(parameterIDs,atts[["id"]])
-			        parameters<<-c(parameters,atts[["value"]])}
-# 			if((name=="parameter")&law)  		#parameter encountered within a kinetic law definition
-# 			{
-# 				values <- names(atts)
-# 				if( "id" %in% values) parameterIDs<<-c(parameterIDs,atts[["id"]])
-# 				else {
-# 					cat('Parameter parsed without id. Setting default id', '\n')
-# 					parameterIDs<<-c(parameterIDs, paste("default", paramException))
-# 					paramException <- paramException + 1
-# 				}
-# 				if( "value" %in% values) parameters<<-c(parameters,atts[["value"]])
-# 				else {
-# 					cat('Warning..Parsing parameter without value. Setting it as 0.' ,'\n')
-# 					parameters<<-c(parameters, as.numeric(0))
-# 				}
-# 			}
+#			      if((name=="parameter")&law){
+#			        parameterIDs<<-c(parameterIDs,atts[["id"]])
+#			        parameters<<-c(parameters,atts[["value"]])}
+ 			if((name=="parameter")&law)  		#parameter encountered within a kinetic law definition
+ 			{
+ 				values <- names(atts)
+ 				if( "id" %in% values) parameterIDs<<-c(parameterIDs,atts[["id"]])
+ 				else {
+ 					cat('Parameter parsed without id. Setting default id', '\n')
+ 					parameterIDs<<-c(parameterIDs, paste("default", paramException))
+ 					paramException <- paramException + 1
+ 				}
+ 				if( "value" %in% values) parameters<<-c(parameters,atts[["value"]])
+ 				else {
+ 					cat('Warning..Parsing parameter without value. Setting it as 0.' ,'\n')
+ 					parameters<<-c(parameters, as.numeric(0))
+ 				}
+			}
 
-			      if((name=="parameter")&(!law)){
-			        globalParameterIDs<<-c(globalParameterIDs,atts[["id"]])
-			        globalParameters<<-c(globalParameters,as.numeric(atts[["value"]]))}
+#			      if((name=="parameter")&(!law)){
+#			        globalParameterIDs<<-c(globalParameterIDs,atts[["id"]])
+#			        globalParameters<<-c(globalParameters,as.numeric(atts[["value"]]))}
 			
-# 			if((name=="parameter")&!law)  		#parameter encountered outside a kinetic law definition - So in globalparamslist
-# 			{
-# 				#cat("within parameters:", atts[["id"]], atts[["value"]], "\n")
-# 				values <- names(atts)
-# 				if( "id" %in% values) {
-# 					globalParameterIDs<<-c(globalParameterIDs,atts[["id"]])
-# 					ParametersList[[atts["id"]]] <<- atts		#our new list of Parameter Objects
-# 				}  
-# 				else {
-# 					cat('Global Parameter parsed without id. Setting default id', '\n')
-# 					tempParamId <- paste("Globaldefault", globalParamException)
-# 					globalParameterIDs<<-c(globalParameterIDs, tempParamId)
-# 					ParametersList[[tempParamId]] <<- atts
-# 					globalParamException <- globalParamException + 1
-# 				}
-# 				if( "value" %in% values) globalParameters<<-c(globalParameters,as.numeric(atts[["value"]]))
-# 				else {
-# 					cat('Warning..Parsing Global parameter without value. Setting it to 0.', '\n')
-# 					globalParameters<<-c(globalParameters, as.numeric(0))
-# 				}
-# 			} # end if param in law
+ 			if((name=="parameter")&!law)  		#parameter encountered outside a kinetic law definition - So in globalparamslist
+ 			{
+ 				#cat("within parameters:", atts[["id"]], atts[["value"]], "\n")
+				values <- names(atts)
+ 				if( "id" %in% values) {
+ 					globalParameterIDs<<-c(globalParameterIDs,atts[["id"]])
+ 					ParametersList[[atts["id"]]] <<- atts		#our new list of Parameter Objects
+ 				}  
+ 				else {
+ 					cat('Global Parameter parsed without id. Setting default id', '\n')
+ 					tempParamId <- paste("Globaldefault", globalParamException)
+ 					globalParameterIDs<<-c(globalParameterIDs, tempParamId)
+ 					ParametersList[[tempParamId]] <<- atts
+ 					globalParamException <- globalParamException + 1
+ 				}
+ 				if( "value" %in% values) globalParameters<<-c(globalParameters,as.numeric(atts[["value"]]))
+ 				else {
+ 					cat('Warning..Parsing Global parameter without value. Setting it to 0.', '\n')
+ 					globalParameters<<-c(globalParameters, as.numeric(0))
+ 				}
+ 			} # end if param in law
 		} # end .startElement()  
 		
 		
