@@ -26,10 +26,10 @@
 		law=FALSE; parameter=FALSE; math=FALSE
 		
 # 		# VV's additions
-# 		modelname<-"x"  				#storing the model name if separately given
-# 		paramException <- 1
-# 		globalParamException <- 1
-# 		ParametersList<- list()  			#list of parameter objects	
+ 		modelname<-"x"  				#storing the model name if separately given
+ 		paramException <- 1
+ 		globalParamException <- 1
+ 		ParametersList<- list()  			#list of parameter objects	
 		
 		
 		.startElement <- function(name, atts, ...) {
@@ -40,32 +40,43 @@
 			}
 		  
 #			if(name=="annotation")  print("skipping annotation") 
-			
+			#TR version 
+		  
 #			if(name=="model")  {modelid<<-atts[["id"]]} # VV replaces this with ...
-         if(name=="model")  
-         {   
-           numitems <- length(atts)
-#           print ("error")
-             if(numitems < 1)			#if model does not contain a name/id, we give it an arbitrary one.
-             {  
-               modelid[[1]]<<-"BioModel"	  
-             }
-             else if(numitems == 1)				# if only one attribute supplied
-              {
-                    if(is.character(atts[[1]]))	#if the attribute is a string, it must be model name. Copy to also id.
-                    {
-                       modelname<<-atts[[1]]   # store model name
-                       modelid<<-atts[[1]]     # store as model id (copy Essentially)
-                    }
-              }   
-             else if(numitems > 1)			#both Id and name of model are supplied, read both
-              {
- #              print ("error")
+		  
+		  #VV version 
+      #   if(name=="model")  
+      #   {   
+      #     numitems <- length(atts)
+      #     if(numitems < 1)			#if model does not contain a name/id, we give it an arbitrary one.
+      #       {  
+      #         modelid[[1]]<<-"BioModel"	  
+      #       }
+      #       else if(numitems == 1)				# if only one attribute supplied
+      #        {
+      #          if(is.character(atts[[1]]))	#if the attribute is a string, it must be model name. Copy to also id.
+      #              {
+      #                 modelname<<-atts[[1]]   # store model name
+      #                 modelid<<-atts[[1]]     # store as model id (copy Essentially)
+      #              }
+      #        }   
+      #       else if(numitems > 1)			#both Id and name of model are supplied, read both
+      #        {
                 modelname<<-atts[["name"]]   # first element is model name
                 modelid <<-atts[["id"]]    # second element has to be model id
- #              print ("post error")
-              }
-         }
+      #        }
+      #   }
+                
+      # VP version        
+                if(name == "model") {
+                  modelname <<- "no name"
+                  modelid <<- "no id"
+                  # the expected attributes are: name and id
+                  if("name" %in% names(atts))
+                    modelname <<- atts[["name"]]
+                  if("id" %in% names(atts))
+                    modelid <<- atts[["id"]]
+                }         
 			
 			#       if(name=="compartment")  {compartments[[atts[1]]]<<-atts}
 			if(name=="compartment")  
