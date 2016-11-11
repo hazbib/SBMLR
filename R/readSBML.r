@@ -267,42 +267,42 @@
 		    out$size <- as.numeric(out$size)  # convert size to numeric 
 		  }
 		  			
-			#       fixSpecies=function(x) {
-			#         lst=list(x[[1]],as.numeric(x[[2]]),x[[3]],as.logical(x[[4]])); 
-			#         names(lst)<-c("id","ic","compartment","bc"); 
-			#         lst 
-			#       }
+			       fixSpecies=function(x) {
+			         lst=list(x[[1]],as.numeric(x[[2]]),x[[3]],as.logical(x[[4]])); 
+			         names(lst)<-c("id","ic","compartment","bc"); 
+			         lst 
+			       }
 			#  VV replaces fixSpecies with the following
-			fixSpecies=function(x) 
-			{
+#			fixSpecies=function(x) 
+#			{
 				#cat (names(x), "\n")
 				#cat(toString(x) , "\n")
-				numitems <- length(x)
-				lstnames <- names(x)
-				count <-1
-				id <- "x"			#species Id
-				ic <- 0				#species initial concentration
-				compart <- "def"		#species compartment
-				bc <- FALSE			#species boundary condition
-				name <- "def"
-				nameslist <- list()
-				while( count <= numitems)
-				{
-					switch(lstnames[[count]],
-							"id" = { id <- x[[count]]; nameslist[[length(nameslist)+1]] <- "id"},
-							"name" = { name <- x[[count]]; nameslist[[length(nameslist)+1]] <- "name"},
-							"initialConcentration" = { ic <- as.numeric(x[[count]]) ;nameslist[[length(nameslist)+1]] <- "ic" },
-							"compartment" = { compart <- as.character(x[[count]]); nameslist[[length(nameslist)+1]] <- "compartment"},
-							"boundaryCondition" = { bc <- as.logical(x[[count]]); nameslist[[length(nameslist)+1]] <- "bc"}
-					)
-					count = count + 1
-				}
-				#lst = list(id,ic,compart,bc, name)
-				lst = list(id,as.numeric(ic), compart, as.logical(bc))
-				names(lst) <- c("id","ic","compartment","bc")
-				#names(lst)<-c("id","ic","compartment","bc", "name"); 
-				lst 
-			}
+#				numitems <- length(x)
+#				lstnames <- names(x)
+#				count <-1
+#				id <- "x"			#species Id
+#				ic <- 0				#species initial concentration
+#				compart <- "def"		#species compartment
+#				bc <- FALSE			#species boundary condition
+#				name <- "def"
+#				nameslist <- list()
+#				while( count <= numitems)
+#				{
+#					switch(lstnames[[count]],
+#							"id" = { id <- x[[count]]; nameslist[[length(nameslist)+1]] <- "id"},
+#							"name" = { name <- x[[count]]; nameslist[[length(nameslist)+1]] <- "name"},
+#							"initialConcentration" = { ic <- as.numeric(x[[count]]) ;nameslist[[length(nameslist)+1]] <- "ic" },
+#							"compartment" = { compart <- as.character(x[[count]]); nameslist[[length(nameslist)+1]] <- "compartment"},
+#							"boundaryCondition" = { bc <- as.logical(x[[count]]); nameslist[[length(nameslist)+1]] <- "bc"}
+#					)
+#					count = count + 1
+#				}
+#				#lst = list(id,ic,compart,bc, name)
+#				lst = list(id,as.numeric(ic), compart, as.logical(bc))
+#				names(lst) <- c("id","ic","compartment","bc")
+#				#names(lst)<-c("id","ic","compartment","bc", "name"); 
+#				lst 
+#			}
 			
 			# and VV adds in fixParams
 			fixParams=function(x) 
