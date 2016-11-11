@@ -358,12 +358,12 @@
           lst 
         }		
         
-#        compartments <- sapply(compartments,fixComps, simplify = FALSE)
+        compartments <- sapply(compartments,fixComps, simplify = FALSE)
         #species=t(sapply(species,fixSpecies, simplify = TRUE)[2:4,]) # this changes the species model structure for better looks in R dumps
-#        species=sapply(species,fixSpecies, simplify = FALSE)     # this keeps the better looks in the SBMLR model definition file
+        species=sapply(species,fixSpecies, simplify = FALSE)     # this keeps the better looks in the SBMLR model definition file
         # 			ParametersList = sapply(ParametersList, fixParams, simplify = FALSE)  #VV: building params list 
-        compartments <- lapply(compartments, fixComps)
-        species <- lapply(species, fixSpecies)
+   #     compartments <- lapply(compartments, fixComps)
+   #     species <- lapply(species, fixSpecies)
         
         
         
