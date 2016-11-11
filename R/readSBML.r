@@ -315,7 +315,7 @@
 #          
           # sorting out amount and concentration
           if("initialAmount" %in% names(out))
-            out$initialAmount <- as.numeric(initialAmount)
+            "initialAmount" <- as.numeric(initialAmount)
          if("initialConcentration" %in% names(out)){
             out$initialConcentration <- as.numeric(initialConcentration)      #!!!!! Error: Object 'initialconcentration' not found 
           }else{
