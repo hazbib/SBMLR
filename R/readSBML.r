@@ -401,12 +401,9 @@
 	# ********** END the mathML2R block of method based on node type codes  *************************
 	
 	
-	print("error")
-	
 	
 	
 	if(!require(XML)) print("Error in Read.SBML(): First Install the XML package http://www.omegahat.org/RSXML")
-	print ("error1")
 	edoc <- xmlEventParse(filename,handlers=sbmlHandler(),ignoreBlanks = TRUE)
 	model=edoc$getModel() # SAX approach using the handler. Output of getModel() in edoc list is what we want.
 	doc <- xmlTreeParse(filename,ignoreBlanks = TRUE)  # use DOM just for rules and reactions
