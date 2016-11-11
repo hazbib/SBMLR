@@ -317,7 +317,7 @@
           if("initialAmount" %in% names(out))
             out$initialAmount <- as.numeric(initialAmount)
           if("initialConcentration" %in% names(out)){
-            out$initialConcentration <- as.numeric(initialAmount)      #!!!!! Error: Object 'initialconcentration' not found 
+            out$initialConcentration <- as.numeric(initialConcentration)      #!!!!! Error: Object 'initialconcentration' not found 
           }else{
             out$initialConcentration <- out$initialAmount/compartments[[out$compartment]]
           }
