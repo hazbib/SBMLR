@@ -66,7 +66,8 @@
 #                modelid <<-atts[["id"]]    # second element has to be model id
       #        }
       #   }
-                
+           
+		       
       # VP version        
                 if(name == "model") {
                   modelname <<- "no name"
@@ -78,6 +79,7 @@
                     modelid <<- atts[["id"]]
                 }         
 			
+		  
 			#       if(name=="compartment")  {compartments[[atts[1]]]<<-atts}
 			if(name=="compartment")  
 			{
@@ -132,7 +134,7 @@
 				#currRxnID<<-atts[1]
 			}
 			
-#		  print ("error2")
+
 			if(name=="listOfReactants")  reactant<<-TRUE
 			if(name=="listOfProducts")  product<<-TRUE
 			if(name=="kineticLaw")  law<<-TRUE
@@ -304,6 +306,28 @@
 #				lst 
 #			}
 			
+			       # VP version 
+			       
+			       #      fixSpecies = function(x){
+			       #        out <- as.list(x)
+			       
+			       #        # sorting out amount and concentration
+			       #        if("initialAmount" %in% names(out))
+			       #          out$initialAmount <- as.numeric(initialAmount)
+			       #        if("initialConcentration" %in% names(out)){
+			       #          out$initialConcentration <- as.numeric(initialConcentration)      #!!!!! Error: Object 'initialconcentration' not found 
+			       #        }else{
+			       #          out$initialConcentration <- out$initialAmount/compartments[[out$compartment]]
+			       #        }
+			       #        out$ic <- out$initialConcentration
+			       
+			       #        # boundary condition
+			       #        out$bc <- c("true"=TRUE, "false"=FALSE)[out$boundaryCondition]
+			       
+			       #        return(out)
+			       
+			       #      }      
+			       
 			# and VV adds in fixParams
 			fixParams=function(x) 
 			{
@@ -335,6 +359,10 @@
 			#species=t(sapply(species,fixSpecies, simplify = TRUE)[2:4,]) # this changes the species model structure for better looks in R dumps
 			species=sapply(species,fixSpecies, simplify = FALSE)     # this keeps the better looks in the SBMLR model definition file
 # 			ParametersList = sapply(ParametersList, fixParams, simplify = FALSE)  #VV: building params list 
+			#     compartments <- lapply(compartments, fixComps)
+			#     species <- lapply(species, fixSpecies)
+			
+			
 			
 # 			list(sbml=sbml,id=modelid[[1]], notes=lnotes,compartments=compartments, # VV, not clear how ParametersList differs from globalParameters
 # 					species=species,globalParameters=globalParameters, ParametersList=ParametersList, rules=rules,reactions=reactions)
@@ -399,6 +427,7 @@
 		return(as.expression(val))
 	}
 	# ********** END the mathML2R block of method based on node type codes  *************************
+	
 	
 	# The next two functions are used by rules and were taken straight from read.SBML
 	# The idea is that SBML doesn't provide a list of atoms/leaves with rules, so we have to create them
@@ -472,9 +501,10 @@
 			#print(toString(e[1]))
 			model$reactions[[i]]$strLaw=gsub(" ","",toString(e[1]))
 			#paste(as.character(model$reactions[[i]]$expr)[c(2,1,3)],collapse=""))
-			r=model$reactions[[i]]$reactants
+#			r=model$reactions[[i]]$reactants
 			#  VV wants to add products in here, perhaps for reversible reactions
-			#       r=c(model$reactions[[i]]$reactants, model$reactions[[i]]$products)	#build using both reactants and products objects. TODO - add compartments
+			# VP - yes, for reversible reaction we need values of products too
+			r=c(model$reactions[[i]]$reactants, model$reactions[[i]]$products)	#build using both reactants and products objects. TODO - add compartments
 			p=names(model$reactions[[i]]$parameters)
 			m=model$reactions[[i]]$modifiers
 			e=model$reactions[[i]]$exprLaw
