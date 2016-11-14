@@ -69,7 +69,7 @@
 	
 	incid=matrix(rep(0,nStates*nReactions),nrow=nStates)
 	indx=(1:nSpecies)[BC==FALSE]
-	for (i in 1:nStates)
+	for (i in 1:nSpecies)
 	  for (j in 1:nReactions)
 	  {if ( is.element(model$species[[i]]$id, model$reactions[[j]]$products)) 
 	    incid[i,j] = summary(factor(model$reactions[[j]]$products))[[model$species[[i]]$id]]
