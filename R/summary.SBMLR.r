@@ -23,10 +23,12 @@
 	BC=NULL # initialize 
 	for (i in 1:nSpecies){
 		if ( "bc" %in% model$species) {BC[i]=model$species[[i]]$bc}; 
+#	  BC[i]=model$species[[i]]$bc;
 		S0[i]=model$species[[i]]$ic
 	}
 	names(S0)<-sIDs 
-	names(BC)<-sIDs 
+#	names(BC)<-sIDs 
+	  if ( "bc" %in% model$species) {names(BC)<-sIDs}
 	y0=S0[BC==FALSE]
 	nStates=length(y0)
 
