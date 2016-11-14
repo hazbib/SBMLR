@@ -19,7 +19,8 @@
 #	names(VP)<-pIDs
 #	################  
 # Species
-	S0=NULL;BC=NULL # initialize 
+	S0=NULL;
+	#BC=NULL # initialize 
 	for (i in 1:nSpecies){
 		BC[i]=model$species[[i]]$bc; 
 		S0[i]=model$species[[i]]$ic
