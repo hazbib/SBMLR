@@ -29,7 +29,8 @@
 	names(S0)<-sIDs 
 #	names(BC)<-sIDs 
 	  if ( "bc" %in% model$species) {names(BC)<-sIDs}
-	y0=S0[BC==FALSE]
+#	y0=S0[BC==FALSE]
+	y0=S0
 	nStates=length(y0)
 
 # these 4 lines replace the block commented after it  
