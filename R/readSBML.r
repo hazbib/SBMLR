@@ -325,6 +325,10 @@
           out$ic <- out$initialConcentration
           
           # boundary condition
+          # by default boundary condition should be false 
+          if(!("boundaryCondition" %in% names(out)))
+            out$boundaryCondition <- "false"
+          
           out$bc <- c("true"=TRUE, "false"=FALSE)[out$boundaryCondition]
           
           return(out)

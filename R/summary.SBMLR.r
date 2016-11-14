@@ -22,15 +22,15 @@
 	S0=NULL;
 	BC=NULL # initialize 
 	for (i in 1:nSpecies){
-		if ( "bc" %in% model$species) {BC[i]=model$species[[i]]$bc}; 
-#	  BC[i]=model$species[[i]]$bc;
+#		if ( "bc" %in% model$species) {BC[i]=model$species[[i]]$bc}; 
+	  BC[i]=model$species[[i]]$bc;
 		S0[i]=model$species[[i]]$ic
 	}
 	names(S0)<-sIDs 
-#	names(BC)<-sIDs 
-	  if ( "bc" %in% model$species) {names(BC)<-sIDs}
-#	y0=S0[BC==FALSE]
-	y0=S0
+	names(BC)<-sIDs 
+#	  if ( "bc" %in% model$species) {names(BC)<-sIDs}   
+	y0=S0[BC==FALSE]
+#	y0=S0
 	nStates=length(y0)
 
 # these 4 lines replace the block commented after it  
@@ -58,25 +58,25 @@
   
   
 # Incidence Matrix
-#	incid=matrix(rep(0,nStates*nReactions),nrow=nStates)
-#	indx=(1:nSpecies)[BC==FALSE]
-#	for (i in 1:nStates)
-#		for (j in 1:nReactions)
-#		{if ( is.element(model$species[[indx[i]]]$id, model$reactions[[j]]$products)) 
-#				incid[i,j] = summary(factor(model$reactions[[j]]$products))[[model$species[[indx[i]]]$id]]
-#			if ( is.element(model$species[[indx[i]]]$id, model$reactions[[j]]$reactants)) 
-#				incid[i,j] = incid[i,j]-summary(factor(model$reactions[[j]]$reactants))[[model$species[[indx[i]]]$id]]  }     
-#	rownames(incid)<-names(y0)
-	
 	incid=matrix(rep(0,nStates*nReactions),nrow=nStates)
 	indx=(1:nSpecies)[BC==FALSE]
 	for (i in 1:nStates)
-	  for (j in 1:nReactions)
-	  {if ( is.element(model$species[[i]]$id, model$reactions[[j]]$products)) 
-	    incid[i,j] = summary(factor(model$reactions[[j]]$products))[[model$species[[i]]$id]]
-	  if ( is.element(model$species[[i]]$id, model$reactions[[j]]$reactants)) 
-	    incid[i,j] = incid[i,j]-summary(factor(model$reactions[[j]]$reactants))[[model$species[[i]]$id]]  }     
+		for (j in 1:nReactions)
+		{if ( is.element(model$species[[indx[i]]]$id, model$reactions[[j]]$products)) 
+				incid[i,j] = summary(factor(model$reactions[[j]]$products))[[model$species[[indx[i]]]$id]]
+			if ( is.element(model$species[[indx[i]]]$id, model$reactions[[j]]$reactants)) 
+				incid[i,j] = incid[i,j]-summary(factor(model$reactions[[j]]$reactants))[[model$species[[indx[i]]]$id]]  }     
 	rownames(incid)<-names(y0)
+	
+#	incid=matrix(rep(0,nStates*nReactions),nrow=nStates)
+#	indx=(1:nSpecies)[BC==FALSE]
+#	for (i in 1:nStates)
+#	  for (j in 1:nReactions)
+#	  {if ( is.element(model$species[[i]]$id, model$reactions[[j]]$products)) 
+#	    incid[i,j] = summary(factor(model$reactions[[j]]$products))[[model$species[[i]]$id]]
+#	  if ( is.element(model$species[[i]]$id, model$reactions[[j]]$reactants)) 
+#	    incid[i,j] = incid[i,j]-summary(factor(model$reactions[[j]]$reactants))[[model$species[[i]]$id]]  }     
+#	rownames(incid)<-names(y0)
 	
 # return a list of model information
 	options(stringsAsFactors=FALSE)
