@@ -73,8 +73,8 @@
 	  for (j in 1:nReactions)
 	  {if ( is.element(model$species[[i]]$id, model$reactions[[j]]$products)) 
 	    incid[i,j] = summary(factor(model$reactions[[j]]$products))[[model$species[[i]]$id]]
-	  if ( is.element(model$species[[indx[i]]]$id, model$reactions[[j]]$reactants)) 
-	    incid[i,j] = incid[i,j]-summary(factor(model$reactions[[j]]$reactants))[[model$species[[indx[i]]]$id]]  }     
+	  if ( is.element(model$species[[i]]$id, model$reactions[[j]]$reactants)) 
+	    incid[i,j] = incid[i,j]-summary(factor(model$reactions[[j]]$reactants))[[model$species[[i]]$id]]  }     
 	rownames(incid)<-names(y0)
 	
 # return a list of model information
