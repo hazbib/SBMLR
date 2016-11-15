@@ -531,9 +531,9 @@
     if (nFunctions>0){
       for (i in 1:nFunctions)
       {
-        mathml <- functions[[i]][["math"]][[1]]
-        model$functions[[i]]$mathmlLaw=mathml
-        e<-mathml2R(mathml)
+        mathmll <- functions[[i]][["math"]][[1]]
+        model$functions[[i]]$mathmlLaw=mathmll
+        e<-mathml2R(mathmll)
         model$functions[[i]]$exprLaw<-e[[1]]
         model$functions[[i]]$strLaw<-gsub(" ","",toString(e[1]))
         leaves<-getRuleLeaves(mathml)
