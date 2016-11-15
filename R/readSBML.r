@@ -560,7 +560,8 @@
 #  lawTempl
 #}
 
-"makeLaw"<-function(r,p,e){
+"makeLaw"<-function(r,p,e, compartments = NULL){
+    attach(compartments)
   # takes reactant list r, parameter list p and rate law R expression e 
   # and makes a reaction rate law function out of them.
   lawTempl=function(r,p=NULL){ }
