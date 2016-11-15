@@ -570,7 +570,7 @@
   # substituting p and r with ..
   # .. is unlikely name for a parameter or specie
   body(lawTempl)[[i]] <- call("<-", as.name('..'), call("c",as.name("p"),as.name("r")))
-  for (j in seq.along(..)){
+  for (j in seq_along(..)){
     body(lawTempl)[[i]]<-call("=",as.name(p[j]),call("[",as.name("p"),p[j]))
     i=i+1}
   body(lawTempl)[[i]] <- e
