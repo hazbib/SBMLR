@@ -528,7 +528,7 @@
     }
     
     nFunctions=length(functions)
-    if (nfunctions>0){
+    if (nFunctions>0){
       for (i in 1:nFunctions)
       {
         mathml <- functions[[i]][["math"]][[1]]
