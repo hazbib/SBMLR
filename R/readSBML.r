@@ -472,9 +472,10 @@
     model$htmlNotes=doc$doc$children$sbml[["model"]][["notes"]] 
     rules=doc$doc$children$sbml[["model"]][["listOfRules"]]
     reactions=doc$doc$children$sbml[["model"]][["listOfReactions"]]
+    # Read functions definitions 
+    functions=doc$doc$children$sbml[["model"]][["listOfFunctionDefinitions"]]
     
     globalParameters=names(model$globalParameters)
-    
     
     nRules=length(rules)
     #print(nRules)
@@ -526,6 +527,23 @@
       #    names(model$reactions)<-sapply(model$reactions,function(x) x$id)
     }
     
+    nFunctions=length(functions)
+    if (nfunctions>0){
+      for (i in 1:nFunctions)
+      {
+        mathml <- functions[[i]][["math"]][[1]]
+        model$functions[[i]]$mathmlLaw=mathml
+        e<-mathml2R(mathml)
+        model$functions[[i]]$exprLaw<-e[[1]]
+        model$functions[[i]]$strLaw<-gsub(" ","",toString(e[1]))
+        leaves<-getRuleLeaves(mathml)
+        r<-model$functions[[i]]$inputs<-setdiff(leaves,globalParameters)
+        model$functions[[i]]$law=makeLaw(r,NULL,model$functions[[i]]$exprLaw)
+        functionsIDs[[i]]<-model$functions[[i]]$idOutput
+        names(model$functions)<-sapply(model$functions,function(x) x$idOutput)
+      }
+    }
+    
     #---DEBUG CODE
     cat("Number of species: " , length(model$species), "\n")
     cat("Number of rules: ", nRules, "\n")
@@ -543,16 +561,13 @@
 
 "makeLaw"<-function(listofSpecies,listofParams,e, compartments = NULL){
     attach(compartments)
-  # takes reactant list r, parameter list p and rate law R expression e 
+  # takes reactant list of Species, parameter list and rate law R expression e 
   # and makes a reaction rate law function out of them.
   lawTempl=function(listofSpecies,listofParams=NULL){ }
   i=2
   for (j in seq(along=listofParams)){
-    #		if(!is.null(p))
-    #		for (j in 1:length(p)){
     body(lawTempl)[[i]]<-call("=",as.name(listofParams[j]),call("[",as.name("listofParams"),listofParams[j]))
     i=i+1}
-  #   for (j in 1:length(r)){ 
   for (j in seq(along=listofSpecies)){
     body(lawTempl)[[i]]<-call("=",as.name(listofSpecies[j]),call("[",as.name("listofSpecies"),listofSpecies[j]))
     i=i+1}
