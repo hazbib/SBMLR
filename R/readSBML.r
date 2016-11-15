@@ -560,22 +560,22 @@
 #  lawTempl
 #}
 
-"makeLaw"<-function(r,p,e, compartments = NULL){
-    attach(compartments)
-  # takes reactant list r, parameter list p and rate law R expression e 
-  # and makes a reaction rate law function out of them.
-  lawTempl=function(r,p=NULL){ }
+function (r, p, e, compartments = NULL) 
+{
+  attach(compartments)
+  .. <- c(r, p)
+  lawTempl = function(r, p = NULL) {
+  }
   i = 2
-  # p and r sometimes are real names of parameters. Thus it may lead to conflicts.
-  # substituting p and r with ..
-  # .. is unlikely name for a parameter or specie
-  body(lawTempl)[[i]] <- call("<-", as.name('..'), call("c",as.name("p"),as.name("r")))
-  for (j in seq_along(..)){
-    body(lawTempl)[[i]]<-call("=",as.name(p[j]),call("[",as.name("p"),p[j]))
-    i=i+1}
+  body(lawTempl)[[i]] <- call("<-", as.name(".."), call("c", as.name("p"), as.name("r")))
+  for (j in seq_along(..)) {
+    body(lawTempl)[[i]] <- call("=", as.name(..[j]), call("[", as.name(".."), ..[j]))
+    i <- i + 1
+  }
   body(lawTempl)[[i]] <- e
   return(lawTempl)
 }
+
 
 
 #
