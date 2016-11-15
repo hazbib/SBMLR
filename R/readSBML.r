@@ -541,40 +541,40 @@
 # the following is called by both readSBML and readSBMLR so it outside where both can reach it.
 # Note that keeing it here instead of in a separate file => no need to document it
 
-#"makeLaw"<-function(r,p,e, compartments = NULL){
-#    attach(compartments)
-#  # takes reactant list r, parameter list p and rate law R expression e 
-#  # and makes a reaction rate law function out of them.
-#  lawTempl=function(r,p=NULL){ }
-#  i=2
-#  for (j in seq(along=p)){
-#    #		if(!is.null(p))
-#    #		for (j in 1:length(p)){
-#    body(lawTempl)[[i]]<-call("=",as.name(p[j]),call("[",as.name("p"),p[j]))
-#    i=i+1}
-#  #   for (j in 1:length(r)){ 
-#  for (j in seq(along=r)){
-#    body(lawTempl)[[i]]<-call("=",as.name(r[j]),call("[",as.name("r"),r[j]))
-#    i=i+1}
-#  body(lawTempl)[[i]]<-e
-#  lawTempl
-#}
-
-"makeLaw" <- function (r, p, e, compartments = NULL) 
-{
-  attach(compartments)
-  .. <- c(r, p)
-  lawTempl = function(r, p = NULL) {
-  }
-  i = 2
-  body(lawTempl)[[i]] <- call("<-", as.name(".."), call("c", as.name("p"), as.name("r")))
-  for (j in seq_along(..)) {
-    body(lawTempl)[[i]] <- call("=", as.name(..[j]), call("[", as.name(".."), ..[j]))
-    i <- i + 1
-  }
-  body(lawTempl)[[i]] <- e
-  return(lawTempl)
+"makeLaw"<-function(._r_.,._p_.,e, compartments = NULL){
+    attach(compartments)
+  # takes reactant list r, parameter list p and rate law R expression e 
+  # and makes a reaction rate law function out of them.
+  lawTempl=function(._r_.,._p_.=NULL){ }
+  i=2
+  for (j in seq(along=._p_.)){
+    #		if(!is.null(p))
+    #		for (j in 1:length(p)){
+    body(lawTempl)[[i]]<-call("=",as.name(._p_.[j]),call("[",as.name("._p_."),._p_.[j]))
+    i=i+1}
+  #   for (j in 1:length(r)){ 
+  for (j in seq(along=._r_.)){
+    body(lawTempl)[[i]]<-call("=",as.name(._r_.[j]),call("[",as.name("._r_."),._r_.[j]))
+    i=i+1}
+  body(lawTempl)[[i]]<-e
+  lawTempl
 }
+
+#"makeLaw" <- function (r, p, e, compartments = NULL) 
+#{
+#  attach(compartments)
+#  .. <- c(r, p)
+#  lawTempl = function(r, p = NULL) {
+#  }
+#  i = 2
+#  body(lawTempl)[[i]] <- call("<-", as.name(".."), call("c", as.name("p"), as.name("r")))
+#  for (j in seq_along(..)) {
+#    body(lawTempl)[[i]] <- call("=", as.name(..[j]), call("[", as.name(".."), ..[j]))
+#    i <- i + 1
+#  }
+#  body(lawTempl)[[i]] <- e
+#  return(lawTempl)
+#}
 
 
 
