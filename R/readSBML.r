@@ -560,7 +560,7 @@
 #  lawTempl
 #}
 
-function (r, p, e, compartments = NULL) 
+"makeLaw" <- function (r, p, e, compartments = NULL) 
 {
   attach(compartments)
   .. <- c(r, p)
