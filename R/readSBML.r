@@ -540,24 +540,42 @@
 
 # the following is called by both readSBML and readSBMLR so it outside where both can reach it.
 # Note that keeing it here instead of in a separate file => no need to document it
-"makeLaw"<-function(r,p,e, compartments = NULL){
-    attach(compartments)
+
+#"makeLaw"<-function(r,p,e, compartments = NULL){
+#    attach(compartments)
+#  # takes reactant list r, parameter list p and rate law R expression e 
+#  # and makes a reaction rate law function out of them.
+#  lawTempl=function(r,p=NULL){ }
+#  i=2
+#  for (j in seq(along=p)){
+#    #		if(!is.null(p))
+#    #		for (j in 1:length(p)){
+#    body(lawTempl)[[i]]<-call("=",as.name(p[j]),call("[",as.name("p"),p[j]))
+#    i=i+1}
+#  #   for (j in 1:length(r)){ 
+#  for (j in seq(along=r)){
+#    body(lawTempl)[[i]]<-call("=",as.name(r[j]),call("[",as.name("r"),r[j]))
+#    i=i+1}
+#  body(lawTempl)[[i]]<-e
+#  lawTempl
+#}
+
+"makeLaw"<-function(r,p,e){
   # takes reactant list r, parameter list p and rate law R expression e 
   # and makes a reaction rate law function out of them.
   lawTempl=function(r,p=NULL){ }
-  i=2
-  for (j in seq(along=p)){
-    #		if(!is.null(p))
-    #		for (j in 1:length(p)){
+  i = 2
+  # p and r sometimes are real names of parameters. Thus it may lead to conflicts.
+  # substituting p and r with ..
+  # .. is unlikely name for a parameter or specie
+  body(lawTempl)[[i]] <- call("<-", as.name('..'), call("c",as.name("p"),as.name("r")))
+  for (j in seq.along(..)){
     body(lawTempl)[[i]]<-call("=",as.name(p[j]),call("[",as.name("p"),p[j]))
     i=i+1}
-  #   for (j in 1:length(r)){ 
-  for (j in seq(along=r)){
-    body(lawTempl)[[i]]<-call("=",as.name(r[j]),call("[",as.name("r"),r[j]))
-    i=i+1}
-  body(lawTempl)[[i]]<-e
-  lawTempl
+  body(lawTempl)[[i]] <- e
+  return(lawTempl)
 }
+
 
 #
 #"makeLaw"<-function(inputs,pars,lawCall)
