@@ -541,20 +541,20 @@
 # the following is called by both readSBML and readSBMLR so it outside where both can reach it.
 # Note that keeing it here instead of in a separate file => no need to document it
 
-"makeLaw"<-function(._r_.,._p_.,e, compartments = NULL){
+"makeLaw"<-function(listofSpecies,listofParams,e, compartments = NULL){
     attach(compartments)
   # takes reactant list r, parameter list p and rate law R expression e 
   # and makes a reaction rate law function out of them.
-  lawTempl=function(._r_.,._p_.=NULL){ }
+  lawTempl=function(listofSpecies,listofParams=NULL){ }
   i=2
-  for (j in seq(along=._p_.)){
+  for (j in seq(along=listofParams)){
     #		if(!is.null(p))
     #		for (j in 1:length(p)){
-    body(lawTempl)[[i]]<-call("=",as.name(._p_.[j]),call("[",as.name("._p_."),._p_.[j]))
+    body(lawTempl)[[i]]<-call("=",as.name(listofParams[j]),call("[",as.name("listofParams"),listofParams[j]))
     i=i+1}
   #   for (j in 1:length(r)){ 
-  for (j in seq(along=._r_.)){
-    body(lawTempl)[[i]]<-call("=",as.name(._r_.[j]),call("[",as.name("._r_."),._r_.[j]))
+  for (j in seq(along=listofSpecies)){
+    body(lawTempl)[[i]]<-call("=",as.name(listofSpecies[j]),call("[",as.name("listofSpecies"),listofSpecies[j]))
     i=i+1}
   body(lawTempl)[[i]]<-e
   lawTempl
