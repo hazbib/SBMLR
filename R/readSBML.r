@@ -536,11 +536,11 @@
 #        e<-mathml2R(mathmll)
 #        model$functions[[i]]$exprLaw<-e[[1]]
 #        model$functions[[i]]$strLaw<-gsub(" ","",toString(e[1]))
-        leaves<-getRuleLeaves(mathmll)
-        r<-model$functions[[i]]$inputs<-setdiff(leaves,globalParameters)
-        model$functions[[i]]$law=makeLaw(r,NULL,model$functions[[i]]$exprLaw)
-        functionsIDs[[i]]<-model$functions[[i]]$idOutput
-        names(model$functions)<-sapply(model$functions,function(x) x$idOutput)
+  
+      
+#        model$functions[[i]]$law=makeLaw(r,NULL,model$functions[[i]]$exprLaw)
+#        functionsIDs[[i]]<-model$functions[[i]]$idOutput
+  
       }
     }
     
