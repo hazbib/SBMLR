@@ -531,8 +531,15 @@
     if (nFunctions>0){
       for (i in 1:nFunctions)
       {
-        model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]
-
+#        model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]
+        mathml<-functions[[i]][["math"]][[1]]
+        model$functions[[i]]$mathmlLaw=mathml
+        e<-mathml2R(mathml)
+        model$functions[[i]]$exprLaw<-e[[1]]
+        model$functions[[i]]$strLaw<-gsub(" ","",toString(e[1]))
+ #       r<-getRuleLeaves(mathml)
+        r<-model$functions[[i]]$inputs
+        model$functions[[i]]$law=makeLaw(r,NULL,model$rules[[i]]$exprLaw) 
       }
     }
     
