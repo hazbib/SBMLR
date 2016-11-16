@@ -539,7 +539,7 @@
 #        model$functions[[i]]$strLaw=gsub(" ","",toString(e[1]))
         r<-model$functions[[i]]$inputs
 #        model$functions[[i]]$law=makeLaw(r,NULL,model$functions[[i]]$exprLaw) 
-        model$functions[[i]]$law=makeLaw(r,NULL,e[[1]]) 
+        model$functions[[i]]$law=makeLaw(r,NULL,model$functions[[i]]$exprLaw=e[[1]]) 
       }
     }
     
