@@ -531,8 +531,7 @@
     if (nFunctions>0){
       for (i in 1:nFunctions)
       {
-        mathmll <- functions[[i]][["math"]][[1]]
-        model$functions[[i]]$mathmllLaw=mathmll
+        model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]
 #        e<-mathml2R(mathmll)
 #        model$functions[[i]]$exprLaw<-e[[1]]
 #        model$functions[[i]]$strLaw<-gsub(" ","",toString(e[1]))
