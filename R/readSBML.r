@@ -535,7 +535,7 @@
         mathml<-functions[[i]][["math"]][["lambda"]][["bvar"]][[1]]
 #        mathml<-model$functions[[i]]$mathmlLaw
         e<-mathml2R(mathml)
-        model$functions[[i]]$exprLaw<-e[[1]]
+        model$functions[[i]]$exprLaw<-e
         model$functions[[i]]$strLaw<-gsub(" ","",toString(e[1]))
  #       r<-getRuleLeaves(mathml)
         r<-model$functions[[i]]$inputs
