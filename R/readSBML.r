@@ -535,9 +535,8 @@
         mathml<-functions[[i]][["math"]][["lambda"]][["bvar"]][[1]]
 #        mathml<-model$functions[[i]]$mathmlLaw
         e<-mathml2R(mathml)
-        model$functions[[i]]$exprLaw<-e
+        model$functions[[i]]$exprLaw<-e[[1]]
         model$functions[[i]]$strLaw<-gsub(" ","",toString(e[1]))
- #       r<-getRuleLeaves(mathml)
         r<-model$functions[[i]]$inputs
         model$functions[[i]]$law=makeLaw(r,NULL,model$functions[[i]]$exprLaw) 
       }
@@ -548,6 +547,7 @@
     cat("Number of rules: ", nRules, "\n")
     cat("Number of Global Parameters: " , length(globalParameters), "\n")
     cat("Number of reactions: " , nReactions, "\n")
+    cat("Number of funtions: " , nFuntions, "\n")
     cat("Parsing Successful !" , "\n")
     #-----------
     
