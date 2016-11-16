@@ -541,6 +541,8 @@
         r<-model$functions[[1]]$inputs
           model$functions[[1]]$law=makeLaw(r,NULL,model$functions[[1]]$exprLaw) 
       }
+          names(model$functions)<-sapply(model$functions,function(x) x$id)
+      
     }
     
     #---DEBUG CODE
