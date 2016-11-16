@@ -13,6 +13,7 @@
       species <- list()
       rules<- list()
       reactions<- list()
+      functions <- list()
       globalParameters=list()   
       reactants=NULL
       products=NULL
