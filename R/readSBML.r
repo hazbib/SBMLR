@@ -532,7 +532,7 @@
       for (i in 1:nFunctions)
       {
         mathmll <- functions[[i]][["math"]][[1]]
-        model$functions[[i]]$mathmlLaw=mathmll
+        model$functions[[i]]$mathmllLaw=mathmll
 #        e<-mathml2R(mathmll)
 #        model$functions[[i]]$exprLaw<-e[[1]]
 #        model$functions[[i]]$strLaw<-gsub(" ","",toString(e[1]))
