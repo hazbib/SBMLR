@@ -548,7 +548,7 @@
     cat("Number of rules: ", nRules, "\n")
     cat("Number of Global Parameters: " , length(globalParameters), "\n")
     cat("Number of reactions: " , nReactions, "\n")
-#    cat("Number of funtions: " , nFuntions, "\n")
+    cat("Number of funtions: " , nFuntions, "\n")
     cat("Parsing Successful !" , "\n")
     #-----------
     
