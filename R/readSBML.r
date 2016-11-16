@@ -532,7 +532,7 @@
       for (i in 1:nFunctions)
       {
 #        model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]
-        mathml<-functions[[i]][["math"]][["lambda"]][[1]]
+        mathml<-functions[[i]][["math"]][["lambda"]][["bvar"]][[1]]
         model$functions[[i]]$mathmlLaw=mathml
         e<-mathml2R(mathml)
         model$functions[[i]]$exprLaw<-e[[1]]
