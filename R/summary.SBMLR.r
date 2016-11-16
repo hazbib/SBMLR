@@ -4,7 +4,10 @@
 	sIDs=names(model$species)
 	rIDs=names(model$reactions)
 	ruleIDs=names(model$rules)
-	nReactions=length(model$reactions);nSpecies=length(model$species);nRules=length(model$rules) 
+	nReactions=length(model$reactions)
+	nSpecies=length(model$species)
+	nRules=length(model$rules)
+	nFunctions=length(model$functions)
 	
 #	##### by Vishak Venkateswaran (VV)
 #	pIDs=names(model$ParametersList)
@@ -39,7 +42,7 @@
 	attach(globals)  # e.g. for global coordination of k5 in SOD2012
 #   V0=with(model$globalParameters, # not sure why this didn't work in SOD2012
 # 			sapply(model$reactions,function(x) x$law(S0[c(x$reactants,x$modifiers)],x$parameters)))
-	V0=sapply(model$reactions,function(x) x$law(S0[c(x$reactants,x$modifiers)],x$parameters))
+	V0=sapply(model$reactions,function(x) x$law(S0[c(x$reactants,x$modifiers)],x$parameters))    # could not find function 
 	names(V0)<-rIDs
 	detach(globals)  
 	
