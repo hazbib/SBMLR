@@ -23,7 +23,8 @@
       parameterIDs=NULL   # local to rate law
       globalParameterIDs=NULL   
       
-      notes=FALSE; reactant=FALSE; product=FALSE
+      notes=FALSE; reactant=FALSE; product=FALSE; 
+      funcDef <- FALSE
       law=FALSE; parameter=FALSE; math=FALSE
       
       # 		# VV's additions
@@ -137,6 +138,9 @@
         }
         
         #		  print ("error2")
+        
+        if(name=="listOfFunctionDefinitions")  funcDef <<- TRUE
+        
         if(name=="listOfReactants")  reactant<<-TRUE
         if(name=="listOfProducts")  product<<-TRUE
         if(name=="kineticLaw")  law<<-TRUE
@@ -199,6 +203,7 @@
       
       
       .endElement <- function(name) {
+          if(name=="listOfFunctionDefinitions")  funcDef <<-FALSE  
         if(name=="listOfReactants")  reactant<<-FALSE  
         if(name=="listOfProducts")  product<<-FALSE   
         if(name=="kineticLaw")  law<<-FALSE
@@ -432,6 +437,9 @@
       }  else if(nm == "apply") {
         val <- mathml2R(node$children)
         mode(val) <- "call"
+      } else if(nm %in% c("lambda","bvar")){
+          # ignore and move on
+          val <- mathml2R(node$children)
       } else  {cat("error: nm =",nm," not in set!\n")}
       return(as.expression(val))
     }
@@ -532,17 +540,9 @@
     if (nFunctions>0){
       for (i in 1:nFunctions)
       {
-#        model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][["lambda"]][["bvar"]][[1]]
-        mathml=functions[[i]][["math"]][["lambda"]][["bvar"]][[1]]
-#        mathml<-model$functions[[i]]$mathmlLaw
-        e=mathml2R(mathml)
-        model$functions[[1]]$exprLaw=e[[1]]
-#        model$functions[[i]]$strLaw=gsub(" ","",toString(e[1]))
-        r<-model$functions[[1]]$inputs
-          model$functions[[1]]$law=makeLaw(r,NULL,model$functions[[1]]$exprLaw) 
+        # so far this is an expression
+        model$functions[[i]] <- mathml2R(functions[[i]][["math"]][[1]])
       }
-          names(model$functions)<-sapply(model$functions,function(x) x$id)
-      
     }
     
     #---DEBUG CODE
