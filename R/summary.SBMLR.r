@@ -42,7 +42,7 @@
 	attach(globals)  # e.g. for global coordination of k5 in SOD2012
 #   V0=with(model$globalParameters, # not sure why this didn't work in SOD2012
 # 			sapply(model$reactions,function(x) x$law(S0[c(x$reactants,x$modifiers)],x$parameters)))
-	V0=sapply(model$reactions,function(x) x$law(S0[c(x$reactants,x$modifiers)],x$parameters))    # could not find function 
+	V0=sapply(model$reactions,function(x) x$law(S0[c(x$reactants,x$modifiers)],x$parameters))   
 	names(V0)<-rIDs
 	detach(globals)  
 	
