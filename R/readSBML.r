@@ -520,7 +520,8 @@
             model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]    
             e=mathml2R(functions[[i]][["math"]][[1]])
              model$reactions[[i]]$exprLaw=e[[1]]
-            } else {
+            } 
+        } else {
               for (i in 1:nReactions){    
 
         model$reactions[[i]]$mathmlLaw=reactions[[i]][["kineticLaw"]][["math"]][[1]]
@@ -546,7 +547,7 @@
       # This is for indexing by names/IDs of reactions
       #    names(model$reactions)<-rIDs
       #    names(model$reactions)<-sapply(model$reactions,function(x) x$id)
-     }
+#     }
  
 #    nFunctions=length(functions)
     if (nFunctions>0){
