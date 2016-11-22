@@ -520,8 +520,7 @@
             model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]    
             e=mathml2R(functions[[i]][["math"]][[1]])
              model$reactions[[i]]$exprLaw=e[[1]]
-            }                          
-        else if (Nbfunctdef=0){
+            } else {
               for (i in 1:nReactions){    
 
         model$reactions[[i]]$mathmlLaw=reactions[[i]][["kineticLaw"]][["math"]][[1]]
