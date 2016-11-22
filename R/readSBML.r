@@ -84,33 +84,27 @@
         
         
         #       if(name=="compartment")  {compartments[[atts[1]]]<<-atts}
-        if(name=="compartment")  
-        {
+        if(name=="compartment"){
           values <<- names(atts)
-          #			  
           if( "id" %in% values) compartments[[atts["id"]]]<<-atts
-          
           #				if( "id" %in% names(atts)) compartments[[atts["id"]]]<<-atts
         }
         
         #       if(name=="species")  {species[[atts[1]]]<<-atts }
-        if(name=="species") 
-        {
+        if(name=="species"){
           values <<- names(atts)
           if( "id" %in% values) species[[atts["id"]]]<<-atts 
           #				if( "id" %in% names(atts)) species[[atts["id"]]]<<-atts 
         }
         
         #       if(name=="assignmentRule")  rules[[atts[1]]]$idOutput<<-atts[[1]] 
-        if(name=="assignmentRule")  
-        {  
+        if(name=="assignmentRule"){  
           rules[[atts["variable"]]]$idOutput<<-atts[["variable"]] 
         }
         #       if(name=="reaction")  {reactions[[atts[1]]]$id<<-atts[[1]]
         #         reactions[[atts[1]]]$reversible<<-as.logical(atts[[2]])
         #         currRxnID<<-atts[1]}
-        if(name=="reaction")  
-        {
+        if(name=="reaction"){
           lstnames <- names(atts)
           numitems <- length(lstnames)
           nameslist <- list()
