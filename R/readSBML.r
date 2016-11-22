@@ -91,11 +91,11 @@
         }
         
         #       if(name=="species")  {species[[atts[1]]]<<-atts }
-        if(name=="species"){
-          values <<- names(atts)
-          if( "id" %in% values) species[[atts["id"]]]<<-atts 
+#        if(name=="species"){
+#          values <<- names(atts)
+#          if( "id" %in% values) species[[atts["id"]]]<<-atts 
           #				if( "id" %in% names(atts)) species[[atts["id"]]]<<-atts 
-        }
+#        }
         
         #       if(name=="assignmentRule")  rules[[atts[1]]]$idOutput<<-atts[[1]] 
         if(name=="assignmentRule"){  
