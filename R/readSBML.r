@@ -526,20 +526,13 @@
       else 
       {
       for (i in 1:nReactions)
-      {                                
+        {                                
                               #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         #     add If statemtent,    If function exists 
                                           # If name of function 
                                                   # replace kineticLaw with function 
         # else 
                               #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#        if (name=="listOfFunctionDefinitions"){
-#          if (name == "functionDefinition"){      
-#                model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]    
-#          }
-#        }
-#        else {
-        
         model$reactions[[i]]$mathmlLaw=reactions[[i]][["kineticLaw"]][["math"]][[1]]
         e=mathml2R(reactions[[i]][["kineticLaw"]][["math"]][[1]])
         model$reactions[[i]]$exprLaw=e[[1]]
@@ -558,7 +551,7 @@
 #        model$reactions[[i]]$law = makeLaw(c(r, m), p, e)
         #      rIDs[i]<-model$reactions[[i]]$id
 #        } 
-      }
+        }
       }
       # This is for indexing by names/IDs of reactions
       #    names(model$reactions)<-rIDs
