@@ -478,6 +478,7 @@
     model=edoc$getModel() # SAX approach using the handler. Output of getModel() in edoc list is what we want.
     doc <- xmlTreeParse(filename,ignoreBlanks = TRUE)  # use DOM just for rules and reactions
     model$htmlNotes=doc$doc$children$sbml[["model"]][["notes"]] 
+    
     rules=doc$doc$children$sbml[["model"]][["listOfRules"]]
     reactions=doc$doc$children$sbml[["model"]][["listOfReactions"]]
     # Read functions definitions 
@@ -506,10 +507,21 @@
       }
       #    names(model$rules)<-sapply(model$rules,function(x) x$idOutput)
     } 
-    
+    nFunctions=length(functions)
     nReactions=length(reactions)
     if (nReactions>0){
       #    rIDs=NULL;  
+      
+      ##        if (name=="listOfFunctionDefinitions"){
+                                      # !!!!!!!!!  Added !!!!
+#      for (i in 1:nFunctions)                                   
+#      {
+#        model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]    
+#        e=mathml2R(functions[[i]][["math"]][[1]])
+#        model$reactions[[i]]$exprLaw=e[[1]]
+#      }                               #!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      #         else 
+      
       for (i in 1:nReactions)
       {                                
                               #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -518,13 +530,12 @@
                                                   # replace kineticLaw with function 
         # else 
                               #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if (name=="listOfFunctionDefinitions"){
-          if (name == "functionDefinition"){      
-                model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]    
-          }
-        }
-        else {
-        
+#        if (name=="listOfFunctionDefinitions"){
+#          if (name == "functionDefinition"){      
+#                model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]    
+#          }
+#        }
+#        else {
         
         model$reactions[[i]]$mathmlLaw=reactions[[i]][["kineticLaw"]][["math"]][[1]]
         e=mathml2R(reactions[[i]][["kineticLaw"]][["math"]][[1]])
@@ -543,14 +554,14 @@
         model$reactions[[i]]$law=makeLaw(c(r,m),p,e, compartments=model$compartments)
 #        model$reactions[[i]]$law = makeLaw(c(r, m), p, e)
         #      rIDs[i]<-model$reactions[[i]]$id
-        } 
+#        } 
       }
       # This is for indexing by names/IDs of reactions
       #    names(model$reactions)<-rIDs
       #    names(model$reactions)<-sapply(model$reactions,function(x) x$id)
     }
     
-    nFunctions=length(functions)
+#    nFunctions=length(functions)
     if (nFunctions>0){
       for (i in 1:nFunctions)
       {
