@@ -513,7 +513,7 @@
          for (i in 1:nFunctions){
             model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]    
             e=mathml2R(functions[[i]][["math"]][[1]])
-             model$reactions[[i]]$exprLaw=e[[1]]
+             model$functions[[i]]$exprLaw=e[[1]]
             } 
         } else {
                   #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
