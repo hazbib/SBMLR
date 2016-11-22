@@ -505,8 +505,8 @@
     nReactions=length(reactions)
     if (nReactions>0){
       #    rIDs=NULL;  
-      
-#      library(plyr)                                # !!!!!!!!!  Added !!!!
+                      #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#      library(plyr)                                
       lstoffunctdef = xmlName("listOfFunctionDefinitions");
       Nbfunctdef <- count(lstoffunctdef)                          # library(plyr) 
       if (Nbfunctdef > 0){
@@ -516,6 +516,8 @@
              model$reactions[[i]]$exprLaw=e[[1]]
             } 
         } else {
+                  #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          
               for (i in 1:nReactions){    
         model$reactions[[i]]$mathmlLaw=reactions[[i]][["kineticLaw"]][["math"]][[1]]
         e=mathml2R(reactions[[i]][["kineticLaw"]][["math"]][[1]])
