@@ -512,16 +512,19 @@
     if (nReactions>0){
       #    rIDs=NULL;  
       
-      ##        if (name=="listOfFunctionDefinitions"){
                                       # !!!!!!!!!  Added !!!!
-#      for (i in 1:nFunctions)                                   
-#      {
-#        model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]    
-#        e=mathml2R(functions[[i]][["math"]][[1]])
-#        model$reactions[[i]]$exprLaw=e[[1]]
-#      }                               #!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      #         else 
-      
+      lstoffunctdef = xmlName("listOfFunctionDefinitions");
+      Nbfunctdef <- count(lstoffunctdef)                          # library(plyr) 
+      if (Nbfunctdef > 0)
+      {
+      for (i in 1:nFunctions)                                   
+      {
+        model$functions[[i]]$mathmlLaw=functions[[i]][["math"]][[1]]    
+        e=mathml2R(functions[[i]][["math"]][[1]])
+        model$reactions[[i]]$exprLaw=e[[1]]
+      }                               #!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      else 
+      {
       for (i in 1:nReactions)
       {                                
                               #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -555,6 +558,7 @@
 #        model$reactions[[i]]$law = makeLaw(c(r, m), p, e)
         #      rIDs[i]<-model$reactions[[i]]$id
 #        } 
+      }
       }
       # This is for indexing by names/IDs of reactions
       #    names(model$reactions)<-rIDs
