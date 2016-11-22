@@ -512,7 +512,7 @@
     if (nReactions>0){
       #    rIDs=NULL;  
       
-                                      # !!!!!!!!!  Added !!!!
+      library(plyr)                                # !!!!!!!!!  Added !!!!
       lstoffunctdef = xmlName("listOfFunctionDefinitions");
       Nbfunctdef <- count(lstoffunctdef)                          # library(plyr) 
       if (Nbfunctdef > 0)
@@ -550,7 +550,7 @@
         model$reactions[[i]]$law=makeLaw(c(r,m),p,e, compartments=model$compartments)
 #        model$reactions[[i]]$law = makeLaw(c(r, m), p, e)
         #      rIDs[i]<-model$reactions[[i]]$id
-#        } 
+
         }
       }
       # This is for indexing by names/IDs of reactions
